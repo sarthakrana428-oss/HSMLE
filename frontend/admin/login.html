@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Authentication | HSMLE India Corporation Control Portals</title>
+  <script src="../js/tailwind.min.js?v=1793637338"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              navy: '#0F172A',
+              navyDark: '#0A0F1D',
+              blue: '#2563EB',
+              blueDark: '#1D4ED8'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="../css/styles.css?v=1793637338">
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex items-center justify-center p-4">
+
+  <div class="max-w-md w-full bg-slate-950 border-2 border-slate-800 p-8 shadow-2xl relative">
+    
+    <!-- Top Portal Selector Tabs -->
+    <div class="flex border-b border-slate-800 -mx-8 -mt-8 mb-6 bg-slate-900/60">
+      <button 
+        type="button" 
+        id="tab-director" 
+        onclick="switchPortal('director')" 
+        class="flex-1 py-3 px-4 text-center text-xs font-bold transition flex items-center justify-center gap-1.5 border-b-2 border-amber-500 text-amber-300 bg-slate-900"
+      >
+        <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+        <span>Director Portal</span>
+      </button>
+      <button 
+        type="button" 
+        id="tab-editor" 
+        onclick="switchPortal('editor')" 
+        class="flex-1 py-3 px-4 text-center text-xs font-bold text-slate-400 hover:text-slate-200 transition flex items-center justify-center gap-1.5 border-b-2 border-transparent"
+      >
+        <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+        <span>Editor Portal</span>
+      </button>
+    </div>
+
+    <!-- Header Logo & Title -->
+    <div class="text-center mb-6">
+      <div class="w-14 h-14 bg-slate-900 border border-slate-800 flex items-center justify-center mx-auto mb-3">
+        <img src="../assets/images/logo.png" alt="HSMLE Logo" class="h-9 w-auto object-contain">
+      </div>
+      <h1 id="portal-heading" class="text-lg font-black text-white tracking-tight uppercase">DIRECTOR ADMIN PORTAL</h1>
+      <p id="portal-subheading" class="text-xs text-slate-400 mt-1">Executive Oversight, Visitor Analytics & Commercial Review</p>
+      
+      <div class="mt-2.5 inline-flex items-center gap-1.5 px-2.5 py-0.5 border text-[10px] font-bold uppercase tracking-wider" id="portal-badge">
+        <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
+        <span id="portal-badge-text">Director & Leadership Access</span>
+      </div>
+    </div>
+
+    <!-- Alert / Error message container -->
+    <div id="login-alert" class="hidden mb-5 p-3 bg-red-950/60 border border-red-800 text-xs text-red-300 flex items-start gap-2">
+      <svg class="w-4 h-4 text-red-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+      <span id="login-alert-text"></span>
+    </div>
+
+    <!-- Form -->
+    <form id="admin-login-form" class="space-y-4">
+      <div>
+        <label class="block text-xs font-semibold text-slate-300 mb-1.5" id="label-username">Director Username / Email</label>
+        <div class="relative">
+          <input 
+            type="text" 
+            name="username" 
+            id="admin-username-input"
+            required 
+            autocomplete="username"
+            value="admin"
+            class="w-full pl-9 pr-3 py-2.5 bg-slate-900 border border-slate-800 text-xs text-white focus:outline-none focus:border-blue-500 transition font-mono"
+          >
+          <svg class="w-4 h-4 text-slate-500 absolute left-3 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs font-semibold text-slate-300 mb-1.5">Secret Key / Password</label>
+        <div class="relative">
+          <input 
+            type="password" 
+            name="password" 
+            id="admin-password-input"
+            required 
+            autocomplete="current-password"
+            value="Admin@HSMLE2026!"
+            class="w-full pl-9 pr-10 py-2.5 bg-slate-900 border border-slate-800 text-xs text-white focus:outline-none focus:border-blue-500 transition font-mono"
+          >
+          <svg class="w-4 h-4 text-slate-500 absolute left-3 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+          <button 
+            type="button" 
+            id="toggle-pwd-btn"
+            class="absolute right-3 top-2.5 text-slate-500 hover:text-slate-300 p-0.5"
+            title="Toggle visibility"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick Fill Chip -->
+      <div class="flex items-center justify-between text-[11px] pt-1">
+        <span class="text-slate-500">Quick Credential Helper:</span>
+        <button 
+          type="button" 
+          onclick="fillCurrentCredentials()" 
+          class="text-blue-400 hover:text-blue-300 font-semibold underline cursor-pointer" 
+          id="quick-fill-btn"
+        >
+          Reset to Director Login
+        </button>
+      </div>
+
+      <div class="pt-2">
+        <button 
+          type="submit" 
+          id="login-btn"
+          class="w-full py-3 px-4 bg-amber-600 hover:bg-amber-700 text-white font-black text-xs uppercase tracking-wider transition flex items-center justify-center gap-2 cursor-pointer shadow-md"
+        >
+          <span>Authenticate Session</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+        </button>
+      </div>
+    </form>
+
+    <div class="mt-6 pt-4 border-t border-slate-900 text-center text-[11px] text-slate-500 flex items-center justify-between">
+      <a href="../index.html" class="text-blue-400 hover:text-blue-300">← Back to Public Website</a>
+      <span>HSMLE ISO 9001:2015</span>
+    </div>
+  </div>
+
+  <script src="js/admin-api.js?v=1793637338"></script>
+  <script>
+    let currentPortal = 'director';
+
+    function switchPortal(portal) {
+      currentPortal = portal;
+      const tabDirector = document.getElementById('tab-director');
+      const tabEditor = document.getElementById('tab-editor');
+      const heading = document.getElementById('portal-heading');
+      const subheading = document.getElementById('portal-subheading');
+      const badge = document.getElementById('portal-badge');
+      const badgeText = document.getElementById('portal-badge-text');
+      const labelUser = document.getElementById('label-username');
+      const usernameInput = document.getElementById('admin-username-input');
+      const passwordInput = document.getElementById('admin-password-input');
+      const submitBtn = document.getElementById('login-btn');
+      const quickFillBtn = document.getElementById('quick-fill-btn');
+
+      if (portal === 'director') {
+        tabDirector.className = 'flex-1 py-3 px-4 text-center text-xs font-bold transition flex items-center justify-center gap-1.5 border-b-2 border-amber-500 text-amber-300 bg-slate-900';
+        tabEditor.className = 'flex-1 py-3 px-4 text-center text-xs font-bold text-slate-400 hover:text-slate-200 transition flex items-center justify-center gap-1.5 border-b-2 border-transparent';
+        
+        heading.textContent = 'DIRECTOR ADMIN PORTAL';
+        subheading.textContent = 'Executive Oversight, Visitor Analytics & Commercial Review';
+        badge.className = 'mt-2.5 inline-flex items-center gap-1.5 px-2.5 py-0.5 border border-amber-500/40 bg-amber-500/10 text-amber-300 text-[10px] font-bold uppercase tracking-wider';
+        badgeText.textContent = 'Director & Leadership Access';
+        labelUser.textContent = 'Director Username / Email';
+        usernameInput.value = 'admin';
+        passwordInput.value = '';
+        quickFillBtn.textContent = 'Reset to Director Login';
+        submitBtn.className = 'w-full py-3 px-4 bg-amber-600 hover:bg-amber-700 text-white font-black text-xs uppercase tracking-wider transition flex items-center justify-center gap-2 cursor-pointer shadow-md';
+      } else {
+        tabEditor.className = 'flex-1 py-3 px-4 text-center text-xs font-bold transition flex items-center justify-center gap-1.5 border-b-2 border-blue-500 text-blue-300 bg-slate-900';
+        tabDirector.className = 'flex-1 py-3 px-4 text-center text-xs font-bold text-slate-400 hover:text-slate-200 transition flex items-center justify-center gap-1.5 border-b-2 border-transparent';
+        
+        heading.textContent = 'STAFF EDITOR PORTAL';
+        subheading.textContent = 'Machine Inventory, Specs & Technical Media Operations';
+        badge.className = 'mt-2.5 inline-flex items-center gap-1.5 px-2.5 py-0.5 border border-blue-500/40 bg-blue-500/10 text-blue-300 text-[10px] font-bold uppercase tracking-wider';
+        badgeText.textContent = 'Catalog & Content Editor Access';
+        labelUser.textContent = 'Editor Username / Email';
+        usernameInput.value = 'staff_editor';
+        passwordInput.value = '';
+        quickFillBtn.textContent = 'Reset to Editor Login';
+        submitBtn.className = 'w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white font-black text-xs uppercase tracking-wider transition flex items-center justify-center gap-2 cursor-pointer shadow-md';
+      }
+    }
+
+    function fillCurrentCredentials() {
+      if (currentPortal === 'director') {
+        document.getElementById('admin-username-input').value = 'admin';
+        document.getElementById('admin-password-input').value = 'Admin@HSMLE2026!';
+      } else {
+        document.getElementById('admin-username-input').value = 'staff_editor';
+        document.getElementById('admin-password-input').value = 'Staff@HSMLE2026!';
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Check query param for default portal
+      const params = new URLSearchParams(window.location.search);
+      const requestedPortal = params.get('portal');
+      if (requestedPortal === 'editor') {
+        switchPortal('editor');
+      } else {
+        switchPortal('director');
+      }
+
+      // Check for security alerts or switch requests in URL
+      const alertMsg = params.get('alert') || params.get('msg');
+      if (alertMsg) {
+        const alertBox = document.getElementById('login-alert');
+        const alertText = document.getElementById('login-alert-text');
+        alertText.innerHTML = `<strong>🔒 Security Challenge:</strong> ${decodeURIComponent(alertMsg)}`;
+        alertBox.classList.remove('hidden');
+      }
+
+      // If switching portals, clear previous token to force fresh password verification
+      if (params.get('switch') === '1') {
+        AdminAPI.clearAuth();
+      }
+
+      // Password visibility toggle
+      const pwdInput = document.getElementById('admin-password-input');
+      const toggleBtn = document.getElementById('toggle-pwd-btn');
+      if (toggleBtn) {
+        toggleBtn.addEventListener('click', () => {
+          const type = pwdInput.getAttribute('type') === 'password' ? 'text' : 'password';
+          pwdInput.setAttribute('type', type);
+        });
+      }
+
+      // Form submit
+      const form = document.getElementById('admin-login-form');
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const alertBox = document.getElementById('login-alert');
+        const alertText = document.getElementById('login-alert-text');
+        const btn = document.getElementById('login-btn');
+
+        alertBox.classList.add('hidden');
+        btn.disabled = true;
+        btn.innerHTML = `
+          <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white inline" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg> Authenticating...
+        `;
+
+        try {
+          const res = await AdminAPI.login(form.username.value.trim(), form.password.value);
+          const user = res.user || AdminAPI.getUser();
+          
+          if (currentPortal === 'editor' || (user && user.role === 'staff')) {
+            window.location.href = 'editor.html';
+          } else {
+            window.location.href = 'dashboard.html';
+          }
+        } catch (err) {
+          alertText.textContent = err.message || 'Authentication failed. Please verify credentials.';
+          alertBox.classList.remove('hidden');
+          btn.disabled = false;
+          btn.innerHTML = `
+            <span>Authenticate Session</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+          `;
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,1786 @@
+{
+  "1": {
+    "image_url": "/static/images/products/product_1.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_ADVANCED-DIGITAL-VICKERS-HARDNESS-TESTER-HVH-5-10-30-50AT-8P-MT-8P.pdf",
+    "gallery_images": [
+      "/static/images/products/product_1.jpg",
+      "/static/images/products/product_1_g2.jpg",
+      "/static/images/products/product_1_g3.jpg",
+      "/static/images/products/product_1_g4.jpg"
+    ]
+  },
+  "2": {
+    "image_url": "/static/images/products/product_2.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_ADVANCED-DIGITAL-VICKERS-HARDNESS-TESTER-HVH-5-10-30-50BA-BM.pdf",
+    "gallery_images": [
+      "/static/images/products/product_2.jpg",
+      "/static/images/products/product_2_g2.jpg",
+      "/static/images/products/product_2_g3.jpg"
+    ]
+  },
+  "3": {
+    "image_url": "/static/images/products/product_3.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_ADVANCED-DIGITAL-VICKERS-HARDNESS-TESTER-WITH-TOUCHSCREEN-CONTROL-HVH-5-10-30-50-BA-BM.pdf",
+    "gallery_images": [
+      "/static/images/products/product_3.jpg",
+      "/static/images/products/product_3_g2.jpg",
+      "/static/images/products/product_3_g3.jpg",
+      "/static/images/products/product_3_g4.jpg"
+    ]
+  },
+  "4": {
+    "image_url": "/static/images/products/product_4.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_ADVANCED-DIGITAL-VICKERS-HARDNESS-TESTER-WITH-TOUCHSCREEN-CONTROL-HVH-5-10-30-50AT-MT.pdf",
+    "gallery_images": [
+      "/static/images/products/product_4.jpg",
+      "/static/images/products/product_4_g2.jpg",
+      "/static/images/products/product_4_g3.jpg",
+      "/static/images/products/product_4_g4.jpg"
+    ]
+  },
+  "5": {
+    "image_url": "/static/images/products/product_5.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_ADVANCED-TOUCH-SCREEN-DIGITAL-ROCKWELL-HARDNESS-TESTER-RH-150DT.pdf",
+    "gallery_images": [
+      "/static/images/products/product_5.jpg",
+      "/static/images/products/product_5_g2.jpg",
+      "/static/images/products/product_5_g3.jpg",
+      "/static/images/products/product_5_g4.jpg"
+    ]
+  },
+  "6": {
+    "image_url": "/static/images/products/product_6.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_ADVANCED-TOUCH-SCREEN-DIGITAL-VICKERS-HARDNESS-TESTER-HVH-5-10-30-50ALT.pdf",
+    "gallery_images": [
+      "/static/images/products/product_6.jpg"
+    ]
+  },
+  "7": {
+    "image_url": "/static/images/products/product_7.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_ASTM-IMPACT-TESTING-MACHINE-HIT\u2010300\u2010ASTM.pdf",
+    "gallery_images": [
+      "/static/images/products/product_7.jpg"
+    ]
+  },
+  "8": {
+    "image_url": "/static/images/products/product_8.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_AUTO-TURRET-MICRO-VICKERS-HARDNESS-TESTER-HVH-1000A.pdf",
+    "gallery_images": [
+      "/static/images/products/product_8.jpg",
+      "/static/images/products/product_8_g2.jpg"
+    ]
+  },
+  "9": {
+    "image_url": "/static/images/products/product_9.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_AUTO-TURRET-TOUCH-SCREEN-MICRO-VICKERS-HARDNESS-TESTER-MHV-1000A.pdf",
+    "gallery_images": [
+      "/static/images/products/product_9.jpg",
+      "/static/images/products/product_9_g2.jpg"
+    ]
+  },
+  "10": {
+    "image_url": "/static/images/products/product_10.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_AUTO-TURRET-TOUCH-SCREEN-MICRO-VICKERS-HARDNESS-TESTER-MHV-1000TAT-1.pdf",
+    "gallery_images": [
+      "/static/images/products/product_10.jpg",
+      "/static/images/products/product_10_g2.jpg"
+    ]
+  },
+  "11": {
+    "image_url": "/static/images/products/product_11.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_AUTO-TURRET-TOUCH-SCREEN-MICRO-VICKERS-HARDNESS-TESTER-MHV-1000TAT.pdf",
+    "gallery_images": [
+      "/static/images/products/product_11.jpg",
+      "/static/images/products/product_11_g2.jpg"
+    ]
+  },
+  "12": {
+    "image_url": "/static/images/products/product_12.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_AUTOMATIC-GRINDING-POLISHING-MACHINE-HUTOPOL-2000XP.pdf",
+    "gallery_images": [
+      "/static/images/products/product_12.jpg",
+      "/static/images/products/product_12_g2.jpg",
+      "/static/images/products/product_12_g3.jpg"
+    ]
+  },
+  "13": {
+    "image_url": "/static/images/products/product_13.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_AUTOMATIC-METALLOGRAPHIC-GRINDING-POLISHING-MACHINE-HUTOPOL-1000.pdf",
+    "gallery_images": [
+      "/static/images/products/product_13.jpg",
+      "/static/images/products/product_13_g2.jpg",
+      "/static/images/products/product_13_g3.jpg",
+      "/static/images/products/product_13_g4.jpg"
+    ]
+  },
+  "14": {
+    "image_url": "/static/images/products/product_14.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_AUTOMATIC-METALLOGRAPHIC-SPECIMEN-MOUNTING-PRESS-HXQ-2.pdf",
+    "gallery_images": [
+      "/static/images/products/product_14.jpg"
+    ]
+  },
+  "15": {
+    "image_url": "/static/images/products/product_15.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_AUTOMATIC-METALLOGRAPHIC-SPECIMEN-MOUNTING-PRESS-HXQ-5B.pdf",
+    "gallery_images": [
+      "/static/images/products/product_15.jpg"
+    ]
+  },
+  "16": {
+    "image_url": "/static/images/products/product_16.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_AUTOMATIC-METALLOGRAPHIC-SPECIMEN-MOUNTING-PRESS-PNEUMATIC-TYPE-HECMON-1Q-30-.pdf",
+    "gallery_images": [
+      "/static/images/products/product_16.jpg",
+      "/static/images/products/product_16_g2.jpg"
+    ]
+  },
+  "17": {
+    "image_url": "/static/images/products/product_17.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_AUTOMATIC-METALLOGRAPHY-SPECIMEN-GRINDING-POLISHING-MACHINE-HUTOPOL-1000-.pdf",
+    "gallery_images": [
+      "/static/images/products/product_17.jpg",
+      "/static/images/products/product_17_g2.jpg",
+      "/static/images/products/product_17_g3.jpg",
+      "/static/images/products/product_17_g4.jpg"
+    ]
+  },
+  "18": {
+    "image_url": "/static/images/products/product_18.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_AUTOMATIC-MOUNTING-PRESS-HXQ-2.pdf",
+    "gallery_images": [
+      "/static/images/products/product_18.jpg"
+    ]
+  },
+  "19": {
+    "image_url": "/static/images/products/product_19.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Analogue-Torsion-Testing-Machine_HT-A.pdf",
+    "gallery_images": [
+      "/static/images/products/product_19.jpg"
+    ]
+  },
+  "20": {
+    "image_url": "/static/images/products/product_20.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Automatic-Metallographic-Specimen-Mounting-Press-HETAMON-7-.pdf",
+    "gallery_images": [
+      "/static/images/products/product_20.jpg"
+    ]
+  },
+  "21": {
+    "image_url": "/static/images/products/product_21.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_BECHTOP-BEINELL-HARDNESS-TESTER-6.5AB-.pdf",
+    "gallery_images": [
+      "/static/images/products/product_21.jpg"
+    ]
+  },
+  "22": {
+    "image_url": "/static/images/products/product_22.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_BELT-GRINDER-WITH-DUST-COLLECTOR-.pdf",
+    "gallery_images": [
+      "/static/images/products/product_22.jpg"
+    ]
+  },
+  "23": {
+    "image_url": "/static/images/products/product_23.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_BENCHTOP-VERTICAL-PROFILE-PROJECTOR-VPP-200.pdf",
+    "gallery_images": [
+      "/static/images/products/product_23.jpg"
+    ]
+  },
+  "24": {
+    "image_url": "/static/images/products/product_24.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_BENCHTOP-VERTICAL-PROFILE-PROJECTOR-VPP-300.pdf",
+    "gallery_images": [
+      "/static/images/products/product_24.jpg"
+    ]
+  },
+  "25": {
+    "image_url": "/static/images/products/product_25.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_BOOM-STAND-STEREO-MICROSCOPE.pdf",
+    "gallery_images": [
+      "/static/images/products/product_25.jpg"
+    ]
+  },
+  "26": {
+    "image_url": "/static/images/products/product_26.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_BRINELL-HARDNESS-TESTER-WITH-HYDRAULICS-BHH-3000.pdf",
+    "gallery_images": [
+      "/static/images/products/product_26.jpg"
+    ]
+  },
+  "27": {
+    "image_url": "/static/images/products/product_27.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_CASS-CORROSION-RESISTANCE-BCC-A-SERIES.pdf",
+    "gallery_images": [
+      "/static/images/products/product_27.jpg"
+    ]
+  },
+  "28": {
+    "image_url": "/static/images/products/product_28.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_CASS-CORROSION-RESISTANCE-HCC-A-SERIES.pdf",
+    "gallery_images": [
+      "/static/images/products/product_28.jpg"
+    ]
+  },
+  "29": {
+    "image_url": "/static/images/products/product_29.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_CLAMP-TYPE-ILLUMINATED-MAGNIFIER-.pdf",
+    "gallery_images": [
+      "/static/images/products/product_29.jpg",
+      "/static/images/products/product_29_g2.jpg"
+    ]
+  },
+  "30": {
+    "image_url": "/static/images/products/product_30.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_COATING-THICKNESS-GAUGE-HTS-820F.pdf",
+    "gallery_images": [
+      "/static/images/products/product_30.jpg",
+      "/static/images/products/product_30_g2.jpg",
+      "/static/images/products/product_30_g3.jpg"
+    ]
+  },
+  "31": {
+    "image_url": "/static/images/products/product_31.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_COATING-THICKNESS-GAUGE-HTS-820NF.pdf",
+    "gallery_images": [
+      "/static/images/products/product_31.jpg",
+      "/static/images/products/product_31_g2.jpg",
+      "/static/images/products/product_31_g3.jpg"
+    ]
+  },
+  "32": {
+    "image_url": "/static/images/products/product_32.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_COMPRESSION-TESTING-MACHINE.pdf",
+    "gallery_images": [
+      "/static/images/products/product_32.jpg"
+    ]
+  },
+  "33": {
+    "image_url": "/static/images/products/product_33.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_COMPUTER-CONTROLLED-ERICHSEN-CUPPING-TESTER-HECT-100C.pdf",
+    "gallery_images": [
+      "/static/images/products/product_33.jpg"
+    ]
+  },
+  "34": {
+    "image_url": "/static/images/products/product_34.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_COMPUTERISED-COMPRESSION-TESTING-MACHINE-.pdf",
+    "gallery_images": [
+      "/static/images/products/product_34.jpg"
+    ]
+  },
+  "35": {
+    "image_url": "/static/images/products/product_35.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_COMPUTERISED-SPRING-TESTING-MACHINE-.pdf",
+    "gallery_images": [
+      "/static/images/products/product_35.jpg",
+      "/static/images/products/product_35_g2.jpg",
+      "/static/images/products/product_35_g3.jpg"
+    ]
+  },
+  "36": {
+    "image_url": "/static/images/products/product_36.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_COMPUTERISED-TENSILE-TESTING-MACHINE-.pdf",
+    "gallery_images": [
+      "/static/images/products/product_36.jpg"
+    ]
+  },
+  "37": {
+    "image_url": "/static/images/products/product_37.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_COMPUTERISED-UNIVERSAL-TESTING-MACHINE-.pdf",
+    "gallery_images": [
+      "/static/images/products/product_37.jpg"
+    ]
+  },
+  "38": {
+    "image_url": "/static/images/products/product_38.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_COMPUTERISED-UNIVERSAL-TESTING-MACHINE-FRONT-OPEN-WITH-HYDRAULIC.pdf",
+    "gallery_images": [
+      "/static/images/products/product_38.jpg"
+    ]
+  },
+  "39": {
+    "image_url": "/static/images/products/product_39.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_COMPUTERISED-UNIVERSAL-TESTING-MACHINE-WITH-HYDRAULIC-GRIP-SERVO-SYSTEM-.pdf",
+    "gallery_images": [
+      "/static/images/products/product_39.jpg"
+    ]
+  },
+  "40": {
+    "image_url": "/static/images/products/product_40.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_COMPUTERISED-UNIVERSAL-TESTING-MACHINE.pdf",
+    "gallery_images": [
+      "/static/images/products/product_40.jpg"
+    ]
+  },
+  "41": {
+    "image_url": "/static/images/products/product_41.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_COMPUTERISED-VICKERS-HARDNESS-TESTING-MACHINE-VHT-50250-PC-VHT-50250-IPC.pdf",
+    "gallery_images": [
+      "/static/images/products/product_41.jpg",
+      "/static/images/products/product_41_g2.jpg"
+    ]
+  },
+  "42": {
+    "image_url": "/static/images/products/product_42.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_COMPUTERIZED-COMPRESSION-TESTING-MACHINE-HCCM-SERIES-.pdf",
+    "gallery_images": [
+      "/static/images/products/product_42.jpg"
+    ]
+  },
+  "43": {
+    "image_url": "/static/images/products/product_43.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_COMPUTERIZED-COMPRESSION-TESTING-MACHINE-HCCM-SERIES-1-1.pdf",
+    "gallery_images": [
+      "/static/images/products/product_43.jpg"
+    ]
+  },
+  "44": {
+    "image_url": "/static/images/products/product_44.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_COMPUTERIZED-UNIVERSAL-TESTING-MACHINE-WITH-SERVO-SYSTEM-HWDW-SERIES-10KN-to-300KN.pdf",
+    "gallery_images": [
+      "/static/images/products/product_44.jpg"
+    ]
+  },
+  "45": {
+    "image_url": "/static/images/products/product_45.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Coating-Thickness-Gauge-HTS-8202-NDT.pdf",
+    "gallery_images": [
+      "/static/images/products/product_45.jpg",
+      "/static/images/products/product_45_g2.jpg",
+      "/static/images/products/product_45_g3.jpg"
+    ]
+  },
+  "46": {
+    "image_url": "/static/images/products/product_46.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_DIGITAL-COMPRESSION-TESTING-MACHINE.pdf",
+    "gallery_images": [
+      "/static/images/products/product_46.jpg"
+    ]
+  },
+  "47": {
+    "image_url": "/static/images/products/product_47.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_DIGITAL-ERICHSEN-CUPPING-TESTING-MACHINE-CTM\u201020D.pdf",
+    "gallery_images": [
+      "/static/images/products/product_47.jpg"
+    ]
+  },
+  "48": {
+    "image_url": "/static/images/products/product_48.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_DIGITAL-LCD-MICROSCOPE-LCD-550.pdf",
+    "gallery_images": [
+      "/static/images/products/product_48.jpg"
+    ]
+  },
+  "49": {
+    "image_url": "/static/images/products/product_49.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_DIGITAL-LCD-PROJECTION-MICROSCOPE.pdf",
+    "gallery_images": [
+      "/static/images/products/product_49.jpg"
+    ]
+  },
+  "50": {
+    "image_url": "/static/images/products/product_50.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_DIGITAL-MICRO-HARDNESS-TEST-SYSTEM-FULLY-AUTOMATIC-1000XYZ.pdf",
+    "gallery_images": [
+      "/static/images/products/product_50.jpg"
+    ]
+  },
+  "51": {
+    "image_url": "/static/images/products/product_51.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_DIGITAL-MICRO-VICKERS-HARDNESS-TESTER-VHT-5103050-BA-BM.pdf",
+    "gallery_images": [
+      "/static/images/products/product_51.jpg",
+      "/static/images/products/product_51_g2.jpg"
+    ]
+  },
+  "52": {
+    "image_url": "/static/images/products/product_52.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_DIGITAL-MICRO-VICKERS-HARDNESS-TESTER-WITH-MULTIFUNCTIONAL-LARGE-SCREEN-MVH-1000-1Bm-BA.pdf",
+    "gallery_images": [
+      "/static/images/products/product_52.jpg",
+      "/static/images/products/product_52_g2.jpg",
+      "/static/images/products/product_52_g3.jpg",
+      "/static/images/products/product_52_g4.jpg",
+      "/static/images/products/product_52_g5.jpg"
+    ]
+  },
+  "53": {
+    "image_url": "/static/images/products/product_53.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_DIGITAL-MOTORIZED-DRHT-Series.pdf",
+    "gallery_images": [
+      "/static/images/products/product_53.jpg"
+    ]
+  },
+  "54": {
+    "image_url": "/static/images/products/product_54.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_DIGITAL-OPTICAL-BRINELL-HARDNESS-TESTER-HOPB-3000D-.pdf",
+    "gallery_images": [
+      "/static/images/products/product_54.jpg"
+    ]
+  },
+  "55": {
+    "image_url": "/static/images/products/product_55.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_DIGITAL-ROCKWELL-HARDNESS-TESTER-HRH-150D.pdf",
+    "gallery_images": [
+      "/static/images/products/product_55.jpg"
+    ]
+  },
+  "56": {
+    "image_url": "/static/images/products/product_56.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_DIGITAL-SPRING-TESTING-MACHINE-MANUALLY-OPERATED.pdf",
+    "gallery_images": [
+      "/static/images/products/product_56.jpg"
+    ]
+  },
+  "57": {
+    "image_url": "/static/images/products/product_57.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_DIGITAL-SPRING-TESTING-MACHINE.pdf",
+    "gallery_images": [
+      "/static/images/products/product_57.jpg"
+    ]
+  },
+  "58": {
+    "image_url": "/static/images/products/product_58.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_DIGITAL-TENSILE-TESTING-MACHINE.pdf",
+    "gallery_images": [
+      "/static/images/products/product_58.jpg"
+    ]
+  },
+  "59": {
+    "image_url": "/static/images/products/product_59.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_DIGITAL-TOUCH-SCREEN-ROCKWELL-HARDNESS-TESTER-HRH-150T.pdf",
+    "gallery_images": [
+      "/static/images/products/product_59.jpg"
+    ]
+  },
+  "60": {
+    "image_url": "/static/images/products/product_60.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_DIGITAL-TRAVELLING-MICROSCOPE-.pdf",
+    "gallery_images": [
+      "/static/images/products/product_60.jpg"
+    ]
+  },
+  "61": {
+    "image_url": "/static/images/products/product_61.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_DIGITAL-UNIVERSAL-TESTING-MACHINE-.pdf",
+    "gallery_images": [
+      "/static/images/products/product_61.jpg"
+    ]
+  },
+  "62": {
+    "image_url": "/static/images/products/product_62.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_DIGITAL-VIDEO-MEASURING-HSZS-0745VM.pdf",
+    "gallery_images": [
+      "/static/images/products/product_62.jpg"
+    ]
+  },
+  "63": {
+    "image_url": "/static/images/products/product_63.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_DOLPHIN-NOSE-INDENTER-DIGITAL-TOUCH-SCREEN-ROCKWELL-HARDNESS-TESTER-DRH-150NT.pdf",
+    "gallery_images": [
+      "/static/images/products/product_63.jpg",
+      "/static/images/products/product_63_g2.jpg",
+      "/static/images/products/product_63_g3.jpg"
+    ]
+  },
+  "64": {
+    "image_url": "/static/images/products/product_64.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Digital-LCD-Microscope-LCD-450.pdf",
+    "gallery_images": [
+      "/static/images/products/product_64.jpg"
+    ]
+  },
+  "65": {
+    "image_url": "/static/images/products/product_65.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Digital-Spring-Testing-Machine-TLS-S100I-.pdf",
+    "gallery_images": [
+      "/static/images/products/product_65.jpg"
+    ]
+  },
+  "66": {
+    "image_url": "/static/images/products/product_66.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Digital-Torsion-Testing-Machine-HT-D.pdf",
+    "gallery_images": [
+      "/static/images/products/product_66.jpg"
+    ]
+  },
+  "67": {
+    "image_url": "/static/images/products/product_67.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_ELECTRIC-BRINELL-HARDNESS-TESTER-BHE-3000M.pdf",
+    "gallery_images": [
+      "/static/images/products/product_67.jpg"
+    ]
+  },
+  "68": {
+    "image_url": "/static/images/products/product_68.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_ELECTRICAL-BRINELL-HARDNESS-TESTER-BHE-3000M.pdf",
+    "gallery_images": [
+      "/static/images/products/product_68.jpg"
+    ]
+  },
+  "69": {
+    "image_url": "/static/images/products/product_69.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_ELECTROLYTIC-POLISHER-ETCHER-LAB-MODEL.pdf",
+    "gallery_images": [
+      "/static/images/products/product_69.jpg",
+      "/static/images/products/product_69_g2.jpg",
+      "/static/images/products/product_69_g3.jpg"
+    ]
+  },
+  "70": {
+    "image_url": "/static/images/products/product_70.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_ELECTRONIC-DYNAMIC-FATIGUE-TESTING-MACHINE.pdf",
+    "gallery_images": [
+      "/static/images/products/product_70.jpg"
+    ]
+  },
+  "71": {
+    "image_url": "/static/images/products/product_71.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_ERICHSEN-CUPPING-TESTING-MACHINE-CTM-20E.pdf",
+    "gallery_images": [
+      "/static/images/products/product_71.jpg"
+    ]
+  },
+  "72": {
+    "image_url": "/static/images/products/product_72.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Environmental-Test-Chamber-HEC-B-Series.pdf",
+    "gallery_images": [
+      "/static/images/products/product_72.jpg"
+    ]
+  },
+  "73": {
+    "image_url": "/static/images/products/product_73.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_FATIGUE-TESTING-MACHINE-HFTG\u20108.pdf",
+    "gallery_images": [
+      "/static/images/products/product_73.jpg"
+    ]
+  },
+  "74": {
+    "image_url": "/static/images/products/product_74.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_FULLY-AUTOMATIC-MOUNTING-PRESS-HUTOMON-1.pdf",
+    "gallery_images": [
+      "/static/images/products/product_74.jpg"
+    ]
+  },
+  "75": {
+    "image_url": "/static/images/products/product_75.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_GRINDING-POLISHING-MACHINE-WITH-HEAD-BETAPOL-1P.pdf",
+    "gallery_images": [
+      "/static/images/products/product_75.jpg"
+    ]
+  },
+  "76": {
+    "image_url": "/static/images/products/product_76.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Grinding-Polishing-Machine-HPM-2D-.pdf",
+    "gallery_images": [
+      "/static/images/products/product_76.jpg"
+    ]
+  },
+  "77": {
+    "image_url": "/static/images/products/product_77.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_HBG-110.pdf",
+    "gallery_images": [
+      "/static/images/products/product_77.jpg"
+    ]
+  },
+  "78": {
+    "image_url": "/static/images/products/product_78.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_HBG-220.pdf",
+    "gallery_images": [
+      "/static/images/products/product_78.jpg"
+    ]
+  },
+  "79": {
+    "image_url": "/static/images/products/product_79.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_HBHT-3000-3000M-Benchtop-Brinell-Hardness-Tester.pdf",
+    "gallery_images": [
+      "/static/images/products/product_79.jpg"
+    ]
+  },
+  "80": {
+    "image_url": "/static/images/products/product_80.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_HHC-H-SERIES-Humidity-Chambe.pdf",
+    "gallery_images": [
+      "/static/images/products/product_80.jpg"
+    ]
+  },
+  "81": {
+    "image_url": "/static/images/products/product_81.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_HLO-A-SERIES-Laboratory-Oven.pdf",
+    "gallery_images": [
+      "/static/images/products/product_81.jpg"
+    ]
+  },
+  "82": {
+    "image_url": "/static/images/products/product_82.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_HLO-B-SERIES-Laboratory-Oven.pdf",
+    "gallery_images": [
+      "/static/images/products/product_82.jpg"
+    ]
+  },
+  "83": {
+    "image_url": "/static/images/products/product_83.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_HLO-C-SERIES-Laboratory-Oven.pdf",
+    "gallery_images": [
+      "/static/images/products/product_83.jpg"
+    ]
+  },
+  "84": {
+    "image_url": "/static/images/products/product_84.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_HLO-D-SERIES-Laboratory-Oven.pdf",
+    "gallery_images": [
+      "/static/images/products/product_84.jpg"
+    ]
+  },
+  "85": {
+    "image_url": "/static/images/products/product_85.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_HM-50A-Automatic-Mounting-Press.pdf",
+    "gallery_images": [
+      "/static/images/products/product_85.jpg"
+    ]
+  },
+  "86": {
+    "image_url": "/static/images/products/product_86.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_HMF-A-SERIES-Muffle-Furnace.pdf",
+    "gallery_images": [
+      "/static/images/products/product_86.jpg"
+    ]
+  },
+  "87": {
+    "image_url": "/static/images/products/product_87.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_HORIZONTAL-PROFILE-PROJECTOR-WITH-DIGITAL-DATA-PROCESSOR-HPH-AZ-SERIES.pdf",
+    "gallery_images": [
+      "/static/images/products/product_87.jpg",
+      "/static/images/products/product_87_g2.jpg"
+    ]
+  },
+  "88": {
+    "image_url": "/static/images/products/product_88.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_HOT-AIR-OVEN-GP-SERIES.pdf",
+    "gallery_images": [
+      "/static/images/products/product_88.jpg"
+    ]
+  },
+  "89": {
+    "image_url": "/static/images/products/product_89.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_HSC-Salt-Spray-Chamber.pdf",
+    "gallery_images": [
+      "/static/images/products/product_89.jpg"
+    ]
+  },
+  "90": {
+    "image_url": "/static/images/products/product_90.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_HUMIDITY-CHAMBER-WITH-COMPRESSOR.pdf",
+    "gallery_images": [
+      "/static/images/products/product_90.jpg"
+    ]
+  },
+  "91": {
+    "image_url": "/static/images/products/product_91.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_HUMIDITY-CHAMBER-WITH-PLC-CONTROLLER-.pdf",
+    "gallery_images": [
+      "/static/images/products/product_91.jpg"
+    ]
+  },
+  "92": {
+    "image_url": "/static/images/placeholders/product-placeholder.svg",
+    "has_verified_image": false,
+    "source_img": null,
+    "gallery_images": []
+  },
+  "93": {
+    "image_url": "/static/images/products/product_93.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_IMAGE-ANALYSIS-ELECTRICAL-BRINELL-HARDNESS-TESTER-BHE-3000IA.pdf",
+    "gallery_images": [
+      "/static/images/products/product_93.jpg"
+    ]
+  },
+  "94": {
+    "image_url": "/static/images/products/product_94.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_INVERTED-METALLURGICAL-MICROSCOPE-HIM-2000D-BD-1.pdf",
+    "gallery_images": [
+      "/static/images/products/product_94.jpg"
+    ]
+  },
+  "95": {
+    "image_url": "/static/images/products/product_95.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_INVERTED-METALLURGICAL-MICROSCOPE-HIM-2000D-BD.pdf",
+    "gallery_images": [
+      "/static/images/products/product_95.jpg"
+    ]
+  },
+  "96": {
+    "image_url": "/static/images/products/product_96.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Image-Analyser-System.pdf",
+    "gallery_images": [
+      "/static/images/products/product_96.jpg",
+      "/static/images/products/product_96_g2.jpg"
+    ]
+  },
+  "97": {
+    "image_url": "/static/images/products/product_97.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Impact-Testing-Machine-HIT-300C-ASTM.pdf",
+    "gallery_images": [
+      "/static/images/products/product_97.jpg"
+    ]
+  },
+  "98": {
+    "image_url": "/static/images/products/product_98.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Impact-Testing-Machine-HIT-8A-8D-Series.pdf",
+    "gallery_images": [
+      "/static/images/products/product_98.jpg",
+      "/static/images/products/product_98_g2.jpg"
+    ]
+  },
+  "99": {
+    "image_url": "/static/images/products/product_99.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Inverted-Metallurgical-Microscope-HIM-1000X.pdf",
+    "gallery_images": [
+      "/static/images/products/product_99.jpg"
+    ]
+  },
+  "100": {
+    "image_url": "/static/images/products/product_100.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Inverted-Metallurgical-Microscope-HIM-400-Series.pdf",
+    "gallery_images": [
+      "/static/images/products/product_100.jpg"
+    ]
+  },
+  "101": {
+    "image_url": "/static/images/products/product_101.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_MANUAL-NOTCH-CUTTING-MACHINE.pdf",
+    "gallery_images": [
+      "/static/images/products/product_101.jpg"
+    ]
+  },
+  "102": {
+    "image_url": "/static/images/products/product_102.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_MANUAL-TURRET-MICRO-VICKERS-HARDNESS-TESTER-MHV-1000.pdf",
+    "gallery_images": [
+      "/static/images/products/product_102.jpg",
+      "/static/images/products/product_102_g2.jpg"
+    ]
+  },
+  "103": {
+    "image_url": "/static/images/products/product_103.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_MANUALLY-OPERATED-DIGITAL-SPRING-TESTING-MACHINE-.pdf",
+    "gallery_images": [
+      "/static/images/products/product_103.jpg"
+    ]
+  },
+  "104": {
+    "image_url": "/static/images/products/product_104.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_METALLOGRAPHIC-GRINDING-POLISHING-MACHINE-HETAPOL-1000P.pdf",
+    "gallery_images": [
+      "/static/images/products/product_104.jpg"
+    ]
+  },
+  "105": {
+    "image_url": "/static/images/products/product_105.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_METALLOGRAPHIC-GRINDING-POLISHING-MACHINE-HETAPOL-2000X.pdf",
+    "gallery_images": [
+      "/static/images/products/product_105.jpg"
+    ]
+  },
+  "106": {
+    "image_url": "/static/images/products/product_106.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_METALLOGRAPHIC-GRINDING-POLISHING-MACHINE-HETAPOL-2250X.pdf",
+    "gallery_images": [
+      "/static/images/products/product_106.jpg"
+    ]
+  },
+  "107": {
+    "image_url": "/static/images/products/product_107.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_METALLOGRAPHIC-MOUNTING-MACHINE-HQ2BT.pdf",
+    "gallery_images": [
+      "/static/images/products/product_107.jpg"
+    ]
+  },
+  "108": {
+    "image_url": "/static/images/products/product_108.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_METALLOGRAPHIC-SPECIMEN-CUTTING-MACHINE-HSQ-80.pdf",
+    "gallery_images": [
+      "/static/images/products/product_108.jpg"
+    ]
+  },
+  "109": {
+    "image_url": "/static/images/products/product_109.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_METALLOGRAPHIC-SPECIMEN-GRINDING-POLISHING-MACHINE-MBP\u20102BP.pdf",
+    "gallery_images": [
+      "/static/images/products/product_109.jpg"
+    ]
+  },
+  "110": {
+    "image_url": "/static/images/products/product_110.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_METALLOGRAPHIC-SPECIMEN-MOUNTING-HETAMON-1.pdf",
+    "gallery_images": [
+      "/static/images/products/product_110.jpg"
+    ]
+  },
+  "111": {
+    "image_url": "/static/images/products/product_111.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_METALLOGRAPHY-SPECIMEN-GRINDING-POLISHING-MACHINE-HETAPOL-1000.pdf",
+    "gallery_images": [
+      "/static/images/products/product_111.jpg"
+    ]
+  },
+  "112": {
+    "image_url": "/static/images/products/product_112.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_METALLOGRAPHY-SPECIMEN-GRINDING-POLISHING-MACHINE-HETAPOL-2200S.pdf",
+    "gallery_images": [
+      "/static/images/products/product_112.jpg"
+    ]
+  },
+  "113": {
+    "image_url": "/static/images/products/product_113.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_METALLOGRAPHY-SPECIMEN-GRINDING-POLISHING-MACHINE-HPM-2S.pdf",
+    "gallery_images": [
+      "/static/images/products/product_113.jpg",
+      "/static/images/products/product_113_g2.jpg"
+    ]
+  },
+  "114": {
+    "image_url": "/static/images/products/product_114.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_METALLOGRAPHY-SPECIMEN-GRINDING-POLISHING-MACHINE-TRIPLE-DISC.pdf",
+    "gallery_images": [
+      "/static/images/products/product_114.jpg"
+    ]
+  },
+  "115": {
+    "image_url": "/static/images/products/product_115.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_METALLOGRAPHY-SPECIMEN-POLISHING-MACHINE-DOUBLE-DISK.pdf",
+    "gallery_images": [
+      "/static/images/products/product_115.jpg"
+    ]
+  },
+  "116": {
+    "image_url": "/static/images/products/product_116.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_MICRO-HARDNESS-IMAGE-ANALYSIS-SOFTWARE-MH-4.5.pdf",
+    "gallery_images": [
+      "/static/images/products/product_116.jpg",
+      "/static/images/products/product_116_g2.jpg",
+      "/static/images/products/product_116_g3.jpg"
+    ]
+  },
+  "117": {
+    "image_url": "/static/images/products/product_117.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_MICRO-VICKERS-HARDNESS-TESTER-MVH-1000DM-1000DA.pdf",
+    "gallery_images": [
+      "/static/images/products/product_117.jpg",
+      "/static/images/products/product_117_g2.jpg"
+    ]
+  },
+  "118": {
+    "image_url": "/static/images/products/product_118.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_MICRO-VICKERS-HARDNESS-TESTER-MVH-1000M-1000A-.pdf",
+    "gallery_images": [
+      "/static/images/products/product_118.jpg"
+    ]
+  },
+  "119": {
+    "image_url": "/static/images/products/product_119.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_MICRO-VICKERS-HARDNESS-TESTER-WITH-SOFTWARE-SYSTEM-MVH-1000MTS-1000ATS.pdf",
+    "gallery_images": [
+      "/static/images/products/product_119.jpg",
+      "/static/images/products/product_119_g2.jpg",
+      "/static/images/products/product_119_g3.jpg",
+      "/static/images/products/product_119_g4.jpg"
+    ]
+  },
+  "120": {
+    "image_url": "/static/images/placeholders/product-placeholder.svg",
+    "has_verified_image": false,
+    "source_img": null,
+    "gallery_images": []
+  },
+  "121": {
+    "image_url": "/static/images/products/product_121.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_MICROSCOPE-HSM-800-series-.pdf",
+    "gallery_images": [
+      "/static/images/products/product_121.jpg"
+    ]
+  },
+  "122": {
+    "image_url": "/static/images/products/product_122.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_MICROSCOPE.pdf",
+    "gallery_images": [
+      "/static/images/products/product_122.jpg"
+    ]
+  },
+  "123": {
+    "image_url": "/static/images/products/product_123.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Metal-Handling-Equipments.pdf",
+    "gallery_images": [
+      "/static/images/products/product_123.jpg"
+    ]
+  },
+  "124": {
+    "image_url": "/static/images/products/product_124.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Metallographic-Automatic-High-Speed-Precise-Cutting-Machine-HC-50A.pdf",
+    "gallery_images": [
+      "/static/images/products/product_124.jpg"
+    ]
+  },
+  "125": {
+    "image_url": "/static/images/products/product_125.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Metallographic-Specimen-Cutting-Machine-HETACUT\u2010100.pdf",
+    "gallery_images": [
+      "/static/images/products/product_125.jpg"
+    ]
+  },
+  "126": {
+    "image_url": "/static/images/products/product_126.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Micro-Vickers-Hardness-Tester-MHT-1000MT-1000AT.pdf",
+    "gallery_images": [
+      "/static/images/products/product_126.jpg"
+    ]
+  },
+  "127": {
+    "image_url": "/static/images/products/product_127.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Motrised-Notch-Machine.pdf",
+    "gallery_images": [
+      "/static/images/products/product_127.jpg"
+    ]
+  },
+  "128": {
+    "image_url": "/static/images/products/product_128.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Mounting-Press-HM-50D-Series-.pdf",
+    "gallery_images": [
+      "/static/images/products/product_128.jpg"
+    ]
+  },
+  "129": {
+    "image_url": "/static/images/products/product_129.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Mounting-Press-HM-Series.pdf",
+    "gallery_images": [
+      "/static/images/products/product_129.jpg"
+    ]
+  },
+  "130": {
+    "image_url": "/static/images/products/product_130.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Muffle-Furnace-MF-1200-series.pdf",
+    "gallery_images": [
+      "/static/images/products/product_130.jpg"
+    ]
+  },
+  "131": {
+    "image_url": "/static/images/products/product_131.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Muffle-Furnace-MF-950-Series.pdf",
+    "gallery_images": [
+      "/static/images/products/product_131.jpg"
+    ]
+  },
+  "132": {
+    "image_url": "/static/images/products/product_132.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_One-Touch-Inspection-System-HiVM-.pdf",
+    "gallery_images": [
+      "/static/images/products/product_132.jpg",
+      "/static/images/products/product_132_g2.jpg"
+    ]
+  },
+  "133": {
+    "image_url": "/static/images/products/product_133.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Optical-Brinell-Hardness-Tester-HOB-3000.pdf",
+    "gallery_images": [
+      "/static/images/products/product_133.jpg"
+    ]
+  },
+  "134": {
+    "image_url": "/static/images/products/product_134.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_PORTABLE-ELECTROLYTIC-POLISHER-ETCHER.pdf",
+    "gallery_images": [
+      "/static/images/products/product_134.jpg",
+      "/static/images/products/product_134_g2.jpg"
+    ]
+  },
+  "135": {
+    "image_url": "/static/images/products/product_135.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_PORTABLE-LEEB-HARDNESS-TESTER-.pdf",
+    "gallery_images": [
+      "/static/images/products/product_135.jpg"
+    ]
+  },
+  "136": {
+    "image_url": "/static/images/products/product_136.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_PP-300-Series.pdf",
+    "gallery_images": [
+      "/static/images/products/product_136.jpg"
+    ]
+  },
+  "137": {
+    "image_url": "/static/images/products/product_137.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_PRECISE-METALLOGRAPHIC-SPECIMEN-CUTTING-MACHINE-HTQ-5A.pdf",
+    "gallery_images": [
+      "/static/images/products/product_137.jpg"
+    ]
+  },
+  "138": {
+    "image_url": "/static/images/products/product_138.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_PRECISION-CUT-OFF-MACHINE-HCM-150A.pdf",
+    "gallery_images": [
+      "/static/images/products/product_138.jpg"
+    ]
+  },
+  "139": {
+    "image_url": "/static/images/products/product_139.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_PROFILE-PROJECTOR-FLOOR-MODEL-PF-AZ-SERIES.pdf",
+    "gallery_images": [
+      "/static/images/products/product_139.jpg"
+    ]
+  },
+  "140": {
+    "image_url": "/static/images/products/product_140.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_PROFILE-PROJECTOR-FLOOR-MODEL-PF-SERIES.pdf",
+    "gallery_images": [
+      "/static/images/products/product_140.jpg"
+    ]
+  },
+  "141": {
+    "image_url": "/static/images/products/product_141.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_PROFILE-PROJECTOR-PP-150.pdf",
+    "gallery_images": [
+      "/static/images/products/product_141.jpg"
+    ]
+  },
+  "142": {
+    "image_url": "/static/images/products/product_142.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_PUNCH-FOR-TENSILE-SPECIMEN-PTS-300PD.pdf",
+    "gallery_images": [
+      "/static/images/products/product_142.jpg"
+    ]
+  },
+  "143": {
+    "image_url": "/static/images/products/product_143.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Polishing-Machine-HP-1-Series-.pdf",
+    "gallery_images": [
+      "/static/images/products/product_143.jpg"
+    ]
+  },
+  "144": {
+    "image_url": "/static/images/products/product_144.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Polishing-Machine-HP-1D-.pdf",
+    "gallery_images": [
+      "/static/images/products/product_144.jpg"
+    ]
+  },
+  "145": {
+    "image_url": "/static/images/products/product_145.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Polishing-Machine-HP-2D-.pdf",
+    "gallery_images": [
+      "/static/images/products/product_145.jpg"
+    ]
+  },
+  "146": {
+    "image_url": "/static/images/products/product_146.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Polishing-Machine-HP-2M-Series-.pdf",
+    "gallery_images": [
+      "/static/images/products/product_146.jpg"
+    ]
+  },
+  "147": {
+    "image_url": "/static/images/products/product_147.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Polishing-of-Machines-HP-2C.pdf",
+    "gallery_images": [
+      "/static/images/products/product_147.jpg"
+    ]
+  },
+  "148": {
+    "image_url": "/static/images/products/product_148.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Precise-Cutting-Machine-HETACUT-5.pdf",
+    "gallery_images": [
+      "/static/images/products/product_148.jpg"
+    ]
+  },
+  "149": {
+    "image_url": "/static/images/products/product_149.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Profile-Projector-PP-AZ-Series-.pdf",
+    "gallery_images": [
+      "/static/images/products/product_149.jpg"
+    ]
+  },
+  "150": {
+    "image_url": "/static/images/products/product_150.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_QUENCH-TEST-APPARATUS-HQT-25.pdf",
+    "gallery_images": [
+      "/static/images/products/product_150.jpg"
+    ]
+  },
+  "151": {
+    "image_url": "/static/images/products/product_151.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_ROCKWELL-HARDNESS-TESTER-HRHT-150A.pdf",
+    "gallery_images": [
+      "/static/images/products/product_151.jpg"
+    ]
+  },
+  "152": {
+    "image_url": "/static/images/products/product_152.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_ROCKWELL-HARDNESS-TESTER-RH-150.pdf",
+    "gallery_images": [
+      "/static/images/products/product_152.jpg"
+    ]
+  },
+  "153": {
+    "image_url": "/static/images/products/product_153.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_ROLLING-MILLS-HRM-6.pdf",
+    "gallery_images": [
+      "/static/images/products/product_153.jpg"
+    ]
+  },
+  "154": {
+    "image_url": "/static/images/products/product_154.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Rail-Cutting-Machine.pdf",
+    "gallery_images": [
+      "/static/images/products/product_154.jpg"
+    ]
+  },
+  "155": {
+    "image_url": "/static/images/products/product_155.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Rockwell-Cum-Brinell-Hardness-Testers-RHT-187.5.pdf",
+    "gallery_images": [
+      "/static/images/products/product_155.jpg"
+    ]
+  },
+  "156": {
+    "image_url": "/static/images/products/product_156.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_SALT-SPRAY-TEST-CHAMBER-A-SERIES.pdf",
+    "gallery_images": [
+      "/static/images/products/product_156.jpg"
+    ]
+  },
+  "157": {
+    "image_url": "/static/images/products/product_157.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_SERVO-COMPUTERISED-UNIVERSAL-TESTING-MACHINE.pdf",
+    "gallery_images": [
+      "/static/images/products/product_157.jpg",
+      "/static/images/products/product_157_g2.jpg"
+    ]
+  },
+  "158": {
+    "image_url": "/static/images/products/product_158.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_SERVO-CONTROL-COMPUTERISED-UNIVERSAL-TESTING-MACHINE-.pdf",
+    "gallery_images": [
+      "/static/images/products/product_158.jpg",
+      "/static/images/products/product_158_g2.jpg"
+    ]
+  },
+  "159": {
+    "image_url": "/static/images/products/product_159.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_SINGLE-DISC-AUTOMATIC-GRINDING-AND-POLISHING-MACHINE-1000XP-.pdf",
+    "gallery_images": [
+      "/static/images/products/product_159.jpg",
+      "/static/images/products/product_159_g2.jpg",
+      "/static/images/products/product_159_g3.jpg"
+    ]
+  },
+  "160": {
+    "image_url": "/static/images/products/product_160.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_SINGLE-DISC-PNEUMATIC-TYPE-GRINDING-AND-POLISHING-HUTOPOL-1000XP-.pdf",
+    "gallery_images": [
+      "/static/images/products/product_160.jpg",
+      "/static/images/products/product_160_g2.jpg",
+      "/static/images/products/product_160_g3.jpg"
+    ]
+  },
+  "161": {
+    "image_url": "/static/images/products/product_161.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_SPRING-TESTING-MACHINE-DIGITAL-MOTORIZED.pdf",
+    "gallery_images": [
+      "/static/images/products/product_161.jpg"
+    ]
+  },
+  "162": {
+    "image_url": "/static/images/products/product_162.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_SPRING-TESTING-MACHINE-MANUALLY-OPERATED.pdf",
+    "gallery_images": [
+      "/static/images/products/product_162.jpg"
+    ]
+  },
+  "163": {
+    "image_url": "/static/images/products/product_163.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_STEEL-PIPE-BEND-TESTING-MACHINE.pdf",
+    "gallery_images": [
+      "/static/images/products/product_163.jpg",
+      "/static/images/products/product_163_g2.jpg",
+      "/static/images/products/product_163_g3.jpg",
+      "/static/images/products/product_163_g4.jpg",
+      "/static/images/products/product_163_g5.jpg"
+    ]
+  },
+  "164": {
+    "image_url": "/static/images/products/product_164.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_STEREO-MICROSCOPE-HSM-41-41T-SERIES-.pdf",
+    "gallery_images": [
+      "/static/images/products/product_164.jpg"
+    ]
+  },
+  "165": {
+    "image_url": "/static/images/products/product_165.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_STEREO-MICROSCOPE-HSM-650.pdf",
+    "gallery_images": [
+      "/static/images/products/product_165.jpg"
+    ]
+  },
+  "166": {
+    "image_url": "/static/images/products/product_166.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_STEREO-MICROSCOPE-HSM5A.pdf",
+    "gallery_images": [
+      "/static/images/products/product_166.jpg"
+    ]
+  },
+  "167": {
+    "image_url": "/static/images/products/product_167.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_STEREO-ZOOM-MICROSCOPE-HSM-650.pdf",
+    "gallery_images": [
+      "/static/images/products/product_167.jpg"
+    ]
+  },
+  "168": {
+    "image_url": "/static/images/products/product_168.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_STEREO-ZOOM-MICROSCOPE-HSZ-5B-SERIES-.pdf",
+    "gallery_images": [
+      "/static/images/products/product_168.jpg"
+    ]
+  },
+  "169": {
+    "image_url": "/static/images/products/product_169.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_STEREO-ZOOM-MICROSCOPE-HSZ-800-Series.pdf",
+    "gallery_images": [
+      "/static/images/products/product_169.jpg"
+    ]
+  },
+  "170": {
+    "image_url": "/static/images/products/product_170.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_SURFACE-ROUGHNESS-TESTER-HSRT-6210.pdf",
+    "gallery_images": [
+      "/static/images/products/product_170.jpg"
+    ]
+  },
+  "171": {
+    "image_url": "/static/images/products/product_171.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Specimen-Cutting-Machine-HCM-150-.pdf",
+    "gallery_images": [
+      "/static/images/products/product_171.jpg"
+    ]
+  },
+  "172": {
+    "image_url": "/static/images/products/product_172.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Specimen-Cutting-Machine-HCM-50-.pdf",
+    "gallery_images": [
+      "/static/images/products/product_172.jpg"
+    ]
+  },
+  "173": {
+    "image_url": "/static/images/products/product_173.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Specimen-Cutting-Machines-ACM-100S-.pdf",
+    "gallery_images": [
+      "/static/images/products/product_173.jpg"
+    ]
+  },
+  "174": {
+    "image_url": "/static/images/products/product_174.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Specimen-Cutting-Machines-HCM-100-.pdf",
+    "gallery_images": [
+      "/static/images/products/product_174.jpg"
+    ]
+  },
+  "175": {
+    "image_url": "/static/images/products/product_175.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Specimen-Cutting-Machines-HCM-200.pdf",
+    "gallery_images": [
+      "/static/images/products/product_175.jpg"
+    ]
+  },
+  "176": {
+    "image_url": "/static/images/products/product_176.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Specimen-cutting-machine-ACM-80-ACM-100.pdf",
+    "gallery_images": [
+      "/static/images/products/product_176.jpg"
+    ]
+  },
+  "177": {
+    "image_url": "/static/images/products/product_177.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Spectro-Polisher-HSP-6.pdf",
+    "gallery_images": [
+      "/static/images/products/product_177.jpg"
+    ]
+  },
+  "178": {
+    "image_url": "/static/images/products/product_178.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Spectro-Polisher-HSP-6DC.pdf",
+    "gallery_images": [
+      "/static/images/products/product_178.jpg"
+    ]
+  },
+  "179": {
+    "image_url": "/static/images/products/product_179.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Steam-Aging-Test-Chamber-HSA-3-.pdf",
+    "gallery_images": [
+      "/static/images/products/product_179.jpg"
+    ]
+  },
+  "180": {
+    "image_url": "/static/images/products/product_180.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Stereo-Microscope-HSM-3C.pdf",
+    "gallery_images": [
+      "/static/images/products/product_180.jpg"
+    ]
+  },
+  "181": {
+    "image_url": "/static/images/products/product_181.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Stereo-Microscope-HSM-Series-.pdf",
+    "gallery_images": [
+      "/static/images/products/product_181.jpg"
+    ]
+  },
+  "182": {
+    "image_url": "/static/images/products/product_182.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Stereo-Microscope-HSM-Series.pdf",
+    "gallery_images": [
+      "/static/images/products/product_182.jpg"
+    ]
+  },
+  "183": {
+    "image_url": "/static/images/products/product_183.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Stereo-Microscope-HSM\u2010A-Series-.pdf",
+    "gallery_images": [
+      "/static/images/products/product_183.jpg"
+    ]
+  },
+  "184": {
+    "image_url": "/static/images/products/product_184.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Stereo-Microscope-with-Boom-Stand-HSM-45.pdf",
+    "gallery_images": [
+      "/static/images/products/product_184.jpg"
+    ]
+  },
+  "185": {
+    "image_url": "/static/images/products/product_185.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Surface-Roughness-Tester-catalouge.pdf",
+    "gallery_images": [
+      "/static/images/products/product_185.jpg"
+    ]
+  },
+  "186": {
+    "image_url": "/static/images/products/product_186.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_TENSILE-TESTING-MACHINE-COMPUTERISED.pdf",
+    "gallery_images": [
+      "/static/images/products/product_186.jpg"
+    ]
+  },
+  "187": {
+    "image_url": "/static/images/products/product_187.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_TENSILE-TESTING-MACHINE-DIGITAL.pdf",
+    "gallery_images": [
+      "/static/images/products/product_187.jpg"
+    ]
+  },
+  "188": {
+    "image_url": "/static/images/products/product_188.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_TOOL-MAKER-MICROSCOPE-HTM-50.pdf",
+    "gallery_images": [
+      "/static/images/products/product_188.jpg"
+    ]
+  },
+  "189": {
+    "image_url": "/static/images/products/product_189.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_TOUCH-SCREEN-DIGITAL-BRINELL-HARDNESS-TESTER-BHD3000T.pdf",
+    "gallery_images": [
+      "/static/images/products/product_189.jpg"
+    ]
+  },
+  "190": {
+    "image_url": "/static/images/products/product_190.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_TOUCH-SCREEN-DOUBLE-DISK-POLISHING-MACHINE-MBP-2S.pdf",
+    "gallery_images": [
+      "/static/images/products/product_190.jpg",
+      "/static/images/products/product_190_g2.jpg"
+    ]
+  },
+  "191": {
+    "image_url": "/static/images/products/product_191.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_TOUCHSCREEN-DIGITAL-VICKERS-HARDNESS-TESTER-HVH-5-10-30-50AT-8-MT-8-2.pdf",
+    "gallery_images": [
+      "/static/images/products/product_191.jpg",
+      "/static/images/products/product_191_g2.jpg"
+    ]
+  },
+  "192": {
+    "image_url": "/static/images/products/product_192.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_UPRIGHT-METALLURGICAL-MICROSCOPE-MUM-2000.pdf",
+    "gallery_images": [
+      "/static/images/products/product_192.jpg"
+    ]
+  },
+  "193": {
+    "image_url": "/static/images/placeholders/product-placeholder.svg",
+    "has_verified_image": false,
+    "source_img": null,
+    "gallery_images": []
+  },
+  "194": {
+    "image_url": "/static/images/products/product_194.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Ultrasonic-Thickness-Gauge.pdf",
+    "gallery_images": [
+      "/static/images/products/product_194.jpg"
+    ]
+  },
+  "195": {
+    "image_url": "/static/images/products/product_195.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Universal-Testing-Machine.pdf",
+    "gallery_images": [
+      "/static/images/products/product_195.jpg"
+    ]
+  },
+  "196": {
+    "image_url": "/static/images/products/product_196.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Upright-Metallurgical-Microscope-HIM-1000X-.pdf",
+    "gallery_images": [
+      "/static/images/products/product_196.jpg"
+    ]
+  },
+  "197": {
+    "image_url": "/static/images/products/product_197.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Upright-Metallurgical-Microscope-MUM-400BD-600B.pdf",
+    "gallery_images": [
+      "/static/images/products/product_197.jpg"
+    ]
+  },
+  "198": {
+    "image_url": "/static/images/products/product_198.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_VACUUM-OVENS-HLVO-D-SERIES.pdf",
+    "gallery_images": [
+      "/static/images/products/product_198.jpg"
+    ]
+  },
+  "199": {
+    "image_url": "/static/images/products/product_199.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_VERTICAL-PROFILE-PROJECTOR-WITH-DIGITAL-DATA-PROCESSOR-PP-AZ-SERIES.pdf",
+    "gallery_images": [
+      "/static/images/products/product_199.jpg"
+    ]
+  },
+  "200": {
+    "image_url": "/static/images/products/product_200.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_VERTICAL-PROFILE-PROJECTOR-WITH-DIGITAL-PROCESSOR-VPD-AZ-SERIES.pdf",
+    "gallery_images": [
+      "/static/images/products/product_200.jpg"
+    ]
+  },
+  "201": {
+    "image_url": "/static/images/products/product_201.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_VERTICAL-PROFILE-PROJECTOR-WITH-DIGITAL-READOUT-PROCESSOR-PP-A-SERIES.pdf",
+    "gallery_images": [
+      "/static/images/products/product_201.jpg"
+    ]
+  },
+  "202": {
+    "image_url": "/static/images/products/product_202.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_VERTICLE-VIDEO-PROFILE-PROJECTOR-iVIDEO-2010-2515-3020.pdf",
+    "gallery_images": [
+      "/static/images/products/product_202.jpg",
+      "/static/images/products/product_202_g2.jpg",
+      "/static/images/products/product_202_g3.jpg"
+    ]
+  },
+  "203": {
+    "image_url": "/static/images/products/product_203.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_VICKERS-HARDNESS-TESTER-MVH-1000M-A.pdf",
+    "gallery_images": [
+      "/static/images/products/product_203.jpg"
+    ]
+  },
+  "204": {
+    "image_url": "/static/images/products/product_204.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_VICKERS-HARDNESS-TESTER-WITH-TOUCHSCREEN-MVH-1000MT-AT.pdf",
+    "gallery_images": [
+      "/static/images/products/product_204.jpg",
+      "/static/images/products/product_204_g2.jpg",
+      "/static/images/products/product_204_g3.jpg",
+      "/static/images/products/product_204_g4.jpg"
+    ]
+  },
+  "205": {
+    "image_url": "/static/images/products/product_205.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_VISION-MEASUREMENT-MACHINE-MANUAL-WITH-TOUCH-PROBE-HJV-T-SERIES-1.pdf",
+    "gallery_images": [
+      "/static/images/products/product_205.jpg"
+    ]
+  },
+  "206": {
+    "image_url": "/static/images/products/product_206.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_VISION-MEASUREMENT-MACHINE-MANUAL-WITH-TOUCH-PROBE-HJV-T-SERIES.pdf",
+    "gallery_images": [
+      "/static/images/products/product_206.jpg"
+    ]
+  },
+  "207": {
+    "image_url": "/static/images/products/product_207.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_VISION-MEASUREMENT-MACHINE-NC-E-SERIES-.pdf",
+    "gallery_images": [
+      "/static/images/products/product_207.jpg",
+      "/static/images/products/product_207_g2.jpg"
+    ]
+  },
+  "208": {
+    "image_url": "/static/images/products/product_208.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_VISION-MEASUREMENT-MACHINES-HJV-150.pdf",
+    "gallery_images": [
+      "/static/images/products/product_208.jpg"
+    ]
+  },
+  "209": {
+    "image_url": "/static/images/products/product_209.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_VISION-MEASURING-MACHINE-VMS-MT-Series-VMM.pdf",
+    "gallery_images": [
+      "/static/images/products/product_209.jpg"
+    ]
+  },
+  "210": {
+    "image_url": "/static/images/products/product_210.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Vickers-Hardness-Testers-.pdf",
+    "gallery_images": [
+      "/static/images/products/product_210.jpg"
+    ]
+  },
+  "211": {
+    "image_url": "/static/images/products/product_211.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Video-Micro-Vickers-Hardness-Tester-VHS-1000LCD.pdf",
+    "gallery_images": [
+      "/static/images/products/product_211.jpg"
+    ]
+  },
+  "212": {
+    "image_url": "/static/images/products/product_212.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Vision-Measuring-Machine-VMS-Series.pdf",
+    "gallery_images": [
+      "/static/images/products/product_212.jpg"
+    ]
+  },
+  "213": {
+    "image_url": "/static/images/products/product_213.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_WIDE-FIELD-MICROSCOPE-iSCOPE.pdf",
+    "gallery_images": [
+      "/static/images/products/product_213.jpg"
+    ]
+  },
+  "214": {
+    "image_url": "/static/images/products/product_214.jpg",
+    "has_verified_image": true,
+    "source_img": "standalone_machine_photo_from_Welding-Penetration-System.pdf",
+    "gallery_images": [
+      "/static/images/products/product_214.jpg",
+      "/static/images/products/product_214_g2.jpg"
+    ]
+  }
+}

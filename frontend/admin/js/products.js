@@ -1,0 +1,739 @@
+/**
+ * HSMLE India Corporation - Product Inventory Management
+ * Handles listing, live search, division filters, pagination, creation,
+ * editing, image/PDF uploads, and active state toggling.
+ */
+
+const ProductManager = {
+  state: {
+    page: 1,
+    limit: 15,
+    search: '',
+    category_id: '',
+    is_active: '',
+    total: 0,
+    totalPages: 1,
+    categories: [],
+    editingProductId: null,
+  },
+
+  async init() {
+    await this.loadCategoriesFilter();
+    await this.fetchProducts();
+    this.setupListeners();
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('edit')) {
+      await this.openEditModal(parseInt(params.get('edit'), 10));
+    } else if (params.get('add') === '1') {
+      this.openAddModal();
+    }
+  },
+
+  setupListeners() {
+    const searchInput = document.getElementById('product-search');
+    if (searchInput) {
+      let timer;
+      searchInput.addEventListener('input', (e) => {
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+          this.state.search = e.target.value.trim();
+          this.state.page = 1;
+          this.fetchProducts();
+        }, 300);
+      });
+    }
+
+    const catSelect = document.getElementById('filter-category');
+    if (catSelect) {
+      catSelect.addEventListener('change', (e) => {
+        this.state.category_id = e.target.value;
+        this.state.page = 1;
+        this.fetchProducts();
+      });
+    }
+
+    const statusSelect = document.getElementById('filter-status');
+    if (statusSelect) {
+      statusSelect.addEventListener('change', (e) => {
+        this.state.is_active = e.target.value;
+        this.state.page = 1;
+        this.fetchProducts();
+      });
+    }
+  },
+
+  async loadCategoriesFilter() {
+    try {
+      this.state.categories = await window.AdminAPI.getCategories();
+      const sel = document.getElementById('filter-category');
+      const modalCat = document.getElementById('product-modal-category');
+
+      const optionsHtml = this.state.categories
+        .map((c) => `<option value="${c.id}">${c.name}</option>`)
+        .join('');
+
+      if (sel) {
+        sel.innerHTML = '<option value="">All Divisions</option>' + optionsHtml;
+      }
+      if (modalCat) {
+        modalCat.innerHTML = '<option value="">Select Division *</option>' + optionsHtml;
+        modalCat.addEventListener('change', () => this.updateSubcategoryDropdown());
+      }
+    } catch (err) {
+      console.error('Failed to load categories:', err);
+    }
+  },
+
+  updateSubcategoryDropdown(selectedSubId = null) {
+    const catId = parseInt(document.getElementById('product-modal-category').value, 10);
+    const subSel = document.getElementById('product-modal-subcategory');
+    if (!subSel) return;
+
+    const cat = this.state.categories.find((c) => c.id === catId);
+    if (!cat || !cat.subcategories || cat.subcategories.length === 0) {
+      subSel.innerHTML = '<option value="">Standard Subcategory</option>';
+      return;
+    }
+
+    subSel.innerHTML = cat.subcategories
+      .map(
+        (s) => `<option value="${s.id}" ${s.id === selectedSubId ? 'selected' : ''}>${s.name}</option>`
+      )
+      .join('');
+  },
+
+  async fetchProducts() {
+    const tbody = document.getElementById('products-tbody');
+    const countDisplay = document.getElementById('products-total-count');
+    if (!tbody) return;
+
+    tbody.innerHTML = `<tr><td colspan="7" class="p-8 text-center text-xs text-slate-400">Loading products...</td></tr>`;
+
+    try {
+      const data = await window.AdminAPI.getProducts({
+        search: this.state.search,
+        category_id: this.state.category_id,
+        is_active: this.state.is_active,
+        page: this.state.page,
+        limit: this.state.limit,
+      });
+
+      this.state.total = data.total;
+      this.state.totalPages = data.total_pages;
+
+      if (countDisplay) {
+        countDisplay.textContent = `Showing ${data.items.length} of ${data.total} products`;
+      }
+
+      this.renderTable(data.items);
+      this.renderPagination();
+    } catch (err) {
+      tbody.innerHTML = `<tr><td colspan="7" class="p-8 text-center text-xs text-red-600">Failed to load products: ${err.message}</td></tr>`;
+    }
+  },
+
+  renderTable(items) {
+    const tbody = document.getElementById('products-tbody');
+    if (!tbody) return;
+
+    if (items.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="7" class="p-8 text-center text-xs text-slate-400">No products match your search or filter.</td></tr>`;
+      return;
+    }
+
+    const baseUrl = window.AdminAPI.getBaseUrl();
+
+    tbody.innerHTML = items
+      .map((p) => {
+        const imgUrl = p.image_url.startsWith('http') ? p.image_url : `${baseUrl}${p.image_url}`;
+        const isActive = p.is_active !== false;
+
+        return `
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition text-xs">
+          <td class="p-3 w-16">
+            <img 
+              src="${imgUrl}" 
+              alt="${p.product_name}" 
+              class="w-12 h-12 object-contain bg-slate-50 rounded border border-slate-200 p-1"
+              onerror="this.onerror=null;this.src='/assets/images/product-placeholder.svg'"
+            >
+          </td>
+          <td class="p-3">
+            <div class="font-bold text-slate-900 leading-snug">${p.product_name}</div>
+            <div class="text-[11px] font-mono text-blue-600 mt-0.5">Model: ${p.model_number || 'Standard'}</div>
+          </td>
+          <td class="p-3">
+            <span class="inline-block text-[11px] font-medium text-slate-700 bg-slate-100 px-2 py-0.5 rounded ">
+              ${p.category_name}
+            </span>
+          </td>
+          <td class="p-3 text-center">
+            ${
+              p.is_featured
+                ? '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-800">FEATURED</span>'
+                : '<span class="text-slate-300 text-[11px]">—</span>'
+            }
+          </td>
+          <td class="p-3 text-center">
+            <button 
+              onclick="ProductManager.toggleStatus(${p.id})" 
+              class="px-2.5 py-1 rounded-full text-[10px] font-bold transition ${
+                isActive ? 'bg-emerald-100 text-emerald-800 hover:bg-emerald-200' : 'bg-slate-200 text-slate-600 hover:bg-slate-300'
+              }"
+            >
+              ${isActive ? 'ACTIVE' : 'INACTIVE'}
+            </button>
+          </td>
+          <td class="p-3">
+            <a 
+              href="${baseUrl}${p.catalogue_path}" 
+              target="_blank" 
+              class="inline-flex items-center gap-1 text-[11px] text-red-600 hover:text-red-800 font-semibold"
+            >
+              <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd"></path></svg>
+              PDF (${p.catalogue_pages || 1}p)
+            </a>
+          </td>
+          <td class="p-3 text-right whitespace-nowrap space-x-1">
+            <button 
+              onclick="ProductManager.openEditModal(${p.id})" 
+              class="px-2 py-1 bg-slate-100 hover:bg-blue-50 text-slate-700 hover:text-blue-600 rounded text-xs font-semibold transition"
+              title="Edit Product Details"
+            >
+              Edit
+            </button>
+            <button 
+              onclick="ProductManager.openUploadImageModal(${p.id}, '${p.product_name.replace(/'/g, "\\'")}')" 
+              class="px-2 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded text-xs transition"
+              title="Upload Machine Photo"
+            >
+              📷
+            </button>
+            <button 
+              onclick="ProductManager.openUploadCatalogueModal(${p.id}, '${p.product_name.replace(/'/g, "\\'")}')" 
+              class="px-2 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded text-xs transition"
+              title="Upload Catalogue PDF"
+            >
+              📄
+            </button>
+            <button 
+              onclick="ProductManager.openVideoModal(${p.id}, '${p.product_name.replace(/'/g, "\\'")}')" 
+              class="px-2 py-1 ${p.video_url ? 'bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200' : 'bg-slate-100 hover:bg-blue-50 text-slate-700'} rounded text-xs transition font-semibold"
+              title="${p.video_url ? 'View or Regenerate 30s HD Video' : 'Generate 30s HD Video'}"
+            >
+              🎬 ${p.video_url ? 'Video' : 'Gen'}
+            </button>
+          </td>
+        </tr>
+      `;
+      })
+      .join('');
+  },
+
+  renderPagination() {
+    const container = document.getElementById('products-pagination');
+    if (!container) return;
+
+    if (this.state.totalPages <= 1) {
+      container.innerHTML = '';
+      return;
+    }
+
+    container.innerHTML = `
+      <div class="flex items-center justify-between text-xs text-slate-500 py-3">
+        <div>Page ${this.state.page} of ${this.state.totalPages}</div>
+        <div class="flex items-center gap-1">
+          <button 
+            onclick="ProductManager.changePage(${this.state.page - 1})" 
+            ${this.state.page <= 1 ? 'disabled class="px-2.5 py-1 rounded border border-slate-200 opacity-40 cursor-not-allowed"' : 'class="px-2.5 py-1 rounded border border-slate-300 hover:bg-slate-100 text-slate-700 font-semibold"'}
+          >
+            Prev
+          </button>
+          <span class="px-2 font-mono font-bold text-slate-700">${this.state.page}</span>
+          <button 
+            onclick="ProductManager.changePage(${this.state.page + 1})" 
+            ${this.state.page >= this.state.totalPages ? 'disabled class="px-2.5 py-1 rounded border border-slate-200 opacity-40 cursor-not-allowed"' : 'class="px-2.5 py-1 rounded border border-slate-300 hover:bg-slate-100 text-slate-700 font-semibold"'}
+          >
+            Next
+          </button>
+        </div>
+      </div>
+    `;
+  },
+
+  changePage(newPage) {
+    if (newPage < 1 || newPage > this.state.totalPages) return;
+    this.state.page = newPage;
+    this.fetchProducts();
+  },
+
+  async toggleStatus(productId) {
+    try {
+      const res = await window.AdminAPI.toggleProductStatus(productId);
+      if (window.showAdminToast) {
+        window.showAdminToast(res.message, 'success');
+      }
+      this.fetchProducts();
+    } catch (err) {
+      if (window.showAdminToast) {
+        window.showAdminToast(`Failed to toggle status: ${err.message}`, 'error');
+      }
+    }
+  },
+
+  // Simplified, Intuitive Add / Edit Modal with Image Upload
+  handleImageFileChange(e) {
+    const file = e.target.files[0];
+    const preview = document.getElementById('product-img-preview');
+    const badge = document.getElementById('product-img-badge');
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (evt) => {
+        if (preview) preview.src = evt.target.result;
+        if (badge) badge.classList.remove('hidden');
+      };
+      reader.readAsDataURL(file);
+    }
+  },
+
+  toggleAdvancedOptions() {
+    const panel = document.getElementById('advanced-options-panel');
+    const arrow = document.getElementById('adv-arrow-text');
+    if (panel) {
+      panel.classList.toggle('hidden');
+      if (arrow) arrow.textContent = panel.classList.contains('hidden') ? '▶' : '▼';
+    }
+  },
+
+  openAddModal() {
+    this.state.editingProductId = null;
+    document.getElementById('product-modal-title').textContent = 'Add New Testing Instrument';
+    const form = document.getElementById('product-form');
+    if (form) form.reset();
+
+    // Reset image preview
+    const preview = document.getElementById('product-img-preview');
+    const badge = document.getElementById('product-img-badge');
+    const fileInput = document.getElementById('product-img-input');
+    if (preview) preview.src = '/assets/images/product-placeholder.svg';
+    if (badge) badge.classList.add('hidden');
+    if (fileInput) fileInput.value = '';
+
+    // Reset features and specs
+    const featText = document.getElementById('product-features-text');
+    if (featText) featText.value = '';
+    const specsContainer = document.getElementById('specs-container');
+    if (specsContainer) {
+      specsContainer.innerHTML = '';
+      this.addSpecRow();
+    }
+
+    // Collapse advanced panel by default
+    const advPanel = document.getElementById('advanced-options-panel');
+    const advArrow = document.getElementById('adv-arrow-text');
+    if (advPanel) advPanel.classList.add('hidden');
+    if (advArrow) advArrow.textContent = '▶';
+
+    document.getElementById('product-modal').classList.remove('hidden');
+  },
+
+  async openEditModal(productId) {
+    this.state.editingProductId = productId;
+
+    try {
+      const p = await window.AdminAPI.getProduct(productId);
+      document.getElementById('product-modal-title').textContent = `Edit Instrument: ${p.product_name}`;
+      const form = document.getElementById('product-form');
+
+      form.product_name.value = p.product_name || '';
+      form.model_number.value = p.model_number || '';
+      if (form.all_detected_models) form.all_detected_models.value = p.all_detected_models || '';
+      form.category_id.value = p.category_id || '';
+      this.updateSubcategoryDropdown(p.subcategory_id);
+      form.description.value = p.description || '';
+      form.is_featured.checked = !!p.is_featured;
+      form.is_active.checked = p.is_active !== false;
+      if (form.meta_title) form.meta_title.value = p.meta_title || '';
+      if (form.meta_description) form.meta_description.value = p.meta_description || '';
+
+      // Set photo preview to existing machine photo
+      const preview = document.getElementById('product-img-preview');
+      const badge = document.getElementById('product-img-badge');
+      const fileInput = document.getElementById('product-img-input');
+      if (fileInput) fileInput.value = '';
+      if (badge) badge.classList.add('hidden');
+
+      if (preview) {
+        const baseUrl = window.AdminAPI.getBaseUrl();
+        const imgUrl = (p.image_url && p.image_url.startsWith('http')) 
+          ? p.image_url 
+          : `${baseUrl}${p.image_url || '/assets/images/product-placeholder.svg'}`;
+        preview.src = imgUrl;
+      }
+
+      // Populate features textarea
+      const featText = document.getElementById('product-features-text');
+      if (featText) {
+        if (p.features && p.features.length > 0) {
+          featText.value = p.features.map(f => (typeof f === 'string' ? f : f.feature_text)).join('\n');
+        } else {
+          featText.value = '';
+        }
+      }
+
+      // Populate specs
+      const specsContainer = document.getElementById('specs-container');
+      if (specsContainer) {
+        specsContainer.innerHTML = '';
+        if (p.specifications && p.specifications.length > 0) {
+          p.specifications.forEach((s) => this.addSpecRow(s.spec_key, s.spec_value));
+        } else {
+          this.addSpecRow();
+        }
+      }
+
+      // Keep advanced collapsed by default
+      const advPanel = document.getElementById('advanced-options-panel');
+      const advArrow = document.getElementById('adv-arrow-text');
+      if (advPanel) advPanel.classList.add('hidden');
+      if (advArrow) advArrow.textContent = '▶';
+
+      document.getElementById('product-modal').classList.remove('hidden');
+    } catch (err) {
+      if (window.showAdminToast) {
+        window.showAdminToast(`Failed to load product details: ${err.message}`, 'error');
+      }
+    }
+  },
+
+  closeModal() {
+    document.getElementById('product-modal').classList.add('hidden');
+  },
+
+  addSpecRow(key = '', val = '') {
+    const container = document.getElementById('specs-container');
+    if (!container) return;
+    const row = document.createElement('div');
+    row.className = 'flex items-center gap-2 spec-row mb-1.5';
+    row.innerHTML = `
+      <input type="text" placeholder="Parameter (e.g. Test Load)" value="${key.replace(/"/g, '&quot;')}" class="spec-key w-1/2 px-2.5 py-1.5 text-xs border border-slate-300 focus:outline-none focus:border-blue-600 bg-white">
+      <input type="text" placeholder="Value (e.g. 60, 100, 150 kgf)" value="${val.replace(/"/g, '&quot;')}" class="spec-val w-1/2 px-2.5 py-1.5 text-xs border border-slate-300 focus:outline-none focus:border-blue-600 bg-white">
+      <button type="button" onclick="this.parentElement.remove()" class="text-slate-400 hover:text-red-500 p-1 font-bold">✕</button>
+    `;
+    container.appendChild(row);
+  },
+
+  async handleFormSubmit(e) {
+    e.preventDefault();
+    const form = e.target;
+    const submitBtn = document.getElementById('btn-save-product') || form.querySelector('button[type="submit"]');
+
+    // Collect specs
+    const specs = [];
+    document.querySelectorAll('.spec-row').forEach((row) => {
+      const k = row.querySelector('.spec-key').value.trim();
+      const v = row.querySelector('.spec-val').value.trim();
+      if (k && v) specs.push({ spec_key: k, spec_value: v });
+    });
+
+    // Collect features from multi-line box
+    const featRaw = document.getElementById('product-features-text') ? document.getElementById('product-features-text').value : '';
+    const features = featRaw.split('\n').map(s => s.trim()).filter(Boolean);
+
+    const payload = {
+      product_name: form.product_name.value.trim(),
+      model_number: form.model_number.value.trim(),
+      all_detected_models: (form.all_detected_models && form.all_detected_models.value.trim()) || null,
+      category_id: parseInt(form.category_id.value, 10),
+      subcategory_id: parseInt(form.subcategory_id.value, 10) || 1,
+      description: form.description.value.trim() || null,
+      is_featured: form.is_featured.checked,
+      is_active: form.is_active.checked,
+      meta_title: (form.meta_title && form.meta_title.value.trim()) || null,
+      meta_description: (form.meta_description && form.meta_description.value.trim()) || null,
+      specifications: specs,
+      features: features,
+    };
+
+    try {
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Saving Instrument...';
+
+      let targetId = this.state.editingProductId;
+      if (targetId) {
+        await window.AdminAPI.updateProduct(targetId, payload);
+      } else {
+        const created = await window.AdminAPI.createProduct(payload);
+        targetId = created.id;
+      }
+
+      // If a new image file was chosen, upload it now
+      const fileInput = document.getElementById('product-img-input');
+      if (fileInput && fileInput.files && fileInput.files.length > 0) {
+        submitBtn.textContent = 'Uploading Photo...';
+        await window.AdminAPI.uploadProductImage(targetId, fileInput.files[0]);
+      }
+
+      if (window.showAdminToast) {
+        window.showAdminToast('Instrument & Photo saved successfully!', 'success');
+      }
+
+      this.closeModal();
+      this.fetchProducts();
+    } catch (err) {
+      if (window.showAdminToast) window.showAdminToast(`Error: ${err.message}`, 'error');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Save Instrument';
+    }
+  },
+
+  // Upload Photo Modal
+  openUploadImageModal(productId, productName) {
+    this.state.uploadTargetId = productId;
+    document.getElementById('upload-img-product-name').textContent = productName;
+    document.getElementById('upload-img-file').value = '';
+    document.getElementById('upload-img-modal').classList.remove('hidden');
+  },
+
+  closeUploadImageModal() {
+    document.getElementById('upload-img-modal').classList.add('hidden');
+  },
+
+  async handleImageUpload(e) {
+    e.preventDefault();
+    const fileInput = document.getElementById('upload-img-file');
+    const file = fileInput.files[0];
+    if (!file) return;
+
+    const btn = e.target.querySelector('button[type="submit"]');
+    try {
+      btn.disabled = true;
+      btn.textContent = 'Uploading...';
+      const res = await window.AdminAPI.uploadProductImage(this.state.uploadTargetId, file);
+      if (window.showAdminToast) window.showAdminToast('Machine photo updated successfully', 'success');
+      this.closeUploadImageModal();
+      this.fetchProducts();
+    } catch (err) {
+      if (window.showAdminToast) window.showAdminToast(`Upload failed: ${err.message}`, 'error');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Upload Image';
+    }
+  },
+
+  // Upload Catalogue Modal
+  openUploadCatalogueModal(productId, productName) {
+    this.state.uploadTargetId = productId;
+    document.getElementById('upload-pdf-product-name').textContent = productName;
+    document.getElementById('upload-pdf-file').value = '';
+    document.getElementById('upload-pdf-modal').classList.remove('hidden');
+  },
+
+  closeUploadCatalogueModal() {
+    document.getElementById('upload-pdf-modal').classList.add('hidden');
+  },
+
+  async handleCatalogueUpload(e) {
+    e.preventDefault();
+    const fileInput = document.getElementById('upload-pdf-file');
+    const file = fileInput.files[0];
+    if (!file) return;
+
+    const btn = e.target.querySelector('button[type="submit"]');
+    try {
+      btn.disabled = true;
+      btn.textContent = 'Uploading PDF...';
+      const res = await window.AdminAPI.uploadProductCatalogue(this.state.uploadTargetId, file);
+      if (window.showAdminToast) window.showAdminToast('Catalogue PDF updated successfully', 'success');
+      this.closeUploadCatalogueModal();
+      this.fetchProducts();
+    } catch (err) {
+      if (window.showAdminToast) window.showAdminToast(`Upload failed: ${err.message}`, 'error');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Upload PDF';
+    }
+  },
+
+  // 30-Second Product Video Controls
+  async openVideoModal(productId, productName) {
+    this.state.currentVideoId = productId;
+    const nameEl = document.getElementById('video-modal-product-name');
+    const badgeEl = document.getElementById('video-modal-status-badge');
+    const playerEl = document.getElementById('video-player-el');
+    const emptyState = document.getElementById('video-empty-state');
+    const spinner = document.getElementById('video-render-spinner');
+    const genBtn = document.getElementById('video-generate-btn');
+    const delBtn = document.getElementById('video-delete-btn');
+
+    if (nameEl) nameEl.textContent = productName;
+    if (badgeEl) {
+      badgeEl.textContent = 'Checking...';
+      badgeEl.className = 'px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 text-slate-600 font-mono';
+    }
+    if (playerEl) {
+      playerEl.pause();
+      playerEl.src = '';
+      playerEl.classList.add('hidden');
+    }
+    if (emptyState) emptyState.classList.remove('hidden');
+    if (spinner) spinner.classList.add('hidden');
+    if (delBtn) delBtn.classList.add('hidden');
+
+    document.getElementById('product-video-modal').classList.remove('hidden');
+
+    try {
+      const data = await window.AdminAPI.getVideoStatus(productId);
+      if (data.has_video && data.video_url) {
+        if (badgeEl) {
+          badgeEl.textContent = `1080p HD • ${data.file_size_mb} MB`;
+          badgeEl.className = 'px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800 font-mono';
+        }
+        if (emptyState) emptyState.classList.add('hidden');
+        if (playerEl) {
+          playerEl.src = `${window.AdminAPI.getBaseUrl()}${data.video_url}?t=${Date.now()}`;
+          playerEl.classList.remove('hidden');
+        }
+        if (genBtn) genBtn.innerHTML = '<span>Regenerate Video</span>';
+        if (delBtn) delBtn.classList.remove('hidden');
+      } else {
+        if (badgeEl) {
+          badgeEl.textContent = 'Not Generated';
+          badgeEl.className = 'px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-800 font-mono';
+        }
+        if (genBtn) genBtn.innerHTML = '<span>Generate 30s HD Video</span>';
+      }
+    } catch (e) {
+      if (badgeEl) badgeEl.textContent = 'Check Failed';
+    }
+  },
+
+  closeVideoModal() {
+    const playerEl = document.getElementById('video-player-el');
+    if (playerEl) {
+      playerEl.pause();
+      playerEl.src = '';
+    }
+    document.getElementById('product-video-modal').classList.add('hidden');
+  },
+
+  async generateCurrentVideo() {
+    const pid = this.state.currentVideoId;
+    if (!pid) return;
+
+    const spinner = document.getElementById('video-render-spinner');
+    const genBtn = document.getElementById('video-generate-btn');
+    const delBtn = document.getElementById('video-delete-btn');
+
+    try {
+      if (spinner) spinner.classList.remove('hidden');
+      if (genBtn) genBtn.disabled = true;
+      if (delBtn) delBtn.disabled = true;
+
+      const res = await window.AdminAPI.generateProductVideo(pid, true);
+      if (window.showAdminToast) window.showAdminToast('30-second broadcast video generated successfully!', 'success');
+      
+      this.openVideoModal(pid, document.getElementById('video-modal-product-name').textContent);
+      this.fetchProducts();
+    } catch (err) {
+      if (window.showAdminToast) window.showAdminToast(`Generation error: ${err.message}`, 'error');
+    } finally {
+      if (spinner) spinner.classList.add('hidden');
+      if (genBtn) genBtn.disabled = false;
+      if (delBtn) delBtn.disabled = false;
+    }
+  },
+
+  async deleteCurrentVideo() {
+    const pid = this.state.currentVideoId;
+    if (!pid || !confirm('Are you sure you want to delete this generated product video?')) return;
+
+    try {
+      await window.AdminAPI.deleteProductVideo(pid);
+      if (window.showAdminToast) window.showAdminToast('Video successfully deleted.', 'info');
+      this.closeVideoModal();
+      this.fetchProducts();
+    } catch (err) {
+      if (window.showAdminToast) window.showAdminToast(`Delete error: ${err.message}`, 'error');
+    }
+  },
+
+  // Batch Video Generator Controls
+  openBatchVideoModal() {
+    document.getElementById('batch-video-modal').classList.remove('hidden');
+    this.pollBatchStatus();
+  },
+
+  closeBatchVideoModal() {
+    document.getElementById('batch-video-modal').classList.add('hidden');
+    if (this._batchTimer) {
+      clearInterval(this._batchTimer);
+      this._batchTimer = null;
+    }
+  },
+
+  async startBatchGeneration() {
+    const startBtn = document.getElementById('batch-start-btn');
+    try {
+      if (startBtn) startBtn.disabled = true;
+      const res = await window.AdminAPI.startBatchVideoGeneration();
+      if (window.showAdminToast) window.showAdminToast(res.message || 'Batch video generation started.', 'info');
+      this.pollBatchStatus();
+    } catch (err) {
+      if (window.showAdminToast) window.showAdminToast(`Error: ${err.message}`, 'error');
+      if (startBtn) startBtn.disabled = false;
+    }
+  },
+
+  async pollBatchStatus() {
+    if (this._batchTimer) clearInterval(this._batchTimer);
+
+    const updateUI = async () => {
+      try {
+        const s = await window.AdminAPI.getBatchVideoStatus();
+        const statusEl = document.getElementById('batch-status-text');
+        const progressEl = document.getElementById('batch-progress-text');
+        const barEl = document.getElementById('batch-progress-bar');
+        const machineEl = document.getElementById('batch-current-machine');
+        const startBtn = document.getElementById('batch-start-btn');
+
+        if (statusEl) {
+          statusEl.textContent = s.is_running ? 'Generating in Background...' : (s.completed > 0 ? 'Completed' : 'Idle');
+          statusEl.className = `font-bold font-mono ${s.is_running ? 'text-blue-600' : (s.completed > 0 ? 'text-emerald-600' : 'text-slate-800')}`;
+        }
+        if (progressEl) {
+          progressEl.textContent = `${s.completed + s.failed} / ${s.total} (${s.progress_percent || 0}%)`;
+        }
+        if (barEl) {
+          barEl.style.width = `${s.progress_percent || 0}%`;
+        }
+        if (machineEl) {
+          machineEl.textContent = s.is_running ? `Currently processing: ${s.current_name || 'Machine #' + s.current_id}` : (s.completed > 0 ? `Done: ${s.completed} videos rendered (${s.failed} failed)` : 'Ready to start batch generation');
+        }
+        if (startBtn) {
+          startBtn.disabled = s.is_running;
+          startBtn.textContent = s.is_running ? 'Processing Queue...' : 'Start Batch Generation';
+        }
+
+        if (!s.is_running && this._batchTimer) {
+          clearInterval(this._batchTimer);
+          this._batchTimer = null;
+          this.fetchProducts();
+        }
+      } catch (e) {
+        console.warn('Batch status polling error:', e);
+      }
+    };
+
+    await updateUI();
+    this._batchTimer = setInterval(updateUI, 2500);
+  }
+};
+
+window.ProductManager = ProductManager;
+document.addEventListener('DOMContentLoaded', () => {
+  if (document.getElementById('products-tbody')) {
+    ProductManager.init();
+  }
+});

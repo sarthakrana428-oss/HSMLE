@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="100%" height="100%">
+  <defs>
+    <pattern id="studio-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#e2e8f0" stroke-width="1" />
+    </pattern>
+  </defs>
+
+  <!-- Clean Neutral Light Grey / White Studio Background -->
+  <rect width="800" height="800" fill="#f8fafc" />
+  <rect x="24" y="24" width="752" height="752" rx="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="10 6" />
+  <rect x="40" y="40" width="720" height="720" rx="16" fill="url(#studio-grid)" opacity="0.5" />
+
+  <!-- Neutral Industrial Metrology Frame Silhouette -->
+  <g transform="translate(260, 170)">
+    <rect x="20" y="20" width="240" height="220" rx="20" fill="#f1f5f9" stroke="#94a3b8" stroke-width="3" />
+    <!-- Gantry / Column Silhouette -->
+    <rect x="85" y="55" width="110" height="16" rx="4" fill="#cbd5e1" />
+    <rect x="98" y="71" width="18" height="95" fill="#cbd5e1" />
+    <rect x="164" y="71" width="18" height="95" fill="#cbd5e1" />
+    <rect x="128" y="71" width="24" height="36" rx="4" fill="#64748b" />
+    <circle cx="140" cy="128" r="14" fill="none" stroke="#2563eb" stroke-width="4" />
+    <rect x="70" y="166" width="140" height="26" rx="6" fill="#94a3b8" />
+    <rect x="55" y="192" width="170" height="14" rx="4" fill="#64748b" />
+  </g>
+
+  <!-- Neutral Corporate Text & Replacement Marker -->
+  <text x="400" y="475" text-anchor="middle" font-family="Plus Jakarta Sans, Inter, -apple-system, BlinkMacSystemFont, sans-serif" font-weight="800" font-size="24" fill="#1e293b" letter-spacing="0.5">OFFICIAL MACHINE PHOTOGRAPH PENDING</text>
+  <text x="400" y="510" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, sans-serif" font-weight="500" font-size="16" fill="#64748b">Unverified standalone photograph — Marked for official factory image replacement</text>
+
+  <!-- Marked for Replacement Badge -->
+  <rect x="210" y="550" width="380" height="46" rx="23" fill="#fffbeb" stroke="#f59e0b" stroke-width="2" />
+  <circle cx="242" cy="573" r="6" fill="#d97706" />
+  <text x="412" y="579" text-anchor="middle" font-family="JetBrains Mono, monospace, sans-serif" font-weight="700" font-size="14" fill="#b45309" letter-spacing="0.8">MARKED FOR IMAGE REPLACEMENT</text>
+</svg>

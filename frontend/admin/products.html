@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Inventory | HSMLE India Corporation</title>
+  <script src="../js/tailwind.min.js?v=1793637338"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              navy: '#0F172A',
+              navyDark: '#0A0F1D',
+              blue: '#2563EB',
+              blueDark: '#1D4ED8'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="../css/styles.css?v=1793637338">
+</head>
+<body class="bg-slate-50 text-slate-800 flex min-h-screen">
+
+  <!-- Mobile Sidebar Backdrop -->
+  <div id="admin-sidebar-backdrop" class="fixed inset-0 bg-slate-950/60 z-40 hidden backdrop-blur-sm lg:hidden"></div>
+
+  <!-- Sidebar Navigation -->
+  <aside id="admin-sidebar" class="fixed top-0 bottom-0 left-0 w-64 bg-slate-950 text-slate-300 z-50 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 flex flex-col justify-between border-r border-slate-800 shadow-xl">
+    <div>
+      <!-- Brand Header -->
+      <div class="p-6 border-b border-slate-900 flex items-center gap-3">
+        <span class="w-3 h-3 bg-amber-500 inline-block"></span>
+        <div>
+          <span class="block text-xs font-black tracking-widest text-white uppercase">DIRECTOR PORTAL</span>
+          <span class="block text-[10px] text-amber-400 font-bold uppercase tracking-wider">Executive Management</span>
+        </div>
+      </div>
+
+      <!-- Current User Profile Box -->
+      <div class="p-4 mx-3 my-4 bg-slate-900 border border-slate-800">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 bg-amber-500/20 text-amber-400 border border-amber-500/40 flex items-center justify-center font-black text-sm" id="admin-user-avatar">AS</div>
+          <div class="flex-1 min-w-0">
+            <h4 class="text-xs font-bold text-white truncate" id="admin-user-name">Azad Sirohi</h4>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-amber-400" id="admin-user-role">Director / Super Admin</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="px-3 space-y-1">
+        <a href="dashboard.html" class="admin-nav-link flex items-center gap-3 px-3 py-2.5 text-xs font-semibold text-slate-300 hover:bg-slate-900 hover:text-white transition">
+          <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+          <span>Executive Overview</span>
+        </a>
+        <a href="quotations.html" class="admin-nav-link flex items-center gap-3 px-3 py-2.5 text-xs font-semibold text-slate-300 hover:bg-slate-900 hover:text-white transition">
+          <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          <span>Quotation Pipeline (RFQ)</span>
+        </a>
+        <a href="enquiries.html" class="admin-nav-link flex items-center gap-3 px-3 py-2.5 text-xs font-semibold text-slate-300 hover:bg-slate-900 hover:text-white transition">
+          <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
+          <span>Customer Enquiries</span>
+        </a>
+        <a href="products.html" class="admin-nav-link flex items-center gap-3 px-3 py-2.5 text-xs font-bold transition bg-blue-600 text-white shadow-sm">
+          <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+          <span>Machine Inventory (681)</span>
+        </a>
+        <a href="audit-logs.html" class="admin-nav-link flex items-center gap-3 px-3 py-2.5 text-xs font-semibold text-slate-300 hover:bg-slate-900 hover:text-white transition">
+          <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <span>Staff Audit Activity</span>
+        </a>
+      </nav>
+    </div>
+
+    <!-- Sidebar Footer -->
+    <div class="p-4 border-t border-slate-900 space-y-2">
+      <a href="../index.html" class="flex items-center gap-2 text-xs text-slate-400 hover:text-white transition py-1">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+        <span>View Public Website</span>
+      </a>
+      <button id="admin-logout-btn" class="w-full flex items-center justify-center gap-2 py-2 px-3 bg-slate-900 hover:bg-red-950 hover:text-red-300 border border-slate-800 text-xs font-bold text-slate-300 transition cursor-pointer">
+        <svg class="w-4 h-4 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+        <span>Sign Out</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main Content Wrapper -->
+  <div class="flex-1 lg:pl-64 flex flex-col min-h-screen">
+    
+    <!-- Top Action Bar -->
+    <header class="bg-white border-b border-slate-200 px-6 py-4 flex items-center justify-between sticky top-0 z-30 shadow-xs">
+      <div class="flex items-center gap-3">
+        <button id="admin-mobile-toggle" class="lg:hidden p-2 text-slate-600 hover:text-slate-900 focus:outline-none">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+        <div>
+          <h1 class="text-base sm:text-lg font-black text-slate-900 uppercase tracking-tight">Machine Inventory (681 Instruments)</h1>
+          <p class="text-xs text-slate-500">Live precision testing machines, technical specifications, and catalogs</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+      </div>
+    </header>
+
+    <!-- Page Body -->
+    <main class="flex-1 p-4 sm:p-6 lg:p-8 space-y-6">
+
+      <!-- Action & Filters Bar -->
+      <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
+        <!-- Search & Filter Controls -->
+        <div class="flex flex-wrap items-center gap-3 flex-1">
+          <div class="relative flex-1 min-w-[200px] max-w-md">
+            <svg class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            <input 
+              type="text" 
+              id="product-search" 
+              placeholder="Search by instrument name or model..." 
+              class="w-full pl-9 pr-4 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
+            >
+          </div>
+
+          <select 
+            id="filter-category" 
+            class="py-2 px-3 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white text-slate-700"
+          >
+            <option value="">All Divisions</option>
+          </select>
+
+          <select 
+            id="filter-status" 
+            class="py-2 px-3 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white text-slate-700"
+          >
+            <option value="">All Statuses</option>
+            <option value="true">Active Only</option>
+            <option value="false">Inactive Only</option>
+          </select>
+        </div>
+
+        <!-- Add Button & Total Count -->
+        <div class="flex items-center justify-between md:justify-end gap-3">
+          <span id="products-total-count" class="text-xs font-semibold text-slate-500">Loading products...</span>
+          <button 
+            onclick="ProductManager.openBatchVideoModal()" 
+            class="px-3 py-2 bg-slate-800 hover:bg-slate-900 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-sm whitespace-nowrap"
+            title="Batch generate 30s broadcast videos for catalog"
+          >
+            <span>🎬 Batch 30s Videos</span>
+          </button>
+          <button 
+            onclick="ProductManager.openAddModal()" 
+            class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-sm whitespace-nowrap"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+            <span>Add Instrument</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Products Inventory Table -->
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-slate-50 border-b border-slate-200 text-[11px] font-bold uppercase tracking-wider text-slate-500">
+                <th class="p-3 w-16">Image</th>
+                <th class="p-3">Instrument & Model</th>
+                <th class="p-3">Division</th>
+                <th class="p-3 text-center">Featured</th>
+                <th class="p-3 text-center">Status</th>
+                <th class="p-3">PDF Catalogue</th>
+                <th class="p-3 text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="products-tbody" class="divide-y divide-slate-100">
+              <tr>
+                <td colspan="7" class="p-8 text-center text-xs text-slate-400">Loading products...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Pagination Controls -->
+        <div id="products-pagination" class="p-4 border-t border-slate-100"></div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Product Add / Edit Modal (Simplified & Intuitive with Image Upload) -->
+  <div id="product-modal" class="fixed inset-0 bg-slate-950/70 z-50 flex items-center justify-center p-4 backdrop-blur-sm hidden overflow-y-auto">
+    <div class="bg-white border-2 border-slate-900 max-w-2xl w-full my-6 max-h-[92vh] flex flex-col shadow-2xl">
+      
+      <!-- Modal Header -->
+      <div class="px-6 py-4 border-b border-slate-200 flex items-center justify-between bg-slate-50">
+        <div>
+          <h3 id="product-modal-title" class="text-sm font-black text-slate-900 uppercase tracking-tight">Add New Testing Instrument</h3>
+          <p class="text-[11px] text-slate-500 mt-0.5">Fill in the machine information below. Required fields are marked *</p>
+        </div>
+        <button onclick="ProductManager.closeModal()" class="text-slate-400 hover:text-slate-800 text-lg font-bold p-1 transition cursor-pointer">✕</button>
+      </div>
+
+      <form id="product-form" onsubmit="ProductManager.handleFormSubmit(event)" class="overflow-y-auto flex-1 p-6 space-y-5 text-xs">
+        
+        <!-- Section 1: Basic Machine Details -->
+        <div>
+          <h4 class="text-xs font-black text-slate-900 uppercase tracking-wider mb-2.5 pb-1 border-b border-slate-100 flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 bg-blue-600 inline-block"></span>
+            1. Equipment Details
+          </h4>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block font-bold text-slate-700 mb-1">Machine Name *</label>
+              <input type="text" name="product_name" required placeholder="e.g. Digital Rockwell Hardness Tester" class="w-full px-3 py-2 border border-slate-300 focus:outline-none focus:border-blue-600 bg-white">
+            </div>
+            <div>
+              <label class="block font-bold text-slate-700 mb-1">Primary Model Number *</label>
+              <input type="text" name="model_number" required placeholder="e.g. HR-150D" class="w-full px-3 py-2 border border-slate-300 focus:outline-none focus:border-blue-600 font-mono bg-white">
+            </div>
+            <div>
+              <label class="block font-bold text-slate-700 mb-1">Division (Category) *</label>
+              <select id="product-modal-category" name="category_id" required class="w-full px-3 py-2 border border-slate-300 focus:outline-none focus:border-blue-600 bg-white font-semibold text-slate-800">
+                <option value="">Select Division *</option>
+              </select>
+            </div>
+            <div>
+              <label class="block font-bold text-slate-700 mb-1">Subcategory</label>
+              <select id="product-modal-subcategory" name="subcategory_id" class="w-full px-3 py-2 border border-slate-300 focus:outline-none focus:border-blue-600 bg-white text-slate-700">
+                <option value="">Standard Subcategory</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 2: Machine Photo Upload (Requested Feature!) -->
+        <div>
+          <h4 class="text-xs font-black text-slate-900 uppercase tracking-wider mb-2.5 pb-1 border-b border-slate-100 flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 bg-blue-600 inline-block"></span>
+            2. Machine Photo / Image
+          </h4>
+          <div class="flex flex-col sm:flex-row items-center gap-4 p-3.5 bg-slate-50 border border-slate-200">
+            <!-- Thumbnail Preview Box -->
+            <div class="w-24 h-24 shrink-0 bg-white border border-slate-300 flex items-center justify-center overflow-hidden p-1 relative">
+              <img id="product-img-preview" src="/assets/images/product-placeholder.svg" alt="Preview" class="w-full h-full object-contain" onerror="this.src='/assets/images/product-placeholder.svg'">
+              <div id="product-img-badge" class="absolute bottom-0 inset-x-0 bg-blue-600 text-[9px] text-white text-center py-0.5 truncate font-bold uppercase hidden">New Selected</div>
+            </div>
+            <!-- File Selector -->
+            <div class="flex-1 space-y-1.5 w-full">
+              <label class="block font-bold text-slate-800 text-xs">Choose Equipment Photo</label>
+              <input 
+                type="file" 
+                id="product-img-input" 
+                accept="image/jpeg,image/png,image/webp" 
+                class="w-full text-xs text-slate-500 file:mr-3 file:py-1.5 file:px-3 file:border-0 file:text-xs file:font-bold file:bg-blue-600 file:text-white hover:file:bg-blue-700 border border-slate-300 bg-white p-1 cursor-pointer"
+                onchange="ProductManager.handleImageFileChange(event)"
+              >
+              <p class="text-[10px] text-slate-500">Supports JPG, PNG, or WebP (Max 5MB). Photo appears in catalogue, search, and official quotation sheets.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 3: Technical Overview & Features -->
+        <div>
+          <h4 class="text-xs font-black text-slate-900 uppercase tracking-wider mb-2.5 pb-1 border-b border-slate-100 flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 bg-blue-600 inline-block"></span>
+            3. Technical Overview & Key Features
+          </h4>
+          <div class="space-y-3">
+            <div>
+              <label class="block font-bold text-slate-700 mb-1">Equipment Description / Overview</label>
+              <textarea name="description" rows="3" placeholder="Enter brief overview of testing application, capacity, load ranges, and industrial use..." class="w-full px-3 py-2 border border-slate-300 focus:outline-none focus:border-blue-600 leading-relaxed"></textarea>
+            </div>
+            <div>
+              <label class="block font-bold text-slate-700 mb-1">Key Features & Standards (One per line)</label>
+              <textarea id="product-features-text" rows="4" placeholder="e.g.&#10;Complies with ASTM E18 / ISO 6508&#10;High-Resolution Digital Touchscreen Display&#10;Motorized Automatic Test Cycle&#10;Data Export via USB / RS-232" class="w-full px-3 py-2 border border-slate-300 focus:outline-none focus:border-blue-600 leading-relaxed font-mono text-[11px]"></textarea>
+              <p class="text-[10px] text-slate-400 mt-0.5">Simply type or paste each feature on a new line.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 4: Publishing & Website Visibility -->
+        <div>
+          <h4 class="text-xs font-black text-slate-900 uppercase tracking-wider mb-2.5 pb-1 border-b border-slate-100 flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 bg-blue-600 inline-block"></span>
+            4. Website Visibility
+          </h4>
+          <div class="flex flex-wrap items-center gap-6 p-3 bg-slate-50 border border-slate-200">
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" name="is_active" checked class="w-4 h-4 text-blue-600">
+              <span class="font-bold text-slate-800">Active & Published on Website</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" name="is_featured" class="w-4 h-4 text-blue-600">
+              <span class="font-bold text-slate-800">Feature on Homepage</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Section 5: Advanced & Technical Specs (Collapsible) -->
+        <div class="border border-slate-200">
+          <button 
+            type="button" 
+            onclick="ProductManager.toggleAdvancedOptions()" 
+            class="w-full px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold flex items-center justify-between text-left transition cursor-pointer"
+          >
+            <span class="flex items-center gap-2">
+              <span id="adv-arrow-text">▶</span>
+              <span>Advanced Specifications & SEO (Optional)</span>
+            </span>
+            <span class="text-[10px] text-slate-500 font-normal">Click to show / hide</span>
+          </button>
+          
+          <div id="advanced-options-panel" class="p-4 space-y-4 hidden bg-white border-t border-slate-200">
+            <!-- Secondary Models -->
+            <div>
+              <label class="block font-bold text-slate-700 mb-1">Additional Model Variants (Comma-separated)</label>
+              <input type="text" name="all_detected_models" placeholder="e.g. HR-150D, HR-150DT, HR-150E" class="w-full px-3 py-2 border border-slate-300 focus:outline-none focus:border-blue-600 font-mono">
+            </div>
+
+            <!-- Technical Specifications Key-Value -->
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <label class="font-bold text-slate-700">Detailed Technical Specifications</label>
+                <button type="button" onclick="ProductManager.addSpecRow()" class="text-blue-600 font-bold hover:underline cursor-pointer">+ Add Spec Row</button>
+              </div>
+              <div id="specs-container" class="space-y-1.5"></div>
+            </div>
+
+            <!-- SEO Tags -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 border-t border-slate-100">
+              <div>
+                <label class="block font-bold text-slate-700 mb-1">SEO Title (Search Engines)</label>
+                <input type="text" name="meta_title" placeholder="Meta title for Google" class="w-full px-3 py-2 border border-slate-300 focus:outline-none focus:border-blue-600 text-xs">
+              </div>
+              <div>
+                <label class="block font-bold text-slate-700 mb-1">SEO Meta Description</label>
+                <input type="text" name="meta_description" placeholder="Brief search snippet description" class="w-full px-3 py-2 border border-slate-300 focus:outline-none focus:border-blue-600 text-xs">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer Actions -->
+        <div class="pt-4 border-t border-slate-200 flex items-center justify-end gap-3 sticky bottom-0 bg-white py-2">
+          <button type="button" onclick="ProductManager.closeModal()" class="px-4 py-2 border border-slate-300 hover:bg-slate-100 font-bold text-slate-700 transition cursor-pointer">Cancel</button>
+          <button type="submit" id="btn-save-product" class="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white font-black uppercase tracking-wider transition cursor-pointer shadow-sm">Save Instrument</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+  <!-- Upload Photo Modal -->
+  <div id="upload-img-modal" class="fixed inset-0 bg-slate-900/60 z-50 flex items-center justify-center p-4 backdrop-blur-sm hidden">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-100">
+      <h3 class="text-base font-bold text-slate-900 mb-1">Update Machine Photo</h3>
+      <p id="upload-img-product-name" class="text-xs text-blue-600 font-semibold mb-4 truncate"></p>
+      
+      <form onsubmit="ProductManager.handleImageUpload(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Select Image File (JPEG, PNG, WebP &bull; Max 5MB)</label>
+          <input 
+            type="file" 
+            id="upload-img-file" 
+            accept="image/jpeg,image/png,image/webp" 
+            required 
+            class="w-full text-xs text-slate-500 file:mr-3 file:py-2 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 border border-slate-200 rounded-lg p-1"
+          >
+        </div>
+
+        <div class="flex items-center justify-end gap-2 pt-2">
+          <button type="button" onclick="ProductManager.closeUploadImageModal()" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:bg-slate-100">Cancel</button>
+          <button type="submit" class="px-4 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-bold shadow-sm">Upload Image</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Upload Catalogue PDF Modal -->
+  <div id="upload-pdf-modal" class="fixed inset-0 bg-slate-900/60 z-50 flex items-center justify-center p-4 backdrop-blur-sm hidden">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-100">
+      <h3 class="text-base font-bold text-slate-900 mb-1">Replace Official Catalogue PDF</h3>
+      <p id="upload-pdf-product-name" class="text-xs text-blue-600 font-semibold mb-4 truncate"></p>
+      
+      <div class="p-3 bg-amber-50 border border-amber-200 rounded-xl mb-4 text-[11px] text-amber-800 leading-relaxed">
+        <strong>Strict Industrial Safety Policy:</strong> Uploaded catalogue will be validated as a genuine PDF binary (max 25MB). Original legacy files are permanently preserved.
+      </div>
+
+      <form onsubmit="ProductManager.handleCatalogueUpload(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Select PDF File</label>
+          <input 
+            type="file" 
+            id="upload-pdf-file" 
+            accept=".pdf,application/pdf" 
+            required 
+            class="w-full text-xs text-slate-500 file:mr-3 file:py-2 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-red-50 file:text-red-700 hover:file:bg-red-100 border border-slate-200 rounded-lg p-1"
+          >
+        </div>
+
+        <div class="flex items-center justify-end gap-2 pt-2">
+          <button type="button" onclick="ProductManager.closeUploadCatalogueModal()" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:bg-slate-100">Cancel</button>
+          <button type="submit" class="px-4 py-1.5 bg-red-600 hover:bg-red-700 text-white rounded-lg text-xs font-bold shadow-sm">Upload PDF</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Single Product 30s Video Modal -->
+  <div id="product-video-modal" class="fixed inset-0 bg-slate-950/75 z-50 flex items-center justify-center p-4 backdrop-blur-sm hidden overflow-y-auto">
+    <div class="bg-white rounded-2xl max-w-2xl w-full p-6 shadow-2xl border border-slate-200">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-200 mb-4">
+        <div>
+          <h3 class="text-sm font-black text-slate-900 uppercase tracking-tight flex items-center gap-2">
+            <span>🎬 30-Second Product Video</span>
+            <span id="video-modal-status-badge" class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 text-slate-600 font-mono">Checking...</span>
+          </h3>
+          <p id="video-modal-product-name" class="text-xs text-blue-600 font-semibold mt-0.5 truncate"></p>
+        </div>
+        <button onclick="ProductManager.closeVideoModal()" class="text-slate-400 hover:text-slate-800 text-lg font-bold p-1 transition cursor-pointer">✕</button>
+      </div>
+
+      <!-- Video Player or Placeholder Container -->
+      <div id="video-player-container" class="relative w-full aspect-video bg-black rounded-xl overflow-hidden border border-slate-800 flex items-center justify-center mb-4">
+        <div id="video-empty-state" class="text-center p-6">
+          <div class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center mx-auto mb-2 text-xl text-slate-400">🎬</div>
+          <p class="text-xs font-bold text-slate-300">No 30-Second Video Generated Yet</p>
+          <p class="text-[11px] text-slate-500 mt-1 max-w-sm">Click "Generate 30s HD Video" below to render a cinematic 1080p product video using authentic machine specifications and official HSMLE branding.</p>
+        </div>
+        <video id="video-player-el" controls playsinline class="w-full h-full object-contain hidden" preload="metadata">
+          <source src="" type="video/mp4">
+        </video>
+        <div id="video-render-spinner" class="absolute inset-0 bg-slate-950/85 backdrop-blur-sm flex flex-col items-center justify-center text-white hidden">
+          <div class="w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mb-3"></div>
+          <p class="text-xs font-bold text-white tracking-wide">Rendering 30-Second 1080p Video...</p>
+          <p class="text-[11px] text-slate-400 mt-1 font-mono">Synthesizing 6 Scenes &bull; 900 Frames @ 30 FPS</p>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center justify-between pt-2 border-t border-slate-100">
+        <button id="video-delete-btn" type="button" onclick="ProductManager.deleteCurrentVideo()" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-red-600 hover:bg-red-50 border border-red-200 hidden">
+          Delete Video
+        </button>
+        <div class="flex items-center gap-2 ml-auto">
+          <button type="button" onclick="ProductManager.closeVideoModal()" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:bg-slate-100">
+            Close
+          </button>
+          <button id="video-generate-btn" type="button" onclick="ProductManager.generateCurrentVideo()" class="px-4 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-bold shadow-sm flex items-center gap-1.5">
+            <span>Generate 30s HD Video</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Batch Video Generation Modal -->
+  <div id="batch-video-modal" class="fixed inset-0 bg-slate-950/75 z-50 flex items-center justify-center p-4 backdrop-blur-sm hidden overflow-y-auto">
+    <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-slate-200">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-200 mb-4">
+        <div>
+          <h3 class="text-sm font-black text-slate-900 uppercase tracking-tight flex items-center gap-2">
+            <span>🎬 Batch 30s Video Generator</span>
+          </h3>
+          <p class="text-xs text-slate-500 mt-0.5">Render 30-second 1080p videos for all active catalog instruments</p>
+        </div>
+        <button onclick="ProductManager.closeBatchVideoModal()" class="text-slate-400 hover:text-slate-800 text-lg font-bold p-1 transition cursor-pointer">✕</button>
+      </div>
+
+      <div class="space-y-4">
+        <div class="p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs space-y-2">
+          <div class="flex justify-between text-slate-600">
+            <span>Status:</span>
+            <span id="batch-status-text" class="font-bold text-slate-800 font-mono">Idle</span>
+          </div>
+          <div class="flex justify-between text-slate-600">
+            <span>Progress:</span>
+            <span id="batch-progress-text" class="font-bold text-blue-600 font-mono">0 / 0 (0%)</span>
+          </div>
+          <div class="w-full bg-slate-200 h-2.5 rounded-full overflow-hidden">
+            <div id="batch-progress-bar" class="bg-blue-600 h-full w-0 transition-all duration-300"></div>
+          </div>
+          <div id="batch-current-machine" class="text-[11px] text-slate-500 font-mono truncate">Waiting to start...</div>
+        </div>
+
+        <div class="p-3 bg-blue-50 border border-blue-200 rounded-xl text-[11px] text-blue-900 leading-relaxed">
+          <strong>Background Pipeline:</strong> Videos are generated sequentially in a dedicated background worker with automatic caching. If a video is already rendered, it will not be re-rendered unnecessarily.
+        </div>
+      </div>
+
+      <div class="flex items-center justify-end gap-2 pt-4 border-t border-slate-100 mt-4">
+        <button type="button" onclick="ProductManager.closeBatchVideoModal()" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:bg-slate-100">
+          Close
+        </button>
+        <button id="batch-start-btn" type="button" onclick="ProductManager.startBatchGeneration()" class="px-4 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-bold shadow-sm">
+          Start Batch Generation
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Application Scripts -->
+  <script src="js/admin-api.js?v=1793637338"></script>
+  <script src="js/admin-app.js?v=1793637338"></script>
+  <script src="js/products.js?v=1793637338"></script>
+</body>
+</html>

@@ -1,0 +1,694 @@
+/* ==========================================================================
+   HSMLE India Corporation - Professional Industrial Design System
+   Corporate B2B Metrology & Testing Equipment Portal
+   SHARP POINTED SQUARE BORDERS (0px Radius) & MEDIUM-DARK SLATE BORDERS
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  --color-navy-950: #0a0f1d;
+  --color-navy-900: #0f172a;
+  --color-navy-800: #1e293b;
+  --color-navy-700: #334155;
+  --color-blue-600: #2563eb;
+  --color-blue-700: #1d4ed8;
+  --color-blue-800: #1e40af;
+  --color-blue-50: #eff6ff;
+  --color-accent-gold: #f59e0b;
+  --color-surface-bg: #f8fafc;
+  --border-slate-medium: #64748b;
+  --border-slate-subtle: #94a3b8;
+  --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+body {
+  font-family: var(--font-main);
+  color: #1e293b;
+  background-color: #f8fafc;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Scrollbar - Pointed */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-slate-medium);
+  border-radius: 0px !important;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* Industrial Grid Pattern */
+.bg-grid-pattern {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(226, 232, 240, 0.4) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(226, 232, 240, 0.4) 1px, transparent 1px);
+}
+
+.bg-grid-pattern-dark {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+}
+
+/* Industrial Gradient Backgrounds */
+.bg-industrial-navy {
+  background: linear-gradient(135deg, #0b1329 0%, #0f172a 60%, #1e293b 100%);
+}
+
+.bg-industrial-blue {
+  background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 50%, #3b82f6 100%);
+}
+
+.text-gradient-blue {
+  background: linear-gradient(135deg, #2563eb 0%, #60a5fa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ==========================================================================
+   1. UNIVERSAL ABSOLUTE POINTED SQUARE (0px Radius Everywhere)
+   ========================================================================== */
+*, *::before, *::after,
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary, time, mark, audio, video,
+button, input, select, textarea,
+.industrial-card, .badge, .badge-iso, .badge-model, .cat-pill,
+.rounded-xl, .rounded-lg, .rounded, .rounded-md, .rounded-2xl, .rounded-full {
+  border-radius: 0px !important;
+  -webkit-border-radius: 0px !important;
+  -moz-border-radius: 0px !important;
+}
+
+/* ==========================================================================
+   2. NO 3D BOX SHADOWS OR HEAVY EXTRUSIONS (Flat Clean Geometry)
+   ========================================================================== */
+*, *::before, *::after {
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+}
+
+/* ==========================================================================
+   3. MEDIUM-DARK SLATE BORDERS (#64748b) ON ALL CARDS & CONTAINERS
+   ========================================================================== */
+.industrial-card,
+.product-card,
+.spec-card,
+.filter-card,
+#home-divisions-grid > a,
+#home-featured-grid > div,
+#catalog-products-container > div,
+#catalogues-grid > div,
+aside > div,
+.rounded-xl,
+.rounded-lg,
+.rounded,
+div.border-slate-200,
+div.border-slate-300 {
+  border: 1.5px solid var(--border-slate-medium) !important;
+  border-radius: 0px !important;
+  box-shadow: none !important;
+}
+
+/* Hover highlights */
+.industrial-card:hover,
+#home-divisions-grid > a:hover,
+#home-featured-grid > div:hover,
+#catalog-products-container > div:hover,
+#catalogues-grid > div:hover {
+  border-color: #2563eb !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+/* Pointed Inputs & Search boxes */
+input, select, textarea,
+.header-search-form {
+  border: 1.5px solid var(--border-slate-medium) !important;
+  border-radius: 0px !important;
+  box-shadow: none !important;
+}
+input:focus, select:focus, textarea:focus,
+.header-search-form:focus-within {
+  border-color: #2563eb !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* Pointed Buttons Across Whole Website */
+button, .btn,
+a.bg-blue-600, button.bg-blue-600,
+a.bg-slate-900, button.bg-slate-900,
+a.bg-red-600, button.bg-red-600,
+.header-rfq-btn,
+.compare-toggle-btn {
+  border-radius: 0px !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+button.bg-blue-600, a.bg-blue-600 {
+  border: 1.5px solid #1d4ed8 !important;
+  background-color: #2563eb !important;
+  color: #ffffff !important;
+}
+button.bg-blue-600:hover, a.bg-blue-600:hover {
+  background-color: #1d4ed8 !important;
+}
+
+button.bg-slate-900, a.bg-slate-900 {
+  border: 1.5px solid #0f172a !important;
+  background-color: #0f172a !important;
+  color: #ffffff !important;
+}
+button.bg-slate-900:hover, a.bg-slate-900:hover {
+  background-color: #1e293b !important;
+}
+
+button.bg-red-600, a.bg-red-600 {
+  border: 1.5px solid #b91c1c !important;
+  background-color: #dc2626 !important;
+  color: #ffffff !important;
+}
+button.bg-red-600:hover, a.bg-red-600:hover {
+  background-color: #b91c1c !important;
+}
+
+/* Catalogue Pills & Category Buttons */
+.cat-pill {
+  border: 1.5px solid var(--border-slate-medium) !important;
+  border-radius: 0px !important;
+}
+.cat-pill:hover {
+  border-color: #2563eb !important;
+}
+
+/* Badges */
+.badge-iso {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  background: #fef3c7 !important;
+  border: 1.5px solid #d97706 !important;
+  color: #92400e !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.05em !important;
+  padding: 0.25rem 0.65rem;
+  font-size: 0.75rem;
+  border-radius: 0px !important;
+  text-transform: uppercase;
+}
+
+.badge-model {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.75rem;
+  background: #f1f5f9;
+  color: #1e293b;
+  border: 1.5px solid var(--border-slate-medium) !important;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0px !important;
+}
+
+/* ==========================================================================
+   4. TECHNICAL SPECIFICATION TABLE (Royal Blue Header & Pointed Borders)
+   ========================================================================== */
+.spec-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.875rem;
+  border: 1.5px solid var(--border-slate-medium) !important;
+  border-radius: 0px !important;
+  overflow: hidden !important;
+}
+.spec-table th {
+  background-color: #2563eb !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  border-bottom: 2px solid #1d4ed8 !important;
+  border-radius: 0px !important;
+  padding: 0.875rem 1.25rem !important;
+  text-align: left !important;
+}
+.spec-table td {
+  padding: 0.875rem 1.25rem !important;
+  border-bottom: 1px solid var(--border-slate-subtle) !important;
+  border-radius: 0px !important;
+  color: #1e293b !important;
+}
+.spec-table tr:nth-child(even) td {
+  background-color: #f8fafc !important;
+}
+.spec-table tr:hover td {
+  background-color: #eff6ff !important;
+}
+
+/* Row Number Badge [1], [2], [3] */
+.spec-idx-badge,
+td span.text-blue-700.bg-blue-50 {
+  border-radius: 0px !important;
+  border: 1.5px solid #60a5fa !important;
+  background-color: #eff6ff !important;
+  color: #1d4ed8 !important;
+}
+
+/* View More Specifications Button */
+#toggle-specs-btn {
+  border-radius: 0px !important;
+  border: 1.5px solid #3b82f6 !important;
+  background-color: #ffffff !important;
+  color: #2563eb !important;
+  font-weight: 700 !important;
+}
+#toggle-specs-btn:hover {
+  background-color: #eff6ff !important;
+  border-color: #1d4ed8 !important;
+  color: #1d4ed8 !important;
+}
+
+/* ==========================================================================
+   5. STRICT SVG SIZING PREVENTION AGAINST BLOWUP
+   ========================================================================== */
+svg {
+  display: inline-block !important;
+  vertical-align: middle !important;
+  flex-shrink: 0 !important;
+  max-width: 100%;
+  box-shadow: none !important;
+}
+header svg, nav svg {
+  flex-shrink: 0 !important;
+}
+svg.w-3\.5, .w-3\.5 > svg, .w-3\.5 {
+  width: 14px !important;
+  height: 14px !important;
+  max-width: 14px !important;
+  max-height: 14px !important;
+}
+svg.w-4, .w-4 > svg, .w-4 {
+  width: 16px !important;
+  height: 16px !important;
+  max-width: 16px !important;
+  max-height: 16px !important;
+}
+svg.w-5, .w-5 > svg, .w-5 {
+  width: 20px !important;
+  height: 20px !important;
+  max-width: 20px !important;
+  max-height: 20px !important;
+}
+svg.w-6, .w-6 > svg, .w-6 {
+  width: 24px !important;
+  height: 24px !important;
+  max-width: 24px !important;
+  max-height: 24px !important;
+}
+svg.w-8, .w-8 > svg, .w-8 {
+  width: 32px !important;
+  height: 32px !important;
+  max-width: 32px !important;
+  max-height: 32px !important;
+}
+svg.w-12, .w-12 > svg, .w-12 {
+  width: 48px !important;
+  height: 48px !important;
+  max-width: 48px !important;
+  max-height: 48px !important;
+}
+
+/* ==========================================================================
+   6. OFF-CANVAS DRAWERS & TRAYS TRANSLATION
+   ========================================================================== */
+#mobile-menu-drawer.-translate-x-full {
+  transform: translateX(-100%) !important;
+}
+#mobile-menu-drawer.translate-x-0 {
+  transform: translateX(0) !important;
+}
+#rfq-drawer.translate-x-full {
+  transform: translateX(100%) !important;
+}
+#rfq-drawer.translate-x-0 {
+  transform: translateX(0) !important;
+}
+#compare-tray {
+  transform: translateY(100%) !important;
+}
+#compare-tray.active {
+  transform: translateY(0) !important;
+}
+
+/* ==========================================================================
+   STACKED ICON NAVIGATION HEADER (EXACT REFERENCE MATCH)
+   ========================================================================== */
+header .badge-whatsapp,
+header .badge-whatsapp * {
+  border-radius: 9999px !important;
+}
+
+header .iso-badge-ref {
+  border-radius: 3px !important;
+  background-color: #fed776 !important;
+  color: #0f172a !important;
+  font-weight: 800 !important;
+  border: 1px solid #eab308 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  padding: 2.5px 8px !important;
+  font-size: 11px !important;
+  letter-spacing: 0.02em !important;
+}
+
+nav .nav-item-stacked {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 8px 12px 6px 12px !important;
+  height: 72px !important;
+  color: #0c1e3d !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+  transition: all 0.15s ease-in-out !important;
+  border-bottom: 3px solid transparent !important;
+  gap: 4px !important;
+  border-radius: 0 !important;
+  white-space: nowrap !important;
+}
+
+nav .nav-item-stacked > svg:first-child {
+  width: 22px !important;
+  height: 22px !important;
+  max-width: 22px !important;
+  max-height: 22px !important;
+  flex-shrink: 0 !important;
+  stroke: #0c1e3d;
+}
+
+nav .nav-item-stacked .nav-chevron {
+  width: 9px !important;
+  height: 6px !important;
+  max-width: 9px !important;
+  max-height: 6px !important;
+  stroke: #0c1e3d !important;
+  stroke-width: 2.2 !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
+  margin-left: 3px !important;
+  flex-shrink: 0 !important;
+}
+
+nav .nav-item-stacked .nav-label {
+  font-size: 11px !important;
+  line-height: 1.15 !important;
+  text-align: center !important;
+  letter-spacing: -0.01em !important;
+  font-weight: 700 !important;
+  color: inherit !important;
+}
+
+nav .nav-item-stacked:hover {
+  color: #0052cc !important;
+}
+
+nav .nav-item-stacked:hover > svg:first-child {
+  stroke: #0052cc !important;
+}
+
+nav .nav-item-stacked:hover .nav-chevron {
+  stroke: #0052cc !important;
+}
+
+nav .nav-item-stacked.active {
+  background-color: #ebf3ff !important;
+  color: #0052cc !important;
+  border-top-left-radius: 6px !important;
+  border-top-right-radius: 6px !important;
+  border-bottom: 3px solid #0052cc !important;
+}
+
+nav .nav-item-stacked.active > svg:first-child {
+  stroke: #0052cc !important;
+}
+
+nav .nav-item-stacked.active .nav-chevron {
+  stroke: #0052cc !important;
+}
+
+nav .header-search-box {
+  border-radius: 6px !important;
+  border: 1.5px solid #334155 !important;
+  background-color: #ffffff !important;
+}
+
+nav .header-search-box input {
+  border-radius: 6px !important;
+  border: none !important;
+  font-size: 11.5px !important;
+  color: #0f172a !important;
+}
+
+nav .btn-inquiry-cart {
+  background-color: #0052cc !important;
+  border-radius: 6px !important;
+  border: none !important;
+}
+
+nav .btn-inquiry-cart:hover {
+  background-color: #0047b3 !important;
+}
+
+nav .inquiry-cart-badge {
+  border-radius: 3px !important;
+  background-color: #ffffff !important;
+  color: #0c1e3d !important;
+  border: 1.5px solid #0052cc !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  padding: 1px 5px !important;
+  line-height: 1.1 !important;
+}
+
+/* ==========================================================================
+   8. CRYSTAL CLEAR INDUSTRIAL PHOTOGRAPHY ENHANCEMENTS
+   ========================================================================== */
+img {
+  image-rendering: -webkit-optimize-contrast !important;
+  image-rendering: crisp-edges !important;
+}
+
+#catalogues-grid img,
+#catalog-products-container img,
+#main-product-image,
+.product-gallery-thumb img {
+  image-rendering: -webkit-optimize-contrast !important;
+  image-rendering: crisp-edges !important;
+  filter: contrast(1.02) brightness(1.01) !important;
+}
+
+/* ==========================================================================
+   9. PROFESSIONAL HERO CAROUSEL SLIDES (WORLD-CLASS INDUSTRIAL)
+   ========================================================================== */
+/* Hero Slide Uniform Size Smooth Cross-Dissolve System */
+.hero-fade-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  background-color: #020617;
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity;
+  z-index: 1;
+}
+
+.hero-fade-slide.active {
+  opacity: 1;
+  visibility: visible;
+  z-index: 10;
+}
+
+.slide-tab-btn {
+  position: relative;
+  flex: 1;
+  padding: 14px 18px 12px 18px;
+  background: rgba(8, 20, 37, 0.85);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  color: #94a3b8;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(8px);
+}
+.slide-tab-btn:last-child {
+  border-right: none;
+}
+.slide-tab-btn:hover {
+  background: rgba(15, 30, 54, 0.95);
+  color: #ffffff;
+}
+.slide-tab-btn.active {
+  background: rgba(15, 30, 54, 0.98);
+  color: #ffffff;
+}
+
+.slide-tab-progress-track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.slide-tab-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: #2563eb;
+  transition: width 0.05s linear;
+}
+
+
+/* Hide Comparison Tray */
+#compare-tray { display: none !important; }
+
+
+/* ==========================================================================
+   HSMLE Portal - Floating WhatsApp Business Chat Component
+   ========================================================================== */
+
+.floating-whatsapp-wrap {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 45;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  pointer-events: auto;
+}
+
+.floating-whatsapp-btn {
+  position: relative;
+  width: 56px !important;
+  height: 56px !important;
+  border-radius: 50% !important;
+  -webkit-border-radius: 50% !important;
+  -moz-border-radius: 50% !important;
+  background-color: #25D366 !important;
+  color: #ffffff !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-decoration: none !important;
+  border: none !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22), 0 2px 6px rgba(37, 211, 102, 0.4) !important;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease !important;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  overflow: hidden !important;
+}
+
+.floating-whatsapp-btn:hover {
+  transform: translateY(-2px) scale(1.04) !important;
+  box-shadow: 0 8px 22px rgba(37, 211, 102, 0.5), 0 4px 10px rgba(0, 0, 0, 0.2) !important;
+  background-color: #20ba59 !important;
+}
+
+.floating-whatsapp-btn:active {
+  transform: translateY(0) scale(0.98) !important;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25) !important;
+}
+
+.floating-whatsapp-btn:focus-visible {
+  outline: 3px solid #0b2d56;
+  outline-offset: 3px;
+}
+
+.floating-whatsapp-btn svg {
+  width: 32px;
+  height: 32px;
+  fill: #ffffff;
+  pointer-events: none;
+}
+
+/* Tooltip (Desktop Hover & Focus) */
+.floating-whatsapp-tooltip {
+  position: absolute;
+  right: calc(100% + 14px);
+  top: 50%;
+  transform: translateY(-50%) translateX(6px);
+  background: #0b2d56;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.2;
+  padding: 7px 12px;
+  border-radius: 4px;
+  white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+  letter-spacing: 0.2px;
+}
+
+.floating-whatsapp-tooltip::after {
+  content: "";
+  position: absolute;
+  right: -5px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-left: 6px solid #0b2d56;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+}
+
+.floating-whatsapp-wrap:hover .floating-whatsapp-tooltip,
+.floating-whatsapp-btn:focus-visible .floating-whatsapp-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) translateX(0);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 640px) {
+  .floating-whatsapp-wrap {
+    bottom: 18px;
+    right: 18px;
+  }
+  .floating-whatsapp-btn {
+    width: 52px !important;
+    height: 52px !important;
+    border-radius: 50% !important;
+    -webkit-border-radius: 50% !important;
+    -moz-border-radius: 50% !important;
+  }
+  .floating-whatsapp-btn svg {
+    width: 28px;
+    height: 28px;
+  }
+  .floating-whatsapp-tooltip {
+    display: none !important;
+  }
+}

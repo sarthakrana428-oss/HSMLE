@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Director & Executive Dashboard | HSMLE India Corporation</title>
+  <script src="../js/tailwind.min.js?v=1793637338"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              navy: '#0F172A',
+              navyDark: '#0A0F1D',
+              blue: '#2563EB',
+              blueDark: '#1D4ED8'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="../css/styles.css?v=1793637338">
+</head>
+<body class="bg-slate-50 text-slate-800 flex min-h-screen">
+
+  <!-- Mobile Sidebar Backdrop -->
+  <div id="admin-sidebar-backdrop" class="fixed inset-0 bg-slate-950/60 z-40 hidden backdrop-blur-sm lg:hidden"></div>
+
+  <!-- Sidebar Navigation -->
+  <aside id="admin-sidebar" class="fixed top-0 bottom-0 left-0 w-64 bg-slate-950 text-slate-300 z-50 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 flex flex-col justify-between border-r border-slate-800 shadow-xl">
+    <div>
+      <!-- Brand Header (Clean, professional, without Boss Access) -->
+      <div class="p-6 border-b border-slate-900 flex items-center gap-3">
+        <span class="w-3 h-3 bg-amber-500 inline-block"></span>
+        <div>
+          <span class="block text-xs font-black tracking-widest text-white uppercase">DIRECTOR PORTAL</span>
+          <span class="block text-[10px] text-amber-400 font-bold uppercase tracking-wider">Executive Management</span>
+        </div>
+      </div>
+
+      <!-- Current User Profile Box -->
+      <div class="p-4 mx-3 my-4 bg-slate-900 border border-slate-800">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 bg-amber-500/20 text-amber-400 border border-amber-500/40 flex items-center justify-center font-black text-sm" id="admin-user-avatar">AS</div>
+          <div class="flex-1 min-w-0">
+            <h4 class="text-xs font-bold text-white truncate" id="admin-user-name">Azad Sirohi</h4>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-amber-400" id="admin-user-role">Director / Super Admin</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="px-3 space-y-1">
+        <a href="dashboard.html" class="admin-nav-link flex items-center gap-3 px-3 py-2.5 text-xs font-bold transition bg-blue-600 text-white shadow-sm">
+          <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+          <span>Executive Overview</span>
+        </a>
+        <a href="quotations.html" class="admin-nav-link flex items-center gap-3 px-3 py-2.5 text-xs font-semibold text-slate-300 hover:bg-slate-900 hover:text-white transition">
+          <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          <span>Quotation Pipeline (RFQ)</span>
+        </a>
+        <a href="enquiries.html" class="admin-nav-link flex items-center gap-3 px-3 py-2.5 text-xs font-semibold text-slate-300 hover:bg-slate-900 hover:text-white transition">
+          <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
+          <span>Customer Enquiries</span>
+        </a>
+        <a href="products.html" class="admin-nav-link flex items-center gap-3 px-3 py-2.5 text-xs font-semibold text-slate-300 hover:bg-slate-900 hover:text-white transition">
+          <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+          <span>Machine Inventory (681)</span>
+        </a>
+        <a href="audit-logs.html" class="admin-nav-link flex items-center gap-3 px-3 py-2.5 text-xs font-semibold text-slate-300 hover:bg-slate-900 hover:text-white transition">
+          <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <span>Staff Audit Activity</span>
+        </a>
+      </nav>
+    </div>
+
+    <!-- Sidebar Footer -->
+    <div class="p-4 border-t border-slate-900 space-y-2">
+      <a href="../index.html" class="flex items-center gap-2 text-xs text-slate-400 hover:text-white transition py-1">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+        <span>View Public Website</span>
+      </a>
+      <button id="admin-logout-btn" class="w-full flex items-center justify-center gap-2 py-2 px-3 bg-slate-900 hover:bg-red-950 hover:text-red-300 border border-slate-800 text-xs font-bold text-slate-300 transition cursor-pointer">
+        <svg class="w-4 h-4 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+        <span>Sign Out</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main Content Wrapper -->
+  <div class="flex-1 lg:pl-64 flex flex-col min-h-screen">
+    
+    <!-- Top Action Bar -->
+    <header class="bg-white border-b border-slate-200 px-6 py-4 flex items-center justify-between sticky top-0 z-30 shadow-xs">
+      <div class="flex items-center gap-3">
+        <button id="admin-mobile-toggle" class="lg:hidden p-2 text-slate-600 hover:text-slate-900 focus:outline-none">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+        <div>
+          <h1 class="text-base sm:text-lg font-black text-slate-900 uppercase tracking-tight">Executive Dashboard</h1>
+          <p class="text-xs text-slate-500">Business performance, customer enquiries & quotation pipeline</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <!-- Live Refresh Button -->
+        <button onclick="location.reload()" class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold border border-slate-300 transition flex items-center gap-1.5 cursor-pointer">
+          <svg class="w-3.5 h-3.5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+          <span class="hidden sm:inline">Refresh Data</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="p-6 space-y-6">
+
+      <!-- Executive Welcome & Summary Banner -->
+      <div class="bg-white border border-slate-200 p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <div class="flex items-center gap-2 mb-1">
+            <span class="inline-block w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
+            <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">HSMLE Control Center</span>
+          </div>
+          <h2 class="text-lg font-black text-slate-900">Welcome, Azad Sirohi</h2>
+          <p class="text-xs text-slate-600 mt-0.5">Here is your high-level overview of live quotations, buyer leads, and testing instrument inventory.</p>
+        </div>
+        
+      </div>
+
+      <!-- 4 Core Executive Metric Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        
+        <!-- Card 1: Quotations (RFQ) -->
+        <div class="bg-white border border-slate-200 p-5 flex flex-col justify-between">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Quotation Requests</span>
+            <div class="w-8 h-8 bg-amber-50 text-amber-600 border border-amber-200 flex items-center justify-center font-bold text-xs">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            </div>
+          </div>
+          <div>
+            <div class="text-3xl font-black text-slate-900 font-mono" id="stat-total-rfqs">0</div>
+            <div class="mt-2 flex items-center justify-between pt-2 border-t border-slate-100 text-xs">
+              <span id="stat-pending-rfqs" class="font-bold text-amber-600">0 Pending Review</span>
+              <a href="quotations.html" class="text-blue-600 hover:underline font-bold text-[11px]">View All →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Customer Enquiries -->
+        <div class="bg-white border border-slate-200 p-5 flex flex-col justify-between">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Customer Enquiries</span>
+            <div class="w-8 h-8 bg-blue-50 text-blue-600 border border-blue-200 flex items-center justify-center font-bold text-xs">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
+            </div>
+          </div>
+          <div>
+            <div class="text-3xl font-black text-slate-900 font-mono" id="stat-new-enquiries">0</div>
+            <div class="mt-2 flex items-center justify-between pt-2 border-t border-slate-100 text-xs">
+              <span class="font-bold text-blue-600">Product Technical Leads</span>
+              <a href="enquiries.html" class="text-blue-600 hover:underline font-bold text-[11px]">View All →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: Website Traffic -->
+        <div class="bg-white border border-slate-200 p-5 flex flex-col justify-between">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Website Visitors</span>
+            <div class="w-8 h-8 bg-emerald-50 text-emerald-600 border border-emerald-200 flex items-center justify-center font-bold text-xs">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+            </div>
+          </div>
+          <div>
+            <div class="text-3xl font-black text-slate-900 font-mono" id="stat-total-visits">0</div>
+            <div class="mt-2 flex items-center justify-between pt-2 border-t border-slate-100 text-xs">
+              <span class="font-semibold text-emerald-600 flex items-center gap-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block"></span>
+                <span>Live visitor tracking</span>
+              </span>
+              <span id="stat-unique-visitors" class="text-slate-500 font-mono text-[11px]">0 Unique</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4: Machine Inventory -->
+        <div class="bg-white border border-slate-200 p-5 flex flex-col justify-between">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Machine Catalog</span>
+            <div class="w-8 h-8 bg-purple-50 text-purple-600 border border-purple-200 flex items-center justify-center font-bold text-xs">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+            </div>
+          </div>
+          <div>
+            <div class="text-3xl font-black text-slate-900 font-mono" id="stat-total-products">681</div>
+            <div class="mt-2 flex items-center justify-between pt-2 border-t border-slate-100 text-xs">
+              <span class="text-slate-600 font-medium">9 Testing Divisions</span>
+              <a href="products.html" class="text-blue-600 hover:underline font-bold text-[11px]">Inspect →</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Main Operational Section: Clean Quotations & Enquiries Side-by-Side -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+        <!-- Recent Quotations (RFQ) -->
+        <div class="bg-white border border-slate-200 p-5 space-y-4">
+          <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+            <div>
+              <h3 class="text-sm font-bold text-slate-900 uppercase">Recent Quotation Requests (RFQ)</h3>
+              <p class="text-xs text-slate-500">Corporate price quote submissions</p>
+            </div>
+            <a href="quotations.html" class="text-xs font-bold text-blue-600 hover:underline">View All Pipeline →</a>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs">
+              <thead>
+                <tr class="border-b border-slate-200 text-slate-400 font-mono text-[10px] uppercase">
+                  <th class="py-2.5">RFQ #</th>
+                  <th class="py-2.5">Organization</th>
+                  <th class="py-2.5">Scope</th>
+                  <th class="py-2.5">Status</th>
+                  <th class="py-2.5 text-right">Action</th>
+                </tr>
+              </thead>
+              <tbody id="rfqs-table-body" class="divide-y divide-slate-100">
+                <tr>
+                  <td colspan="5" class="py-6 text-center text-slate-400">Loading quotations...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Recent Customer Enquiries -->
+        <div class="bg-white border border-slate-200 p-5 space-y-4">
+          <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+            <div>
+              <h3 class="text-sm font-bold text-slate-900 uppercase">Recent Customer Inquiries</h3>
+              <p class="text-xs text-slate-500">Technical questions from product pages</p>
+            </div>
+            <a href="enquiries.html" class="text-xs font-bold text-blue-600 hover:underline">View All Leads →</a>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs">
+              <thead>
+                <tr class="border-b border-slate-200 text-slate-400 font-mono text-[10px] uppercase">
+                  <th class="py-2.5">Ticket</th>
+                  <th class="py-2.5">Client</th>
+                  <th class="py-2.5">Product</th>
+                  <th class="py-2.5">Status</th>
+                  <th class="py-2.5 text-right">Action</th>
+                </tr>
+              </thead>
+              <tbody id="enquiries-table-body" class="divide-y divide-slate-100">
+                <tr>
+                  <td colspan="5" class="py-6 text-center text-slate-400">Loading enquiries...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Quick Executive Navigation Bar -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-2">
+        
+        <a href="quotations.html" class="p-4 bg-white border border-slate-200 hover:border-amber-500 hover:bg-amber-50/20 transition flex items-center gap-3">
+          <div class="w-10 h-10 bg-amber-100 text-amber-700 flex items-center justify-center font-bold">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          </div>
+          <div>
+            <div class="text-xs font-bold text-slate-900">RFQ Quotations</div>
+            <div class="text-[11px] text-slate-500">Review buyer quote requests</div>
+          </div>
+        </a>
+
+        <a href="enquiries.html" class="p-4 bg-white border border-slate-200 hover:border-blue-500 hover:bg-blue-50/20 transition flex items-center gap-3">
+          <div class="w-10 h-10 bg-blue-100 text-blue-700 flex items-center justify-center font-bold">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
+          </div>
+          <div>
+            <div class="text-xs font-bold text-slate-900">Customer Inquiries</div>
+            <div class="text-[11px] text-slate-500">Respond to technical queries</div>
+          </div>
+        </a>
+
+        <a href="products.html" class="p-4 bg-white border border-slate-200 hover:border-purple-500 hover:bg-purple-50/20 transition flex items-center gap-3">
+          <div class="w-10 h-10 bg-purple-100 text-purple-700 flex items-center justify-center font-bold">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+          </div>
+          <div>
+            <div class="text-xs font-bold text-slate-900">Machine Catalog</div>
+            <div class="text-[11px] text-slate-500">View 681 testing instruments</div>
+          </div>
+        </a>
+
+        <a href="audit-logs.html" class="p-4 bg-white border border-slate-200 hover:border-slate-800 hover:bg-slate-50 transition flex items-center gap-3">
+          <div class="w-10 h-10 bg-slate-100 text-slate-700 flex items-center justify-center font-bold">
+            <svg class="w-5 h-5 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <div>
+            <div class="text-xs font-bold text-slate-900">Staff Audit Trail</div>
+            <div class="text-[11px] text-slate-500">Security & operational logs</div>
+          </div>
+        </a>
+
+      </div>
+
+    </main>
+  </div>
+
+  <script src="js/admin-api.js?v=1793637338"></script>
+  <script src="js/admin-app.js?v=1793637338"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const stats = await AdminAPI.getStats();
+
+        // Update counters
+        if (stats.total_products !== undefined) {
+          const el = document.getElementById('stat-total-products');
+          if (el) el.textContent = stats.total_products;
+        }
+
+        if (stats.total_quotations !== undefined) {
+          const el = document.getElementById('stat-total-rfqs');
+          if (el) el.textContent = stats.total_quotations;
+        }
+        
+        const pendingRfqs = stats.pending_quotations || 0;
+        const pendingElem = document.getElementById('stat-pending-rfqs');
+        if (pendingElem) {
+          pendingElem.textContent = `${pendingRfqs} Pending Review`;
+          pendingElem.className = pendingRfqs > 0 ? 'font-bold text-amber-600' : 'text-slate-500';
+        }
+
+        if (stats.new_enquiries !== undefined) {
+          const el = document.getElementById('stat-new-enquiries');
+          if (el) el.textContent = stats.new_enquiries;
+        }
+        
+        const totalVisits = stats.total_visitors || 0;
+        const visitsElem = document.getElementById('stat-total-visits');
+        if (visitsElem) {
+          visitsElem.textContent = totalVisits > 0 ? totalVisits.toLocaleString() + '+' : '0';
+        }
+        
+        const uniqueVisits = stats.unique_visitors || 0;
+        const uniqueElem = document.getElementById('stat-unique-visitors');
+        if (uniqueElem) {
+          uniqueElem.textContent = uniqueVisits > 0 ? `${uniqueVisits.toLocaleString()} Unique` : '0 Unique';
+        }
+
+        // Populate recent RFQs
+        const rfqTbody = document.getElementById('rfqs-table-body');
+        if (rfqTbody) {
+          if (stats.recent_quotations && stats.recent_quotations.length) {
+            rfqTbody.innerHTML = stats.recent_quotations.map(r => `
+              <tr class="hover:bg-slate-50 transition">
+                <td class="py-2.5 font-mono font-bold text-blue-600 text-[11px]">${r.rfq_number}</td>
+                <td class="py-2.5">
+                  <div class="font-bold text-slate-900">${r.contact_person}</div>
+                  <div class="text-[10px] text-slate-500">${r.company_name}</div>
+                </td>
+                <td class="py-2.5 font-mono text-[11px]">${r.items_count || 1} Machines</td>
+                <td class="py-2.5">
+                  <span class="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider border ${
+                    r.status === 'PENDING' ? 'bg-amber-50 text-amber-800 border-amber-300' :
+                    r.status === 'REVIEWING' ? 'bg-blue-50 text-blue-800 border-blue-300' :
+                    r.status === 'QUOTED' ? 'bg-emerald-50 text-emerald-800 border-emerald-300' :
+                    'bg-slate-100 text-slate-700 border-slate-300'
+                  }">${r.status}</span>
+                </td>
+                <td class="py-2.5 text-right">
+                  <a href="quotations.html?id=${r.id}" class="text-blue-600 font-bold hover:underline">Review</a>
+                </td>
+              </tr>
+            `).join('');
+          } else {
+            rfqTbody.innerHTML = '<tr><td colspan="5" class="py-6 text-center text-slate-400 text-xs">No pending quotation requests. All caught up!</td></tr>';
+          }
+        }
+
+        // Populate recent Enquiries
+        const enqTbody = document.getElementById('enquiries-table-body');
+        if (enqTbody) {
+          if (stats.recent_enquiries && stats.recent_enquiries.length) {
+            enqTbody.innerHTML = stats.recent_enquiries.map(e => `
+              <tr class="hover:bg-slate-50 transition">
+                <td class="py-2.5 font-mono font-bold text-blue-600 text-[11px]">${e.enquiry_number}</td>
+                <td class="py-2.5">
+                  <div class="font-bold text-slate-900">${e.full_name}</div>
+                  <div class="text-[10px] text-slate-500">${e.company_name}</div>
+                </td>
+                <td class="py-2.5 truncate max-w-[150px] text-slate-700">${e.product_name || 'General Inquiry'}</td>
+                <td class="py-2.5">
+                  <span class="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider border ${
+                    e.status === 'NEW' ? 'bg-amber-50 text-amber-800 border-amber-300' :
+                    e.status === 'CONTACTED' ? 'bg-blue-50 text-blue-800 border-blue-300' :
+                    'bg-slate-100 text-slate-700 border-slate-300'
+                  }">${e.status}</span>
+                </td>
+                <td class="py-2.5 text-right">
+                  <a href="enquiries.html?id=${e.id}" class="text-blue-600 font-bold hover:underline">View</a>
+                </td>
+              </tr>
+            `).join('');
+          } else {
+            enqTbody.innerHTML = '<tr><td colspan="5" class="py-6 text-center text-slate-400 text-xs">No customer inquiries yet.</td></tr>';
+          }
+        }
+
+      } catch (err) {
+        console.error('Failed to load dashboard stats:', err);
+      }
+    });
+  </script>
+</body>
+</html>
