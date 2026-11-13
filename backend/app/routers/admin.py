@@ -536,6 +536,41 @@ def admin_toggle_product_status(
 
     return {"id": p.id, "is_active": new_status, "message": f"Product is now {'Active' if new_status else 'Deactivated'}"}
 
+@router.delete("/products/{product_id}")
+def admin_delete_product(
+    product_id: int,
+    request: Request,
+    current_admin: AdminUser = Depends(get_current_admin),
+    db: Session = Depends(get_db)
+):
+    p = db.query(Product).filter(Product.id == product_id).first()
+    if not p:
+        raise HTTPException(status_code=404, detail="Product not found")
+
+    prod_name = p.product_name
+    model_num = p.model_number
+
+    # Clean up dependent relations
+    db.query(ProductSpecification).filter(ProductSpecification.product_id == product_id).delete()
+    db.query(ProductFeature).filter(ProductFeature.product_id == product_id).delete()
+    db.query(QuotationItem).filter(QuotationItem.product_id == product_id).delete()
+    db.query(Enquiry).filter(Enquiry.product_id == product_id).update({"product_id": None})
+
+    db.delete(p)
+    db.commit()
+
+    client_ip = request.client.host if request.client else "127.0.0.1"
+    log_admin_activity(
+        db, current_admin,
+        action="PRODUCT_DELETE",
+        target_type="product",
+        target_id=product_id,
+        details=f"Permanently deleted product #{product_id} '{prod_name}' (Model: {model_num})",
+        ip_address=client_ip
+    )
+
+    return {"message": f"Product #{product_id} deleted successfully", "id": product_id}
+
 @router.post("/products/{product_id}/upload-image")
 async def admin_upload_product_image(
     product_id: int,

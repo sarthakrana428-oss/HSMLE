@@ -248,11 +248,11 @@ const ProductManager = {
             </div>
           </div>
 
-          <!-- Bottom Action Buttons: Edit Machine & Catalogue Section -->
-          <div class="pt-3 border-t border-slate-100 flex items-center gap-2">
+          <!-- Bottom Action Buttons: Edit Machine & Catalogue Section & Small Delete Button -->
+          <div class="pt-3 border-t border-slate-100 flex items-center gap-1.5">
             <button 
               onclick="ProductManager.openEditModal(${p.id})" 
-              class="flex-1 py-2 px-3 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-xl transition text-center shadow-xs cursor-pointer flex items-center justify-center gap-1.5"
+              class="flex-1 py-2 px-2 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-xl transition text-center shadow-xs cursor-pointer flex items-center justify-center gap-1"
             >
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
               <span>Edit Machine</span>
@@ -260,12 +260,19 @@ const ProductManager = {
             <a 
               href="${baseUrl}${p.catalogue_path}" 
               target="_blank" 
-              class="flex-1 py-2 px-3 bg-red-600 hover:bg-red-700 text-white font-bold text-xs rounded-xl transition text-center shadow-xs cursor-pointer flex items-center justify-center gap-1.5"
+              class="flex-1 py-2 px-2 bg-red-600 hover:bg-red-700 text-white font-bold text-xs rounded-xl transition text-center shadow-xs cursor-pointer flex items-center justify-center gap-1"
               title="Open Official PDF Catalogue"
             >
               <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd"/></svg>
               <span>Catalogue (${p.catalogue_pages || 2}p)</span>
             </a>
+            <button 
+              onclick="ProductManager.deleteProduct(${p.id}, '${(p.product_name || '').replace(/'/g, "\\'")}')" 
+              class="p-2 bg-slate-100 hover:bg-red-50 text-slate-400 hover:text-red-600 border border-slate-200 hover:border-red-300 rounded-xl transition text-center shadow-xs cursor-pointer flex items-center justify-center shrink-0"
+              title="Delete Machine #${p.id}"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+            </button>
           </div>
         </div>
       `;
@@ -338,7 +345,7 @@ const ProductManager = {
               PDF (${p.catalogue_pages || 1}p)
             </a>
           </td>
-          <td class="p-3 text-right whitespace-nowrap space-x-2">
+          <td class="p-3 text-right whitespace-nowrap space-x-1.5">
             <button 
               onclick="ProductManager.openEditModal(${p.id})" 
               class="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-lg transition cursor-pointer shadow-xs"
@@ -354,6 +361,13 @@ const ProductManager = {
               <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd"/></svg>
               <span>Catalogue (${p.catalogue_pages || 2}p)</span>
             </a>
+            <button 
+              onclick="ProductManager.deleteProduct(${p.id}, '${(p.product_name || '').replace(/'/g, "\\'")}')" 
+              class="p-1.5 bg-slate-100 hover:bg-red-50 text-slate-400 hover:text-red-600 border border-slate-200 hover:border-red-300 rounded-lg transition cursor-pointer shadow-xs inline-flex items-center justify-center align-middle"
+              title="Delete Machine #${p.id}"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+            </button>
           </td>
         </tr>
       `;
@@ -410,6 +424,36 @@ const ProductManager = {
         window.showAdminToast(`Failed to toggle status: ${err.message}`, 'error');
       }
     }
+  },
+
+  async deleteProduct(productId, productName) {
+    const nameStr = productName ? `"${productName}" (ID #${productId})` : `Machine #${productId}`;
+    if (!confirm(`Are you sure you want to permanently delete ${nameStr}?\n\nThis will remove the machine, specifications, and catalogue association. This action cannot be undone.`)) {
+      return;
+    }
+
+    try {
+      await window.AdminAPI.deleteProduct(productId);
+      if (window.showAdminToast) {
+        window.showAdminToast(`Machine #${productId} deleted successfully`, 'success');
+      }
+      await this.fetchProducts();
+    } catch (err) {
+      if (window.showAdminToast) {
+        window.showAdminToast(`Delete failed: ${err.message}`, 'error');
+      } else {
+        alert(`Delete failed: ${err.message}`);
+      }
+    }
+  },
+
+  async deleteCurrentModalProduct() {
+    if (!this.state.editingProductId) return;
+    const form = document.getElementById('product-form');
+    const name = form ? (form.product_name ? form.product_name.value : '') : '';
+    const id = this.state.editingProductId;
+    this.closeModal();
+    await this.deleteProduct(id, name);
   },
 
   // Simplified, Intuitive Add / Edit Modal with Image & Catalogue Upload
@@ -550,11 +594,19 @@ const ProductManager = {
     if (advPanel) advPanel.classList.add('hidden');
     if (advArrow) advArrow.textContent = '▶';
 
+    // Hide modal delete button for add mode
+    const btnDel = document.getElementById('btn-delete-product-modal');
+    if (btnDel) btnDel.classList.add('hidden');
+
     document.getElementById('product-modal').classList.remove('hidden');
   },
 
   async openEditModal(productId) {
     this.state.editingProductId = productId;
+
+    // Show modal delete button for edit mode
+    const btnDel = document.getElementById('btn-delete-product-modal');
+    if (btnDel) btnDel.classList.remove('hidden');
 
     try {
       const p = await window.AdminAPI.getProduct(productId);

@@ -205,6 +205,12 @@ const AdminAPI = {
     });
   },
 
+  async deleteProduct(id) {
+    return await this.request(`/products/${id}`, {
+      method: 'DELETE'
+    });
+  },
+
   async uploadProductImage(id, file) {
     const formData = new FormData();
     formData.append('file', file);
