@@ -736,7 +736,7 @@ def admin_get_categories(
 def admin_create_category(
     payload: CategoryAdminCreate,
     request: Request,
-    current_admin: AdminUser = Depends(require_superadmin),
+    current_admin: AdminUser = Depends(get_current_admin),
     db: Session = Depends(get_db)
 ):
     slug = payload.slug or slugify(payload.name)
@@ -770,7 +770,7 @@ def admin_update_category(
     category_id: int,
     payload: CategoryAdminUpdate,
     request: Request,
-    current_admin: AdminUser = Depends(require_superadmin),
+    current_admin: AdminUser = Depends(get_current_admin),
     db: Session = Depends(get_db)
 ):
     cat = db.query(Category).filter(Category.id == category_id).first()
@@ -804,7 +804,7 @@ def admin_update_category(
 def admin_create_subcategory(
     payload: SubcategoryAdminCreate,
     request: Request,
-    current_admin: AdminUser = Depends(require_superadmin),
+    current_admin: AdminUser = Depends(get_current_admin),
     db: Session = Depends(get_db)
 ):
     parent = db.query(Category).filter(Category.id == payload.category_id).first()
@@ -838,7 +838,7 @@ def admin_update_subcategory(
     subcategory_id: int,
     payload: SubcategoryAdminUpdate,
     request: Request,
-    current_admin: AdminUser = Depends(require_superadmin),
+    current_admin: AdminUser = Depends(get_current_admin),
     db: Session = Depends(get_db)
 ):
     sub = db.query(Subcategory).filter(Subcategory.id == subcategory_id).first()
