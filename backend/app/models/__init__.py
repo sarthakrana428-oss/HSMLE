@@ -2,3 +2,4 @@ from .product import Category, Subcategory, Product, ProductSpecification, Produ
 from .enquiry import Enquiry
 from .quotation import QuotationRequest, QuotationItem
 from .admin import AdminUser
+from .notification import NotificationRecord

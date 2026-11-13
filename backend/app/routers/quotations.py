@@ -27,7 +27,7 @@ def submit_quotation_request(
     if not payload.items:
         raise HTTPException(status_code=400, detail="Quotation request must contain at least one product")
 
-    client_ip = request.client.host if request.client else "127.0.0.1"
+    client_ip = request.client.host if (request and request.client) else "127.0.0.1"
 
     rfq = QuotationRequest(
         rfq_number=generate_rfq_number(db),
@@ -60,6 +60,15 @@ def submit_quotation_request(
 
     db.commit()
     db.refresh(rfq)
+
+    # Automated Customer Confirmation Email (Post-Commit Trigger)
+    try:
+        from ..services.notification_service import send_quotation_confirmation
+        send_quotation_confirmation(rfq=rfq, db=db)
+    except Exception as notify_err:
+        import logging
+        logging.getLogger("quotations").error(f"Failed to trigger customer confirmation email: {notify_err}")
+
     return rfq
 
 @router.get("", response_model=List[QuotationResponse])
