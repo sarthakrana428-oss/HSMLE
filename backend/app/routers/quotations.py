@@ -61,13 +61,16 @@ def submit_quotation_request(
     db.commit()
     db.refresh(rfq)
 
-    # Automated Customer Confirmation Email (Post-Commit Trigger)
+    # Automated Notifications (Customer Acknowledgment & HSMLE Official Alert)
     try:
-        from ..services.notification_service import send_quotation_confirmation
+        from ..services.notification_service import send_quotation_confirmation, send_admin_quotation_alert
+        # 1. Dispatch confirmation acknowledgment to customer
         send_quotation_confirmation(rfq=rfq, db=db)
+        # 2. Dispatch full lead details alert to HSMLE official email
+        send_admin_quotation_alert(rfq=rfq, db=db)
     except Exception as notify_err:
         import logging
-        logging.getLogger("quotations").error(f"Failed to trigger customer confirmation email: {notify_err}")
+        logging.getLogger("quotations").error(f"Failed to trigger quotation notification emails: {notify_err}")
 
     return rfq
 

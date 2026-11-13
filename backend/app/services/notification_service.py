@@ -69,10 +69,11 @@ def _dispatch_google_apps_script(
     body_html: str,
     db: Session,
     now: datetime.datetime,
+    idempotency_suffix: str = "cust",
     existing_record: Optional[NotificationRecord] = None
 ) -> NotificationRecord:
     """
-    Dispatches customer acknowledgement email via Google Apps Script MailApp.
+    Dispatches email via Google Apps Script MailApp.
     Uses separate website configuration and isolated idempotency keys.
     """
     channel = "email"
@@ -117,7 +118,7 @@ def _dispatch_google_apps_script(
     }
 
     # Distinct namespaced idempotency key to prevent collision across deployments
-    idempotency_key = f"website-rfq-{rfq_reference}-cust"
+    idempotency_key = f"website-rfq-{rfq_reference}-{idempotency_suffix}"
 
     payload = {
         "shared_secret": secret,
@@ -519,6 +520,7 @@ Registered Office: {settings.OFFICE_ADDRESS}
             body_html=body_html,
             db=db,
             now=now,
+            idempotency_suffix="cust",
             existing_record=existing_record
         )
     else:
@@ -533,6 +535,295 @@ Registered Office: {settings.OFFICE_ADDRESS}
             status="failed",
             provider_message_id=None,
             error_summary=f"Unsupported EMAIL_PROVIDER '{provider}'. Expected 'google_apps_script'.",
+            created_at=now,
+            sent_at=None
+        )
+
+
+def send_admin_quotation_alert(
+    rfq: QuotationRequest,
+    db: Session
+) -> Optional[NotificationRecord]:
+    """
+    Dispatches immediate full-detail RFQ notification alert to HSMLE Official Email
+    (RFQ_NOTIFICATION_EMAIL / OFFICIAL_EMAIL / sales@hsmleindia.com).
+
+    Guarantees:
+    - Contains full client contact details (Name, Company, Email, Phone, Destination, GSTIN, Sector, Target Date).
+    - Contains complete technical requirements & customization notes.
+    - Contains complete itemized table of requested machinery & models.
+    - Responsive, high-contrast, professional notification card.
+    - Any error is captured without impeding the quotation flow.
+    """
+    official_email = (getattr(settings, "RFQ_NOTIFICATION_EMAIL", None) or getattr(settings, "OFFICIAL_EMAIL", None) or "sales@hsmleindia.com").strip().lower()
+    if not official_email:
+        return None
+
+    now = datetime.datetime.utcnow()
+    channel = "email"
+
+    # Idempotency check for official notification
+    existing_record = db.query(NotificationRecord).filter(
+        NotificationRecord.rfq_id == rfq.id,
+        NotificationRecord.channel == channel,
+        NotificationRecord.recipient == official_email
+    ).order_by(NotificationRecord.id.desc()).first()
+
+    if existing_record and existing_record.status == "sent":
+        logger.info(f"Admin quotation alert already sent to {official_email} for {rfq.rfq_number}. Skipping duplicate.")
+        return existing_record
+
+    # Extract all submitted fields
+    customer_name = (rfq.contact_person or "").strip() or "Valued Client"
+    company_name = (rfq.company_name or "").strip() or "N/A"
+    phone_number = (rfq.phone or "").strip() or "Not provided"
+    client_email = (rfq.email or "").strip().lower() or "Not provided"
+    delivery_city = (rfq.delivery_city or "").strip()
+    delivery_state = (rfq.delivery_state or "").strip()
+    destination = f"{delivery_city}, {delivery_state}".strip(", ") or "Specified on Request"
+    gst_number = (rfq.gst_number or "").strip() or "Not provided"
+    industry_sector = (rfq.industry_sector or "").strip() or "General Manufacturing"
+    target_delivery = (rfq.target_delivery_date or "").strip() or "Immediate / Earliest"
+    requirements_notes = (rfq.requirements_notes or "").strip() or "No additional notes provided"
+    submission_date_str = now.strftime("%d %B %Y, %H:%M UTC")
+
+    esc_name = html.escape(customer_name)
+    esc_company = html.escape(company_name)
+    esc_phone = html.escape(phone_number)
+    esc_email = html.escape(client_email)
+    esc_dest = html.escape(destination)
+    esc_gst = html.escape(gst_number)
+    esc_sector = html.escape(industry_sector)
+    esc_target = html.escape(target_delivery)
+    esc_notes = html.escape(requirements_notes)
+    esc_ref = html.escape(rfq.rfq_number)
+    esc_date = html.escape(submission_date_str)
+
+    # Build items tables
+    items_rows_html = ""
+    items_lines_text = []
+
+    for item in (rfq.items or []):
+        p_name = item.product_name or "Industrial Equipment"
+        m_num = item.model_number or ""
+        qty = item.quantity or 1
+        c_notes = item.customization_notes or ""
+
+        esc_pname = html.escape(p_name)
+        esc_mnum = html.escape(m_num)
+        esc_cnotes = html.escape(c_notes)
+
+        line_txt = f"  • {p_name}" + (f" [Model: {m_num}]" if m_num else "") + f" - Qty: {qty}"
+        if c_notes:
+            line_txt += f"\n    Notes: {c_notes}"
+        items_lines_text.append(line_txt)
+
+        items_rows_html += f"""
+        <tr style="border-bottom: 1px solid #E5E7EB;">
+          <td style="padding: 10px 12px; color: #111827; font-size: 13px;">
+            <div style="font-weight: 700; color: #111827;">{esc_pname}</div>
+            {f'<div style="font-size: 11px; color: #374151; margin-top: 2px;">Model: <span style="font-family: monospace; font-weight: 600;">{esc_mnum}</span></div>' if m_num else ''}
+            {f'<div style="font-size: 11px; color: #6B7280; font-style: italic; margin-top: 2px;">Customization: {esc_cnotes}</div>' if c_notes else ''}
+          </td>
+          <td style="padding: 10px 12px; text-align: center; font-weight: 700; color: #111827; font-size: 13px; width: 60px;">
+            {qty}
+          </td>
+        </tr>
+        """
+
+    items_text_block = "\n".join(items_lines_text) if items_lines_text else "  • Requested Equipment & Testing Systems"
+
+    # Email Subject
+    subject = f"🚨 [NEW RFQ LEAD] {rfq.rfq_number} — {company_name} ({customer_name})"
+
+    # Plaintext Body
+    body_text = f"""HSMLE INDIA — NEW RFQ LEAD NOTIFICATION
+Reference: {rfq.rfq_number}
+Submitted: {submission_date_str}
+
+============================================================
+CLIENT & CONTACT DETAILS
+============================================================
+Company Name       : {company_name}
+Contact Person     : {customer_name}
+Direct Phone       : {phone_number}
+Corporate Email    : {client_email}
+Delivery City/State: {destination}
+GSTIN Number       : {gst_number}
+Industry Sector    : {industry_sector}
+Target Delivery    : {target_delivery}
+
+SPECIAL TECHNICAL NOTES / CUSTOMIZATION:
+{requirements_notes}
+
+============================================================
+REQUESTED MACHINERY ({len(rfq.items or [])} Items)
+============================================================
+{items_text_block}
+
+============================================================
+ADMIN ACTION
+============================================================
+Review and respond to this RFQ in the Staff Portal:
+{settings.PRIMARY_DOMAIN}admin/quotations.html
+
+Client IP: {rfq.ip_address or 'Unknown'}
+""".strip()
+
+    # High-Priority Responsive HTML Body
+    body_html = f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New RFQ Notification — HSMLE India</title>
+</head>
+<body style="margin: 0; padding: 24px 12px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #F3F4F6; color: #111827; line-height: 1.5;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width: 650px; margin: 0 auto; background-color: #FFFFFF; border: 2px solid #111827; border-radius: 6px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+    
+    <!-- Header -->
+    <tr>
+      <td style="background-color: #111827; padding: 20px 24px; color: #FFFFFF;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+          <tr>
+            <td>
+              <div style="font-size: 11px; font-weight: 800; color: #F59E0B; text-transform: uppercase; letter-spacing: 1px;">🚨 NEW COMMERCIAL INQUIRY</div>
+              <div style="font-size: 18px; font-weight: 800; color: #FFFFFF; margin-top: 4px;">HSMLE INDIA &bull; RFQ NOTIFICATION</div>
+            </td>
+            <td style="text-align: right;">
+              <span style="background-color: #DC2626; color: #FFFFFF; font-size: 11px; font-weight: 800; padding: 4px 8px; border-radius: 4px; font-family: monospace;">{esc_ref}</span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    <!-- Summary Banner -->
+    <tr>
+      <td style="background-color: #FEF3C7; border-bottom: 2px solid #F59E0B; padding: 12px 24px; font-size: 12px; color: #92400E;">
+        <strong>New Lead Received:</strong> Client requested quotation for <strong>{len(rfq.items or [])} testing instrument(s)</strong> on {esc_date}.
+      </td>
+    </tr>
+
+    <!-- Body -->
+    <tr>
+      <td style="padding: 24px;">
+
+        <!-- Client Contact Details Box -->
+        <div style="font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; color: #111827; margin-bottom: 8px;">
+          1. Client &amp; Procurement Details
+        </div>
+        <table role="presentation" width="100%" cellpadding="8" cellspacing="0" style="background-color: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 4px; margin-bottom: 20px; font-size: 12px;">
+          <tr style="border-bottom: 1px solid #E5E7EB;">
+            <td width="30%" style="font-weight: 700; color: #4B5563;">Company Name:</td>
+            <td style="font-weight: 800; color: #111827; font-size: 13px;">{esc_company}</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #E5E7EB;">
+            <td style="font-weight: 700; color: #4B5563;">Contact Person:</td>
+            <td style="font-weight: 700; color: #111827;">{esc_name}</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #E5E7EB;">
+            <td style="font-weight: 700; color: #4B5563;">Phone / Mobile:</td>
+            <td><a href="tel:{esc_phone}" style="color: #2563EB; font-weight: 800; text-decoration: none; font-size: 13px;">{esc_phone}</a> &nbsp;<span style="color: #6B7280; font-size: 11px;">(Click to call)</span></td>
+          </tr>
+          <tr style="border-bottom: 1px solid #E5E7EB;">
+            <td style="font-weight: 700; color: #4B5563;">Corporate Email:</td>
+            <td><a href="mailto:{esc_email}" style="color: #2563EB; font-weight: 700; text-decoration: underline;">{esc_email}</a> &nbsp;<span style="color: #6B7280; font-size: 11px;">(Click to reply)</span></td>
+          </tr>
+          <tr style="border-bottom: 1px solid #E5E7EB;">
+            <td style="font-weight: 700; color: #4B5563;">Delivery Destination:</td>
+            <td style="color: #111827; font-weight: 600;">{esc_dest}</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #E5E7EB;">
+            <td style="font-weight: 700; color: #4B5563;">GSTIN (Tax ID):</td>
+            <td style="font-family: monospace; font-weight: 700; color: #111827;">{esc_gst}</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #E5E7EB;">
+            <td style="font-weight: 700; color: #4B5563;">Industry Sector:</td>
+            <td style="color: #111827;">{esc_sector}</td>
+          </tr>
+          <tr>
+            <td style="font-weight: 700; color: #4B5563;">Target Delivery Date:</td>
+            <td style="color: #111827; font-weight: 600;">{esc_target}</td>
+          </tr>
+        </table>
+
+        <!-- Specific Requirements Box -->
+        <div style="font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; color: #111827; margin-bottom: 8px;">
+          2. Specific Technical Notes &amp; Customization
+        </div>
+        <div style="background-color: #F9FAFB; border-left: 4px solid #2563EB; padding: 12px 16px; margin-bottom: 20px; font-size: 12px; color: #374151; white-space: pre-wrap;">
+          {esc_notes}
+        </div>
+
+        <!-- Requested Machinery Table -->
+        <div style="font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; color: #111827; margin-bottom: 8px;">
+          3. Requested Machinery &amp; Testing Instruments ({len(rfq.items or [])})
+        </div>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border: 1px solid #E5E7EB; border-radius: 4px; overflow: hidden; margin-bottom: 24px;">
+          <thead>
+            <tr style="background-color: #F3F4F6; border-bottom: 1px solid #E5E7EB; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #4B5563;">
+              <th style="padding: 10px 12px; text-align: left;">Instrument &amp; Model</th>
+              <th style="padding: 10px 12px; text-align: center; width: 60px;">Quantity</th>
+            </tr>
+          </thead>
+          <tbody>
+            {items_rows_html}
+          </tbody>
+        </table>
+
+        <!-- Action Links -->
+        <div style="background-color: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 6px; padding: 16px; text-align: center;">
+          <div style="font-size: 13px; font-weight: 800; color: #1E40AF; margin-bottom: 10px;">DIRECT ACTIONS FOR SALES DESK</div>
+          <a href="mailto:{esc_email}?subject=Re:%20Quotation%20Proposal%20-%20HSMLE%20India%20({esc_ref})&body=Dear%20{esc_name},%0D%0A%0D%0AThank%20you%20for%20your%20inquiry%20{esc_ref}.%20Please%20find%20our%20official%20quotation%20attached.%0D%0A%0D%0ARegards,%0D%0AHSMLE%20India" style="display: inline-block; background-color: #2563EB; color: #FFFFFF; font-size: 12px; font-weight: 800; padding: 8px 16px; text-decoration: none; border-radius: 4px; margin-right: 8px;">
+            Reply to Client Email
+          </a>
+          <a href="{settings.PRIMARY_DOMAIN}admin/quotations.html" style="display: inline-block; background-color: #111827; color: #FFFFFF; font-size: 12px; font-weight: 800; padding: 8px 16px; text-decoration: none; border-radius: 4px;">
+            Open Staff Quotations Portal
+          </a>
+        </div>
+
+      </td>
+    </tr>
+
+    <!-- Footer -->
+    <tr>
+      <td style="background-color: #F9FAFB; border-top: 1px solid #E5E7EB; padding: 12px 24px; text-align: center; font-size: 11px; color: #6B7280;">
+        HSMLE India Corporation &bull; Automated Internal Lead Dispatch System &bull; Client IP: {rfq.ip_address or 'Unknown'}
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
+""".strip()
+
+    provider = (settings.EMAIL_PROVIDER or "google_apps_script").lower()
+
+    if provider in ("google_apps_script", "gas", "mailapp"):
+        return _dispatch_google_apps_script(
+            rfq_id=rfq.id,
+            rfq_reference=rfq.rfq_number,
+            recipient=official_email,
+            customer_name="HSMLE Sales Team",
+            subject=subject,
+            body_text=body_text,
+            body_html=body_html,
+            db=db,
+            now=now,
+            idempotency_suffix="admin-alert",
+            existing_record=existing_record
+        )
+    else:
+        return _record_email_result(
+            db=db,
+            existing_record=existing_record,
+            rfq_id=rfq.id,
+            rfq_reference=rfq.rfq_number,
+            channel=channel,
+            recipient=official_email,
+            status="failed",
+            provider_message_id=None,
+            error_summary=f"Unsupported EMAIL_PROVIDER '{provider}'.",
             created_at=now,
             sent_at=None
         )
