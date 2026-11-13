@@ -183,6 +183,23 @@ const Catalog = {
     this.fetchAndRenderProducts();
   },
 
+  getCategoryIcon(slug) {
+    const icons = {
+      'all': '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>',
+      'analysis-software-imaging': '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>',
+      'environmental-corrosion-testing': '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>',
+      'benchtop-hardness-testing-equipment': '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2L2 9l10 13 10-13-10-7z"></path></svg>',
+      'material-handling-industrial-testing': '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>',
+      'testing-machines': '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>',
+      'metallographic-sample-preparation': '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v18M3 12h18"></path></svg>',
+      'ndt-inspection-instruments': '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"></path></svg>',
+      'optical-metrology-systems': '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>',
+      'thermal-laboratory-heating': '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"></path></svg>',
+      'portable-hardness-testing-equipment': '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>',
+    };
+    return icons[slug] || icons['all'];
+  },
+
   async loadCategoriesFilter() {
     const container = document.getElementById('category-filter-sidebar');
     if (!container) return;
@@ -196,59 +213,75 @@ const Catalog = {
       const totalDivisions = (this.state.categoriesData || []).length;
 
       let html = `
-        <div class="mb-2.5">
+        <div class="space-y-0.5">
+          <!-- All Divisions Item -->
           <button 
             onclick="Catalog.selectCategory(null)" 
-            class="w-full text-left px-3.5 py-2.5 rounded-lg text-xs font-semibold flex items-center justify-between transition-all duration-150 ${
+            class="w-full text-left px-3 py-2 rounded-xl text-xs flex items-center justify-between transition-all duration-150 group ${
               !this.state.categorySlug 
-                ? 'bg-blue-600 text-white shadow-sm ring-1 ring-blue-700' 
-                : 'bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 shadow-[0_1px_2px_rgba(0,0,0,0.03)]'
+                ? 'bg-blue-600 text-white font-semibold shadow-xs' 
+                : 'text-slate-700 hover:bg-slate-100/80 hover:text-slate-900 font-medium'
             }"
             id="cat-btn-all"
           >
-            <span class="flex-1 pr-2">All ${totalDivisions} Divisions</span>
-            <span class="text-[11px] px-2.5 py-0.5 rounded-full ${
-              !this.state.categorySlug ? 'bg-blue-700/80 text-white' : 'bg-slate-100 text-slate-600'
-            } font-mono font-bold shrink-0">${totalMachines}</span>
+            <div class="flex items-center gap-2.5 min-w-0 pr-2">
+              <span class="w-6 h-6 rounded-md flex items-center justify-center shrink-0 transition ${
+                !this.state.categorySlug ? 'bg-blue-700/80 text-white' : 'bg-slate-100 text-slate-500 group-hover:bg-blue-50 group-hover:text-blue-600'
+              }">
+                ${this.getCategoryIcon('all')}
+              </span>
+              <span class="truncate">All ${totalDivisions} Divisions</span>
+            </div>
+            <span class="text-[11px] font-mono px-2 py-0.5 rounded-full ${
+              !this.state.categorySlug ? 'bg-blue-700/80 text-white' : 'bg-slate-100 text-slate-500 group-hover:bg-slate-200 group-hover:text-slate-700'
+            } font-bold shrink-0 transition">${totalMachines}</span>
           </button>
-        </div>
-        <div class="space-y-1.5">
+
+          <div class="my-2 border-t border-slate-100"></div>
       `;
 
       this.state.categoriesData.forEach((cat) => {
         const isCatActive = this.state.categorySlug === cat.slug;
+        const iconSvg = this.getCategoryIcon(cat.slug);
         html += `
-          <div class="mb-1.5">
+          <div>
             <button 
               onclick="Catalog.selectCategory('${cat.slug}')" 
-              class="w-full text-left px-3 py-2.5 rounded-lg text-xs font-medium flex items-center justify-between transition-all duration-150 ${
+              class="w-full text-left px-3 py-2 rounded-xl text-xs flex items-center justify-between transition-all duration-150 group ${
                 isCatActive 
-                  ? 'bg-blue-600 text-white font-semibold shadow-sm ring-1 ring-blue-700' 
-                  : 'bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 shadow-[0_1px_2px_rgba(0,0,0,0.03)]'
+                  ? 'bg-blue-600 text-white font-semibold shadow-xs' 
+                  : 'text-slate-700 hover:bg-slate-100/80 hover:text-slate-900 font-medium'
               }"
               id="cat-btn-${cat.slug}"
             >
-              <span class="flex-1 pr-2 leading-snug break-words">${cat.name}</span>
-              <span class="text-[11px] px-2 py-0.5 rounded-full ${
-                isCatActive ? 'bg-blue-700/80 text-white font-bold' : 'bg-slate-100 text-slate-500 font-medium'
-              } font-mono shrink-0 ml-1.5">${cat.total_products}</span>
+              <div class="flex items-center gap-2.5 min-w-0 pr-2">
+                <span class="w-6 h-6 rounded-md flex items-center justify-center shrink-0 transition ${
+                  isCatActive ? 'bg-blue-700/80 text-white' : 'bg-slate-100 text-slate-500 group-hover:bg-blue-50 group-hover:text-blue-600'
+                }">
+                  ${iconSvg}
+                </span>
+                <span class="leading-snug break-words">${cat.name}</span>
+              </div>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded-full ${
+                isCatActive ? 'bg-blue-700/80 text-white font-bold' : 'bg-slate-100 text-slate-500 group-hover:bg-slate-200 group-hover:text-slate-700 font-medium'
+              } shrink-0 ml-1.5 transition">${cat.total_products}</span>
             </button>
             ${
               cat.subcategories && cat.subcategories.length > 0
                 ? `
-              <div class="mt-1 ml-3 pl-3 py-1 space-y-1 border-l-2 border-blue-400 bg-slate-50/70 rounded-r-lg ${isCatActive ? '' : 'hidden'}" id="subcats-${cat.slug}">
+              <div class="mt-1 ml-8 pl-3 pr-1 py-1 space-y-0.5 border-l-2 border-blue-300 ${isCatActive ? '' : 'hidden'}" id="subcats-${cat.slug}">
                 ${cat.subcategories
                   .map((sub) => {
                     const isSubActive = this.state.subcategorySlug === sub.slug;
                     return `
                     <button 
                       onclick="Catalog.selectSubcategory('${cat.slug}', '${sub.slug}')" 
-                      class="w-full text-left px-2.5 py-1.5 text-[11px] rounded-md transition flex items-center justify-between ${
-                        isSubActive ? 'bg-blue-600 text-white font-semibold' : 'text-slate-600 hover:text-blue-700 hover:bg-white'
+                      class="w-full text-left px-2 py-1 text-[11px] rounded-lg transition flex items-center justify-between ${
+                        isSubActive ? 'bg-blue-50 text-blue-700 font-bold' : 'text-slate-600 hover:text-blue-700 hover:bg-slate-100/60'
                       }"
                     >
-                      <span class="flex-1 pr-1.5 leading-tight break-words">• ${sub.name}</span>
-                      <span class="text-[10px] ${isSubActive ? 'text-blue-100 font-bold' : 'text-slate-400'} font-mono shrink-0">${sub.product_count}</span>
+                      <span class="truncate pr-1">• ${sub.name}</span>
+                      <span class="text-[10px] ${isSubActive ? 'text-blue-700 font-bold' : 'text-slate-400'} font-mono shrink-0">${sub.product_count}</span>
                     </button>
                   `;
                   })
