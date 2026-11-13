@@ -1002,8 +1002,11 @@ const ProductDetail = {
             <div class="p-4 bg-white rounded-xl border border-slate-200 mb-4 space-y-2.5">
               <div class="flex flex-wrap items-center justify-between gap-2">
                 <div class="flex items-center gap-2.5">
+                  <span class="px-2.5 py-1 bg-slate-900 text-white font-mono text-xs font-bold border border-slate-700">
+                    Machine ID: #${p.id}
+                  </span>
                   <span class="text-xs font-black text-slate-900 uppercase tracking-wider">Primary Model:</span>
-                  <span class="px-2.5 py-1 bg-blue-600 text-white font-mono text-xs sm:text-sm font-bold rounded-none border border-slate-200 ">
+                  <span class="px-2.5 py-1 bg-blue-600 text-white font-mono text-xs sm:text-sm font-bold rounded-none border border-slate-200">
                     ${p.model_number || 'Standard'}
                   </span>
                 </div>

@@ -291,6 +291,9 @@ const ProductManager = {
 
         return `
         <tr class="border-b border-slate-100 hover:bg-slate-50 transition text-xs">
+          <td class="p-3 w-16 text-center font-mono font-bold text-slate-700 text-xs">
+            #${p.id}
+          </td>
           <td class="p-3 w-16">
             <img 
               src="${imgUrl}" 

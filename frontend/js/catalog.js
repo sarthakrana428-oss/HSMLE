@@ -512,6 +512,9 @@ const Catalog = {
               loading="lazy"
             >
           </div>
+          <div class="absolute bottom-2 right-2 px-2 py-0.5 bg-slate-900/80 backdrop-blur-xs text-white text-[10px] font-mono font-bold">
+            ID #${p.id}
+          </div>
         </a>
 
         <div class="p-4 flex-1 flex flex-col justify-between">
@@ -520,9 +523,12 @@ const Catalog = {
               <div class="text-[10px] font-bold text-blue-600 uppercase tracking-wider leading-snug">
                 ${p.category_name}
               </div>
-              <div class="mt-1 flex items-center justify-between">
-                <span class="badge-model font-mono text-[10px] bg-slate-100 px-2 py-0.5 border border-slate-300 font-bold text-slate-800">
+              <div class="mt-1 flex items-center justify-between gap-1.5">
+                <span class="badge-model font-mono text-[10px] bg-slate-100 px-2 py-0.5 border border-slate-300 font-bold text-slate-800 truncate" title="${p.model_number || 'Standard'}">
                   ${p.model_number || 'Standard'}
+                </span>
+                <span class="font-mono text-[10px] text-slate-600 font-bold bg-slate-50 border border-slate-300 px-1.5 py-0.5 shrink-0" title="Machine ID #${p.id}">
+                  ID #${p.id}
                 </span>
               </div>
             </div>
@@ -633,6 +639,9 @@ const Catalog = {
               <span class="text-slate-300">•</span>
               <span class="text-[11px] text-slate-500">
                 ${p.subcategory_name || 'Standard'}
+              </span>
+              <span class="font-mono text-[10px] text-slate-600 font-bold bg-slate-100 border border-slate-300 px-1.5 py-0.5 ml-2">
+                ID #${p.id}
               </span>
               <span class="badge-model ml-auto text-[11px]">
                 ${p.model_number || 'Standard'}

@@ -192,17 +192,25 @@ const CataloguePage = {
                 onerror="this.onerror=null; this.src='assets/images/product-placeholder.svg';"
               >
             </a>
+            <div class="absolute bottom-2 right-2 px-2 py-0.5 bg-slate-900/80 backdrop-blur-xs text-white text-[10px] font-mono font-bold">
+              ID #${p.id}
+            </div>
           </div>
 
           <!-- Card Content Body -->
           <div class="p-4 flex-1 flex flex-col justify-between">
             <div>
-              <!-- Model Number Badge -->
+              <!-- Model Number Badge & ID -->
               <div class="mb-1.5 flex items-center justify-between gap-1">
-                <span class="font-mono text-[11px] font-bold text-blue-700 bg-blue-50 border border-blue-200/80 px-2 py-0.5 rounded-none whitespace-nowrap" title="${p.model_number || 'Standard Model'}">
-                  ${p.model_number || 'HSMLE Standard'}
-                </span>
-                <span class="text-[10px] text-slate-400 font-mono">
+                <div class="flex items-center gap-1.5 truncate">
+                  <span class="font-mono text-[10px] font-bold text-slate-700 bg-slate-100 border border-slate-300 px-1.5 py-0.5">
+                    ID #${p.id}
+                  </span>
+                  <span class="font-mono text-[11px] font-bold text-blue-700 bg-blue-50 border border-blue-200/80 px-2 py-0.5 rounded-none truncate" title="${p.model_number || 'Standard Model'}">
+                    ${p.model_number || 'HSMLE Standard'}
+                  </span>
+                </div>
+                <span class="text-[10px] text-slate-400 font-mono shrink-0">
                   ${p.catalogue_pages || 1} Pg
                 </span>
               </div>
