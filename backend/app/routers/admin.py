@@ -123,7 +123,7 @@ def get_current_user_profile(current_admin: AdminUser = Depends(get_current_admi
 
 @router.get("/stats", response_model=DashboardStats)
 def get_dashboard_stats(
-    current_admin: AdminUser = Depends(require_superadmin),
+    current_admin: AdminUser = Depends(get_current_admin),
     db: Session = Depends(get_db)
 ):
     total_p = db.query(func.count(Product.id)).scalar() or 0
@@ -261,7 +261,7 @@ def admin_list_products(
     subcategory_id: Optional[int] = None,
     is_active: Optional[bool] = None,
     page: int = Query(1, ge=1),
-    limit: int = Query(20, ge=1, le=500),
+    limit: int = Query(20, ge=1, le=1000),
     current_admin: AdminUser = Depends(get_current_admin),
     db: Session = Depends(get_db)
 ):
@@ -641,6 +641,13 @@ async def admin_upload_product_catalogue(
     p.catalogue_path = f"/static/catalogues/{safe_name}"
     p.catalogue_size_bytes = len(contents)
     p.catalogue_sha256 = sha256
+    try:
+        import io
+        from pypdf import PdfReader
+        reader = PdfReader(io.BytesIO(contents))
+        p.catalogue_pages = len(reader.pages)
+    except Exception:
+        p.catalogue_pages = 2
     p.updated_at = datetime.utcnow()
     db.commit()
 
@@ -835,7 +842,7 @@ def admin_get_enquiries(
     search: Optional[str] = None,
     status_filter: Optional[str] = None,
     page: int = Query(1, ge=1),
-    limit: int = Query(20, ge=1, le=500),
+    limit: int = Query(20, ge=1, le=1000),
     current_admin: AdminUser = Depends(get_current_admin),
     db: Session = Depends(get_db)
 ):
@@ -964,7 +971,7 @@ def admin_get_quotations(
     search: Optional[str] = None,
     status_filter: Optional[str] = None,
     page: int = Query(1, ge=1),
-    limit: int = Query(20, ge=1, le=500),
+    limit: int = Query(20, ge=1, le=1000),
     current_admin: AdminUser = Depends(get_current_admin),
     db: Session = Depends(get_db)
 ):

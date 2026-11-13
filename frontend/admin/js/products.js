@@ -1,5 +1,5 @@
 /**
- * HSMLE India Corporation - Product Inventory Management
+ * HSMLE India Corporation - All Machines Management
  * Handles listing, live search, division filters, pagination, creation,
  * editing, image/PDF uploads, and active state toggling.
  */
@@ -7,7 +7,7 @@
 const ProductManager = {
   state: {
     page: 1,
-    limit: 15,
+    limit: 16,
     search: '',
     category_id: '',
     is_active: '',
@@ -15,6 +15,40 @@ const ProductManager = {
     totalPages: 1,
     categories: [],
     editingProductId: null,
+    viewMode: 'grid', // 'grid' (square boxes) or 'table'
+    cachedItems: [],
+  },
+
+  setViewMode(mode) {
+    this.state.viewMode = mode;
+    const btnGrid = document.getElementById('btn-view-grid');
+    const btnTable = document.getElementById('btn-view-table');
+    const gridContainer = document.getElementById('products-grid-container');
+    const tableContainer = document.getElementById('products-table-container');
+
+    if (mode === 'grid') {
+      if (btnGrid) {
+        btnGrid.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 cursor-pointer bg-blue-600 text-white shadow-xs';
+      }
+      if (btnTable) {
+        btnTable.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 cursor-pointer text-slate-600 hover:text-slate-900';
+      }
+      if (gridContainer) gridContainer.classList.remove('hidden');
+      if (tableContainer) tableContainer.classList.add('hidden');
+    } else {
+      if (btnGrid) {
+        btnGrid.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 cursor-pointer text-slate-600 hover:text-slate-900';
+      }
+      if (btnTable) {
+        btnTable.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 cursor-pointer bg-blue-600 text-white shadow-xs';
+      }
+      if (gridContainer) gridContainer.classList.add('hidden');
+      if (tableContainer) tableContainer.classList.remove('hidden');
+    }
+
+    if (this.state.cachedItems && this.state.cachedItems.length > 0) {
+      this.render(this.state.cachedItems);
+    }
   },
 
   async init() {
@@ -104,10 +138,15 @@ const ProductManager = {
 
   async fetchProducts() {
     const tbody = document.getElementById('products-tbody');
+    const gridContainer = document.getElementById('products-grid-container');
     const countDisplay = document.getElementById('products-total-count');
-    if (!tbody) return;
 
-    tbody.innerHTML = `<tr><td colspan="7" class="p-8 text-center text-xs text-slate-400">Loading products...</td></tr>`;
+    if (gridContainer && this.state.viewMode === 'grid') {
+      gridContainer.innerHTML = `<div class="col-span-full p-12 text-center text-xs text-slate-400 bg-white rounded-2xl border border-slate-200">Loading machines...</div>`;
+    }
+    if (tbody) {
+      tbody.innerHTML = `<tr><td colspan="7" class="p-8 text-center text-xs text-slate-400">Loading machines...</td></tr>`;
+    }
 
     try {
       const data = await window.AdminAPI.getProducts({
@@ -122,14 +161,116 @@ const ProductManager = {
       this.state.totalPages = data.total_pages;
 
       if (countDisplay) {
-        countDisplay.textContent = `Showing ${data.items.length} of ${data.total} products`;
+        countDisplay.textContent = `Showing ${data.items.length} of ${data.total} machines`;
       }
 
-      this.renderTable(data.items);
+      this.render(data.items);
       this.renderPagination();
     } catch (err) {
-      tbody.innerHTML = `<tr><td colspan="7" class="p-8 text-center text-xs text-red-600">Failed to load products: ${err.message}</td></tr>`;
+      if (gridContainer) gridContainer.innerHTML = `<div class="col-span-full p-8 text-center text-xs text-red-600 bg-white rounded-2xl border border-red-200">Failed to load machines: ${err.message}</div>`;
+      if (tbody) tbody.innerHTML = `<tr><td colspan="7" class="p-8 text-center text-xs text-red-600">Failed to load machines: ${err.message}</td></tr>`;
     }
+  },
+
+  render(items) {
+    this.state.cachedItems = items || [];
+    if (this.state.viewMode === 'grid') {
+      this.renderGrid(items);
+    } else {
+      this.renderTable(items);
+    }
+  },
+
+  renderGrid(items) {
+    const container = document.getElementById('products-grid-container');
+    if (!container) return;
+
+    if (!items || items.length === 0) {
+      container.innerHTML = `
+        <div class="col-span-full p-12 text-center bg-white rounded-2xl border border-slate-200 shadow-sm">
+          <p class="text-sm font-bold text-slate-600">No testing machines match your search or filter.</p>
+          <p class="text-xs text-slate-400 mt-1">Try clearing filters or search keywords.</p>
+        </div>`;
+      return;
+    }
+
+    const baseUrl = window.AdminAPI.getBaseUrl();
+
+    container.innerHTML = items
+      .map((p) => {
+        const imgUrl = (p.image_url && p.image_url.startsWith('http')) ? p.image_url : `${baseUrl}${p.image_url || '/static/images/products/placeholder.jpg'}`;
+        const isActive = p.is_active !== false;
+
+        return `
+        <div class="bg-white border-2 border-slate-200 hover:border-blue-600 rounded-2xl p-4 flex flex-col justify-between transition-all duration-200 hover:shadow-xl group relative">
+          <!-- Top Bar: Division Badge & Status Toggle -->
+          <div class="flex items-center justify-between gap-2 mb-3">
+            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-slate-100 text-slate-700 truncate max-w-[150px]" title="${p.category_name}">
+              ${p.category_name}
+            </span>
+            <button 
+              onclick="ProductManager.toggleStatus(${p.id})" 
+              class="px-2.5 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider transition cursor-pointer ${
+                isActive ? 'bg-emerald-100 text-emerald-800 hover:bg-emerald-200' : 'bg-slate-200 text-slate-600 hover:bg-slate-300'
+              }"
+              title="Click to toggle active status on public website"
+            >
+              ${isActive ? '● ACTIVE' : '○ INACTIVE'}
+            </button>
+          </div>
+
+          <!-- Square Photo Box (Prominent & High Quality) -->
+          <div class="w-full aspect-square bg-slate-50 border border-slate-200 rounded-xl p-3 flex items-center justify-center relative overflow-hidden group-hover:bg-blue-50/20 transition mb-3">
+            ${p.is_featured ? '<span class="absolute top-2 left-2 z-10 px-2 py-0.5 rounded text-[9px] font-black bg-amber-400 text-amber-950 shadow-xs">★ FEATURED</span>' : ''}
+            <img 
+              src="${imgUrl}" 
+              alt="${p.product_name}" 
+              class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+              onerror="this.onerror=null;this.src='/assets/images/product-placeholder.svg'"
+            >
+            <div class="absolute bottom-2 right-2 px-2 py-0.5 bg-slate-900/80 backdrop-blur-xs text-white text-[10px] font-mono font-bold rounded">
+              ID #${p.id}
+            </div>
+          </div>
+
+          <!-- Machine Name & Model -->
+          <div class="flex-1 flex flex-col justify-between mb-3">
+            <div>
+              <h3 class="font-bold text-slate-900 text-xs sm:text-sm line-clamp-2 leading-snug group-hover:text-blue-600 transition" title="${p.product_name}">
+                ${p.product_name}
+              </h3>
+              <div class="flex items-center gap-1.5 mt-2">
+                <span class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Model:</span>
+                <span class="text-[11px] font-mono font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded border border-blue-100 truncate max-w-[180px]">
+                  ${p.model_number || 'Standard'}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Action Buttons: Edit Machine & Catalogue Section -->
+          <div class="pt-3 border-t border-slate-100 flex items-center gap-2">
+            <button 
+              onclick="ProductManager.openEditModal(${p.id})" 
+              class="flex-1 py-2 px-3 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-xl transition text-center shadow-xs cursor-pointer flex items-center justify-center gap-1.5"
+            >
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+              <span>Edit Machine</span>
+            </button>
+            <a 
+              href="${baseUrl}${p.catalogue_path}" 
+              target="_blank" 
+              class="flex-1 py-2 px-3 bg-red-600 hover:bg-red-700 text-white font-bold text-xs rounded-xl transition text-center shadow-xs cursor-pointer flex items-center justify-center gap-1.5"
+              title="Open Official PDF Catalogue"
+            >
+              <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd"/></svg>
+              <span>Catalogue (${p.catalogue_pages || 2}p)</span>
+            </a>
+          </div>
+        </div>
+      `;
+      })
+      .join('');
   },
 
   renderTable(items) {
@@ -177,7 +318,7 @@ const ProductManager = {
           <td class="p-3 text-center">
             <button 
               onclick="ProductManager.toggleStatus(${p.id})" 
-              class="px-2.5 py-1 rounded-full text-[10px] font-bold transition ${
+              class="px-2.5 py-1 rounded-full text-[10px] font-bold transition cursor-pointer ${
                 isActive ? 'bg-emerald-100 text-emerald-800 hover:bg-emerald-200' : 'bg-slate-200 text-slate-600 hover:bg-slate-300'
               }"
             >
@@ -194,35 +335,22 @@ const ProductManager = {
               PDF (${p.catalogue_pages || 1}p)
             </a>
           </td>
-          <td class="p-3 text-right whitespace-nowrap space-x-1">
+          <td class="p-3 text-right whitespace-nowrap space-x-2">
             <button 
               onclick="ProductManager.openEditModal(${p.id})" 
-              class="px-2 py-1 bg-slate-100 hover:bg-blue-50 text-slate-700 hover:text-blue-600 rounded text-xs font-semibold transition"
-              title="Edit Product Details"
+              class="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-lg transition cursor-pointer shadow-xs"
             >
-              Edit
+              Edit Machine
             </button>
-            <button 
-              onclick="ProductManager.openUploadImageModal(${p.id}, '${p.product_name.replace(/'/g, "\\'")}')" 
-              class="px-2 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded text-xs transition"
-              title="Upload Machine Photo"
+            <a 
+              href="${baseUrl}${p.catalogue_path}" 
+              target="_blank" 
+              class="px-3 py-1.5 bg-red-600 hover:bg-red-700 text-white font-bold text-xs rounded-lg transition inline-flex items-center gap-1.5 shadow-xs cursor-pointer"
+              title="Open Official Factory PDF Catalogue (${p.catalogue_pages || 2} pages)"
             >
-              📷
-            </button>
-            <button 
-              onclick="ProductManager.openUploadCatalogueModal(${p.id}, '${p.product_name.replace(/'/g, "\\'")}')" 
-              class="px-2 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded text-xs transition"
-              title="Upload Catalogue PDF"
-            >
-              📄
-            </button>
-            <button 
-              onclick="ProductManager.openVideoModal(${p.id}, '${p.product_name.replace(/'/g, "\\'")}')" 
-              class="px-2 py-1 ${p.video_url ? 'bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200' : 'bg-slate-100 hover:bg-blue-50 text-slate-700'} rounded text-xs transition font-semibold"
-              title="${p.video_url ? 'View or Regenerate 30s HD Video' : 'Generate 30s HD Video'}"
-            >
-              🎬 ${p.video_url ? 'Video' : 'Gen'}
-            </button>
+              <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd"/></svg>
+              <span>Catalogue (${p.catalogue_pages || 2}p)</span>
+            </a>
           </td>
         </tr>
       `;
@@ -281,7 +409,15 @@ const ProductManager = {
     }
   },
 
-  // Simplified, Intuitive Add / Edit Modal with Image Upload
+  // Simplified, Intuitive Add / Edit Modal with Image & Catalogue Upload
+  formatBytes(bytes) {
+    if (!bytes || bytes === 0) return '0 KB';
+    const k = 1024;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
+  },
+
   handleImageFileChange(e) {
     const file = e.target.files[0];
     const preview = document.getElementById('product-img-preview');
@@ -293,6 +429,67 @@ const ProductManager = {
         if (badge) badge.classList.remove('hidden');
       };
       reader.readAsDataURL(file);
+    }
+  },
+
+  handleCatalogueFileChange(e) {
+    const file = e.target.files[0];
+    const badge = document.getElementById('product-catalogue-badge');
+    const quickBtn = document.getElementById('btn-quick-upload-cat-products');
+    if (file) {
+      if (!file.name.toLowerCase().endsWith('.pdf') && file.type !== 'application/pdf') {
+        alert('Please select a valid PDF file (.pdf)');
+        e.target.value = '';
+        if (badge) badge.textContent = '';
+        if (quickBtn) quickBtn.classList.add('hidden');
+        return;
+      }
+      if (badge) badge.textContent = `Ready: ${file.name} (${this.formatBytes(file.size)})`;
+      if (quickBtn && this.state.editingProductId) quickBtn.classList.remove('hidden');
+    } else {
+      if (badge) badge.textContent = '';
+      if (quickBtn) quickBtn.classList.add('hidden');
+    }
+  },
+
+  async quickUploadCatalogue() {
+    const id = this.state.editingProductId;
+    const catInput = document.getElementById('product-catalogue-input');
+    const file = catInput ? catInput.files[0] : null;
+    if (!id || !file) return;
+
+    const btn = document.getElementById('btn-quick-upload-cat-products');
+    btn.disabled = true;
+    btn.textContent = 'Uploading...';
+
+    try {
+      await window.AdminAPI.uploadProductCatalogue(id, file);
+      if (window.showAdminToast) {
+        window.showAdminToast('Catalogue PDF uploaded successfully!', 'success');
+      }
+
+      // Refresh product details
+      const updated = await window.AdminAPI.getProduct(id);
+      document.getElementById('product-catalogue-filename').textContent = updated.original_filename || updated.catalogue_path.split('/').pop();
+      document.getElementById('product-catalogue-pages').textContent = `${updated.catalogue_pages || 2} Pages`;
+      document.getElementById('product-catalogue-size').textContent = this.formatBytes(updated.catalogue_size_bytes);
+      
+      const catViewBtn = document.getElementById('product-catalogue-view-btn');
+      if (catViewBtn && updated.catalogue_path) {
+        const baseUrl = window.AdminAPI.getBaseUrl();
+        catViewBtn.href = updated.catalogue_path.startsWith('http') ? updated.catalogue_path : baseUrl + updated.catalogue_path;
+        catViewBtn.classList.remove('opacity-50', 'pointer-events-none');
+      }
+
+      catInput.value = '';
+      document.getElementById('product-catalogue-badge').textContent = '✓ Successfully uploaded!';
+      btn.classList.add('hidden');
+      this.fetchProducts();
+    } catch (err) {
+      alert('Failed to upload catalogue: ' + (err.message || err));
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Upload PDF Now';
     }
   },
 
@@ -318,6 +515,22 @@ const ProductManager = {
     if (preview) preview.src = '/assets/images/product-placeholder.svg';
     if (badge) badge.classList.add('hidden');
     if (fileInput) fileInput.value = '';
+
+    // Reset catalogue
+    const catInput = document.getElementById('product-catalogue-input');
+    const catBadge = document.getElementById('product-catalogue-badge');
+    const catName = document.getElementById('product-catalogue-filename');
+    const catPages = document.getElementById('product-catalogue-pages');
+    const catSize = document.getElementById('product-catalogue-size');
+    const catViewBtn = document.getElementById('product-catalogue-view-btn');
+    const catQuickBtn = document.getElementById('btn-quick-upload-cat-products');
+    if (catInput) catInput.value = '';
+    if (catBadge) catBadge.textContent = '';
+    if (catName) catName.textContent = 'None attached';
+    if (catPages) catPages.textContent = '0 Pages';
+    if (catSize) catSize.textContent = '0 KB';
+    if (catViewBtn) catViewBtn.classList.add('opacity-50', 'pointer-events-none');
+    if (catQuickBtn) catQuickBtn.classList.add('hidden');
 
     // Reset features and specs
     const featText = document.getElementById('product-features-text');
@@ -369,6 +582,39 @@ const ProductManager = {
           ? p.image_url 
           : `${baseUrl}${p.image_url || '/assets/images/product-placeholder.svg'}`;
         preview.src = imgUrl;
+      }
+
+      // Populate catalogue status
+      const catInput = document.getElementById('product-catalogue-input');
+      const catBadge = document.getElementById('product-catalogue-badge');
+      const catName = document.getElementById('product-catalogue-filename');
+      const catPages = document.getElementById('product-catalogue-pages');
+      const catSize = document.getElementById('product-catalogue-size');
+      const catViewBtn = document.getElementById('product-catalogue-view-btn');
+      const catQuickBtn = document.getElementById('btn-quick-upload-cat-products');
+
+      if (catInput) catInput.value = '';
+      if (catBadge) catBadge.textContent = '';
+      if (catQuickBtn) catQuickBtn.classList.add('hidden');
+
+      if (catName) {
+        catName.textContent = p.original_filename || (p.catalogue_path ? p.catalogue_path.split('/').pop() : 'Standard Catalogue PDF');
+      }
+      if (catPages) {
+        catPages.textContent = `${p.catalogue_pages || 2} Pages`;
+      }
+      if (catSize) {
+        catSize.textContent = this.formatBytes(p.catalogue_size_bytes);
+      }
+      if (catViewBtn) {
+        const baseUrl = window.AdminAPI.getBaseUrl();
+        if (p.catalogue_path) {
+          catViewBtn.href = p.catalogue_path.startsWith('http') ? p.catalogue_path : baseUrl + p.catalogue_path;
+          catViewBtn.classList.remove('opacity-50', 'pointer-events-none');
+        } else {
+          catViewBtn.href = '#';
+          catViewBtn.classList.add('opacity-50', 'pointer-events-none');
+        }
       }
 
       // Populate features textarea
@@ -474,8 +720,15 @@ const ProductManager = {
         await window.AdminAPI.uploadProductImage(targetId, fileInput.files[0]);
       }
 
+      // If a new catalogue PDF was chosen, upload it now
+      const catInput = document.getElementById('product-catalogue-input');
+      if (catInput && catInput.files && catInput.files.length > 0) {
+        submitBtn.textContent = 'Uploading Catalogue PDF...';
+        await window.AdminAPI.uploadProductCatalogue(targetId, catInput.files[0]);
+      }
+
       if (window.showAdminToast) {
-        window.showAdminToast('Instrument & Photo saved successfully!', 'success');
+        window.showAdminToast('Instrument, Photo & Catalogue saved successfully!', 'success');
       }
 
       this.closeModal();
