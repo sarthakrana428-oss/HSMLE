@@ -692,3 +692,250 @@ img {
     display: none !important;
   }
 }
+
+/* ==========================================================================
+   PRODUCT DIVISIONS SIDEBAR - MODERN PREMIUM B2B INDUSTRIAL DESIGN
+   ========================================================================== */
+
+/* Main Sidebar Card */
+#product-divisions-sidebar-card {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 14px !important;
+  box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.04), 0 1px 2px -1px rgba(15, 23, 42, 0.02) !important;
+  padding: 16px 14px !important;
+}
+
+#product-divisions-sidebar-card .sidebar-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding-bottom: 12px !important;
+  margin-bottom: 10px !important;
+  border-bottom: 1px solid #f1f5f9 !important;
+}
+
+#product-divisions-sidebar-card .sidebar-title {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  font-size: 11.5px !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+  color: #0f172a !important;
+}
+
+#product-divisions-sidebar-card .sidebar-title-dot {
+  width: 7px !important;
+  height: 7px !important;
+  border-radius: 9999px !important;
+  background-color: #2563eb !important;
+  display: inline-block !important;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15) !important;
+}
+
+#product-divisions-sidebar-card #reset-filters-btn {
+  font-size: 11.5px !important;
+  font-weight: 600 !important;
+  color: #2563eb !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 3px 8px !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
+}
+
+#product-divisions-sidebar-card #reset-filters-btn:hover {
+  background-color: #eff6ff !important;
+  color: #1d4ed8 !important;
+}
+
+/* Division List Container */
+#category-filter-sidebar {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 3px !important;
+}
+
+/* Base Division Nav Item (clean row, NO box border, gentle rounded hover pill) */
+#category-filter-sidebar .division-nav-item {
+  width: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 8px 10px !important;
+  border: 1px solid transparent !important;
+  border-radius: 10px !important;
+  background-color: transparent !important;
+  color: #334155 !important;
+  font-size: 12.5px !important;
+  font-weight: 500 !important;
+  line-height: 1.35 !important;
+  text-align: left !important;
+  cursor: pointer !important;
+  box-shadow: none !important;
+  transform: none !important;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+/* Hover state on unselected division */
+#category-filter-sidebar .division-nav-item:hover {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+#category-filter-sidebar .division-nav-item:hover .division-icon-wrap {
+  background-color: #eff6ff !important;
+  color: #2563eb !important;
+}
+
+#category-filter-sidebar .division-nav-item:hover .division-count-badge {
+  background-color: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+/* ACTIVE Division Nav Item (Vibrant Royal Blue Gradient) */
+#category-filter-sidebar .division-nav-item.active {
+  background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%) !important;
+  border-color: #1d4ed8 !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  box-shadow: 0 3px 10px rgba(37, 99, 235, 0.25) !important;
+}
+
+#category-filter-sidebar .division-nav-item.active .division-icon-wrap {
+  background-color: rgba(255, 255, 255, 0.22) !important;
+  color: #ffffff !important;
+}
+
+#category-filter-sidebar .division-nav-item.active .division-label {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+}
+
+#category-filter-sidebar .division-nav-item.active .division-count-badge {
+  background-color: rgba(255, 255, 255, 0.25) !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
+
+/* Left Content: Icon + Label */
+#category-filter-sidebar .division-left-content {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  min-width: 0 !important;
+  padding-right: 6px !important;
+  flex: 1 1 auto !important;
+}
+
+/* Icon Container */
+#category-filter-sidebar .division-icon-wrap {
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 8px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  background-color: #f1f5f9 !important;
+  color: #64748b !important;
+  border: none !important;
+  transition: all 0.15s ease !important;
+}
+
+#category-filter-sidebar .division-icon-wrap svg {
+  width: 15px !important;
+  height: 15px !important;
+}
+
+/* Label */
+#category-filter-sidebar .division-label {
+  font-size: 12px !important;
+  line-height: 1.35 !important;
+  word-break: normal !important;
+  overflow-wrap: break-word !important;
+  color: inherit !important;
+}
+
+/* Count Badge (Rounded Pill) */
+#category-filter-sidebar .division-count-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 22px !important;
+  height: 20px !important;
+  padding: 0 7px !important;
+  border-radius: 9999px !important;
+  font-family: var(--font-mono, monospace) !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  background-color: #f1f5f9 !important;
+  color: #64748b !important;
+  border: none !important;
+  margin-left: 6px !important;
+  flex-shrink: 0 !important;
+  transition: all 0.15s ease !important;
+}
+
+/* Divider between "All Divisions" and individual divisions */
+#category-filter-sidebar .division-divider {
+  height: 1px !important;
+  background: #f1f5f9 !important;
+  margin: 6px 4px !important;
+  border: none !important;
+}
+
+/* Subcategories Tree */
+#category-filter-sidebar .division-subcats-wrap {
+  margin-top: 3px !important;
+  margin-bottom: 6px !important;
+  margin-left: 18px !important;
+  padding-left: 10px !important;
+  border-left: 2px solid #bfdbfe !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+}
+
+#category-filter-sidebar .subcategory-nav-item {
+  width: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 5px 8px !important;
+  border: none !important;
+  border-radius: 6px !important;
+  background: transparent !important;
+  font-size: 11px !important;
+  color: #475569 !important;
+  text-align: left !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
+}
+
+#category-filter-sidebar .subcategory-nav-item:hover {
+  background-color: #f1f5f9 !important;
+  color: #1d4ed8 !important;
+}
+
+#category-filter-sidebar .subcategory-nav-item.active {
+  background-color: #eff6ff !important;
+  color: #1d4ed8 !important;
+  font-weight: 700 !important;
+}
+
+#category-filter-sidebar .subcategory-nav-item .subcat-count {
+  font-family: var(--font-mono, monospace) !important;
+  font-size: 10px !important;
+  color: #94a3b8 !important;
+  margin-left: 4px !important;
+}
+
+#category-filter-sidebar .subcategory-nav-item.active .subcat-count {
+  color: #1d4ed8 !important;
+  font-weight: 700 !important;
+}
