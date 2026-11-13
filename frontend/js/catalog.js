@@ -149,6 +149,7 @@ const Catalog = {
     if (searchInput) searchInput.value = '';
 
     this.updateUrlParams();
+    this.loadCategoriesFilter();
     this.highlightActiveCategory();
     this.fetchAndRenderProducts();
   },
@@ -195,50 +196,59 @@ const Catalog = {
       const totalDivisions = (this.state.categoriesData || []).length;
 
       let html = `
-        <div class="mb-2">
+        <div class="mb-2.5">
           <button 
             onclick="Catalog.selectCategory(null)" 
-            class="w-full text-left px-3 py-2 rounded-none border border-slate-900 text-xs font-semibold flex items-center justify-between transition ${
-              !this.state.categorySlug ? 'bg-blue-600 text-white' : 'text-slate-700 hover:bg-slate-100'
+            class="w-full text-left px-3.5 py-2.5 rounded-lg text-xs font-semibold flex items-center justify-between transition-all duration-150 ${
+              !this.state.categorySlug 
+                ? 'bg-blue-600 text-white shadow-sm ring-1 ring-blue-700' 
+                : 'bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 shadow-[0_1px_2px_rgba(0,0,0,0.03)]'
             }"
             id="cat-btn-all"
           >
-            <span>All ${totalDivisions} Divisions</span>
-            <span class="text-[11px] px-2 py-0.5 rounded-none ${!this.state.categorySlug ? 'bg-blue-700 text-white' : 'bg-slate-200 text-slate-700'} font-mono font-bold">${totalMachines}</span>
+            <span class="flex-1 pr-2">All ${totalDivisions} Divisions</span>
+            <span class="text-[11px] px-2.5 py-0.5 rounded-full ${
+              !this.state.categorySlug ? 'bg-blue-700/80 text-white' : 'bg-slate-100 text-slate-600'
+            } font-mono font-bold shrink-0">${totalMachines}</span>
           </button>
         </div>
-        <div class="space-y-1">
+        <div class="space-y-1.5">
       `;
 
       this.state.categoriesData.forEach((cat) => {
         const isCatActive = this.state.categorySlug === cat.slug;
         html += `
-          <div class="border border-slate-900 rounded-none border border-slate-900 overflow-hidden mb-1">
+          <div class="mb-1.5">
             <button 
               onclick="Catalog.selectCategory('${cat.slug}')" 
-              class="w-full text-left px-3 py-2 text-xs font-semibold flex items-center justify-between transition ${
-                isCatActive ? 'bg-blue-50 text-blue-700 font-bold' : 'text-slate-700 hover:bg-slate-50'
+              class="w-full text-left px-3 py-2.5 rounded-lg text-xs font-medium flex items-center justify-between transition-all duration-150 ${
+                isCatActive 
+                  ? 'bg-blue-600 text-white font-semibold shadow-sm ring-1 ring-blue-700' 
+                  : 'bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 shadow-[0_1px_2px_rgba(0,0,0,0.03)]'
               }"
+              id="cat-btn-${cat.slug}"
             >
-              <span class="truncate pr-2">${cat.name}</span>
-              <span class="text-[10px] px-1.5 py-0.5 rounded-none ${isCatActive ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-500'} font-mono">${cat.total_products}</span>
+              <span class="flex-1 pr-2 leading-snug break-words">${cat.name}</span>
+              <span class="text-[11px] px-2 py-0.5 rounded-full ${
+                isCatActive ? 'bg-blue-700/80 text-white font-bold' : 'bg-slate-100 text-slate-500 font-medium'
+              } font-mono shrink-0 ml-1.5">${cat.total_products}</span>
             </button>
             ${
               cat.subcategories && cat.subcategories.length > 0
                 ? `
-              <div class="pl-3 pr-2 py-1 bg-slate-50/50 space-y-0.5 border-t border-slate-900 ${isCatActive ? '' : 'hidden'}" id="subcats-${cat.slug}">
+              <div class="mt-1 ml-3 pl-3 py-1 space-y-1 border-l-2 border-blue-400 bg-slate-50/70 rounded-r-lg ${isCatActive ? '' : 'hidden'}" id="subcats-${cat.slug}">
                 ${cat.subcategories
                   .map((sub) => {
                     const isSubActive = this.state.subcategorySlug === sub.slug;
                     return `
                     <button 
                       onclick="Catalog.selectSubcategory('${cat.slug}', '${sub.slug}')" 
-                      class="w-full text-left px-2 py-1 text-[11px] rounded-none transition flex items-center justify-between ${
-                        isSubActive ? 'bg-blue-600 text-white font-semibold' : 'text-slate-600 hover:text-blue-600 hover:bg-white'
+                      class="w-full text-left px-2.5 py-1.5 text-[11px] rounded-md transition flex items-center justify-between ${
+                        isSubActive ? 'bg-blue-600 text-white font-semibold' : 'text-slate-600 hover:text-blue-700 hover:bg-white'
                       }"
                     >
-                      <span class="truncate pr-1">• ${sub.name}</span>
-                      <span class="text-[10px] ${isSubActive ? 'text-blue-100' : 'text-slate-400'} font-mono">${sub.product_count}</span>
+                      <span class="flex-1 pr-1.5 leading-tight break-words">• ${sub.name}</span>
+                      <span class="text-[10px] ${isSubActive ? 'text-blue-100 font-bold' : 'text-slate-400'} font-mono shrink-0">${sub.product_count}</span>
                     </button>
                   `;
                   })
